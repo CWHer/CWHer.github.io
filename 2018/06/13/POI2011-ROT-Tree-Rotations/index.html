@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="线段树," />
 
 
 
@@ -108,17 +108,18 @@
 
 
 
-<meta name="description" content="OIer/ACGN">
-<meta property="og:type" content="website">
-<meta property="og:title" content="魍魉的小窝">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="对于每个节点分别求左-右，右-左的逆序对，将较小的加入答案原来思路：枚举个数较少的节点的每个数，二分求答案看完题解发现可以用线段树合并。新技能get">
+<meta name="keywords" content="线段树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[POI2011]ROT-Tree Rotations">
+<meta property="og:url" content="http://yoursite.com/2018/06/13/POI2011-ROT-Tree-Rotations/index.html">
 <meta property="og:site_name" content="魍魉的小窝">
-<meta property="og:description" content="OIer/ACGN">
+<meta property="og:description" content="对于每个节点分别求左-右，右-左的逆序对，将较小的加入答案原来思路：枚举个数较少的节点的每个数，二分求答案看完题解发现可以用线段树合并。新技能get">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-03T07:45:50.161Z">
+<meta property="og:updated_time" content="2018-06-13T14:32:16.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="魍魉的小窝">
-<meta name="twitter:description" content="OIer/ACGN">
+<meta name="twitter:title" content="[POI2011]ROT-Tree Rotations">
+<meta name="twitter:description" content="对于每个节点分别求左-右，右-左的逆序对，将较小的加入答案原来思路：枚举个数较少的节点的每个数，二分求答案看完题解发现可以用线段树合并。新技能get">
 
 
 
@@ -148,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/13/POI2011-ROT-Tree-Rotations/"/>
 
 
 
@@ -156,7 +157,7 @@
 
 
 
-  <title>标签 | 魍魉的小窝</title>
+  <title>[POI2011]ROT-Tree Rotations | 魍魉的小窝</title>
   
 
 
@@ -323,40 +324,207 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/13/POI2011-ROT-Tree-Rotations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 5 个标签
+          <h1 class="post-title" itemprop="name headline">[POI2011]ROT-Tree Rotations</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T22:31:51+08:00">
+                2018-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  350
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/二分答案/" style="font-size: 12px; color: #ccc">二分答案</a> <a href="/tags/动态规划/" style="font-size: 12px; color: #ccc">动态规划</a> <a href="/tags/平衡树/" style="font-size: 30px; color: #111">平衡树</a> <a href="/tags/模板/" style="font-size: 12px; color: #ccc">模板</a> <a href="/tags/线段树/" style="font-size: 12px; color: #ccc">线段树</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>对于每个节点分别求左-右，右-左的逆序对，将较小的加入答案<br>原来思路：枚举个数较少的节点的每个数，二分求答案<br>看完题解发现可以用线段树合并。新技能get<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">400050</span>;</span><br><span class="line"><span class="keyword">int</span> cnt,st,ch[N][<span class="number">2</span>],w[N],rt[N],n;</span><br><span class="line"><span class="keyword">int</span> idx,ls[N*<span class="number">20</span>],rs[N*<span class="number">20</span>],sum[N*<span class="number">20</span>];</span><br><span class="line">LL ans,f,g;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> &amp;o)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    o=++cnt;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;w[o]);</span><br><span class="line">    <span class="keyword">if</span> (!w[o]) dfs(ch[o][<span class="number">0</span>]),dfs(ch[o][<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> &amp;o,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    o=++idx;</span><br><span class="line">    <span class="keyword">if</span> (l==r) &#123;sum[o]=<span class="number">1</span>;<span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    k&lt;=mid?build(ls[o],l,mid,k):build(rs[o],mid+<span class="number">1</span>,r,k);</span><br><span class="line">    sum[o]=sum[ls[o]]+sum[rs[o]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!u||!v) <span class="keyword">return</span> v+u;</span><br><span class="line">    f+=(LL)sum[rs[u]]*sum[ls[v]];</span><br><span class="line">    g+=(LL)sum[ls[u]]*sum[rs[v]];</span><br><span class="line">    <span class="keyword">int</span> o=++idx;</span><br><span class="line">    ls[o]=merge(ls[u],ls[v]);</span><br><span class="line">    rs[o]=merge(rs[u],rs[v]);</span><br><span class="line">    sum[o]=sum[ls[o]]+sum[rs[o]];</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> o)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!o) <span class="keyword">return</span>;</span><br><span class="line">    calc(ch[o][<span class="number">0</span>]),calc(ch[o][<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!w[o]) </span><br><span class="line">    &#123;</span><br><span class="line">        f=g=<span class="number">0</span>;</span><br><span class="line">        rt[o]=merge(rt[ch[o][<span class="number">0</span>]],rt[ch[o][<span class="number">1</span>]]);</span><br><span class="line">        ans+=min(f,g);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    dfs(st);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)</span><br><span class="line">        <span class="keyword">if</span> (w[i]) build(rt[i],<span class="number">1</span>,n,w[i]);</span><br><span class="line">    calc(st);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/线段树/" <i class="fa fa-tag"></i> 线段树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/13/ZJOI2006-皇帝的烦恼/" rel="next" title="[ZJOI2006]皇帝的烦恼">
+                <i class="fa fa-chevron-left"></i> [ZJOI2006]皇帝的烦恼
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/13/ZJOI2006-书架/" rel="prev" title="[ZJOI2006]书架">
+                [ZJOI2006]书架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5aebc2426c6731f6" async = "async" ></script>
+</div>
+
+      
+    </div>
   </div>
 
 
