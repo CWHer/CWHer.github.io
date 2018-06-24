@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[NOIP2017]宝藏]]></title>
+    <url>%2F2018%2F06%2F22%2FNOIP2017-%E5%AE%9D%E8%97%8F%2F</url>
+    <content type="text"><![CDATA[一道状压dp的题当初考场上没有想到如何保存状态，写了个O\left ( 2^{n} n!\right )的，拿了70分dp数组记录最大深度d，和已选点状态s对于每个s，枚举补集进行更新枚举补集复杂度为O\left ( 3^{n}\right )，总复杂度O\left ( n3^{n} \right ) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;const int N=14,INF=1&lt;&lt;30;int n,m,dp[N][1&lt;&lt;N],w[1&lt;&lt;N],idx[1&lt;&lt;N],pos[1&lt;&lt;N],c[N],f[N][N],val[N];vector&lt;int&gt; e[N];int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) f[i][j]=INF; for(int d=0;d&lt;=n;d++) for(int i=0;i&lt;(1&lt;&lt;n);i++) dp[d][i]=INF; for(int i=1;i&lt;=m;i++) &#123; int u,v,val; scanf("%d%d%d",&amp;u,&amp;v,&amp;val); f[u][v]=f[v][u]=min(val,f[u][v]); &#125; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) if (f[i][j]!=INF) e[i].push_back(j); for(int i=1;i&lt;=n;i++) dp[0][1&lt;&lt;(i-1)]=0; for(int d=0;d&lt;=n;d++) for(int s=0,cnt=0;s&lt;(1&lt;&lt;n);s++,cnt=0) if (dp[d][s]!=INF) &#123; for(int i=1;i&lt;=n;i++) if (!(s&gt;&gt;(i-1)&amp;1)) pos[1&lt;&lt;cnt]=i,val[i]=INF,c[cnt++]=i; for(int k=1;k&lt;(1&lt;&lt;cnt);k++) &#123; int x=0; for(int i=0;i&lt;cnt;i++) if ((k&gt;&gt;i)&amp;1) x|=1&lt;&lt;(c[i]-1); idx[k]=x,w[x]=INF; &#125; for(int i=1;i&lt;=n;i++) if ((s&gt;&gt;(i-1))&amp;1) for(int j=0;j&lt;e[i].size();j++) &#123; int to=e[i][j]; if (!((s&gt;&gt;(to-1))&amp;1)) val[to]=min(f[i][to],val[to]); &#125; for(int k=1;k&lt;(1&lt;&lt;cnt);k++) if (w[idx[k-(k&amp;-k)]]!=INF&amp;&amp;val[pos[k&amp;-k]]!=INF) w[idx[k]]=w[idx[k-(k&amp;-k)]]+(d+1)*val[pos[k&amp;-k]]; for(int k=0;k&lt;(1&lt;&lt;cnt);k++) if (!(s&amp;idx[k])&amp;&amp;w[idx[k]]!=INF) dp[d+1][s|idx[k]]=min(dp[d+1][s|idx[k]],dp[d][s]+w[idx[k]]); &#125; int ans=INF; for(int i=1;i&lt;=n;i++) ans=min(ans,dp[i][(1&lt;&lt;n)-1]); printf("%d",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>状态压缩</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[HNOI2009]梦幻布丁]]></title>
     <url>%2F2018%2F06%2F20%2FHNOI2009-%E6%A2%A6%E5%B9%BB%E5%B8%83%E4%B8%81%2F</url>
-    <content type="text"><![CDATA[用玄学复杂度并查集维护在代表元素中保存当前段的颜色（w[]），和左右端点（s[]，t[]）再用一个桶维护每种颜色的所有段当且仅当要合并两段颜色相同时进行合并，并更新左右端点123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include&lt;cstdio&gt;#include&lt;vector&gt;using namespace std;const int N=100050;int fa[N],w[N],cnt,s[N],t[N],n,m;vector&lt;int&gt; f[N*10];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;int find(int x) &#123;return fa[x]==x?x:fa[x]=find(fa[x]);&#125;void unite(int u,int v)&#123; if (!u||!v) return; u=find(u),v=find(v); if (w[u]!=w[v]) return;else cnt--; fa[v]=u,s[u]=min(s[u],s[v]),t[u]=max(t[u],t[v]);&#125;void update()&#123; int u=read(),v=read(); if (u==v) return; while (!f[u].empty()) &#123; int x=f[u].back();f[u].pop_back(); if (find(x)!=x) continue;else w[x]=v; int st=s[x],ed=t[x]; if (st&gt;1) unite(st-1,st); if (ed&lt;n) unite(ed,ed+1); if (find(x)==x) f[v].push_back(x); &#125; &#125;int main()&#123; n=cnt=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(),fa[i]=i; for(int i=1;i&lt;=n;i++) s[i]=t[i]=i; for(int i=1;i&lt;n;i++) unite(i,i+1); for(int i=1;i&lt;=n;i++) if (i==find(i)) f[w[i]].push_back(i); for(int i=1;i&lt;=m;i++) &#123; int opt=read(); if (opt==1) update(); if (opt==2) printf("%d\n",cnt); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[用并查集维护在代表元素中保存当前段的颜色（w[]），和左右端点（s[]，t[]）再用一个桶维护每种颜色的所有段当且仅当要合并两段颜色相同时进行合并，并更新左右端点对于每个桶用list维护，再进行启发式合并，这里偷懒直接用了vector123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include&lt;cstdio&gt;#include&lt;vector&gt;using namespace std;const int N=100050;int fa[N],w[N],cnt,s[N],t[N],n,m;vector&lt;int&gt; f[N*10];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;int find(int x) &#123;return fa[x]==x?x:fa[x]=find(fa[x]);&#125;void unite(int u,int v)&#123; if (!u||!v) return; u=find(u),v=find(v); if (w[u]!=w[v]) return;else cnt--; fa[v]=u,s[u]=min(s[u],s[v]),t[u]=max(t[u],t[v]);&#125;void update()&#123; int u=read(),v=read(); if (u==v) return; while (!f[u].empty()) &#123; int x=f[u].back();f[u].pop_back(); if (find(x)!=x) continue;else w[x]=v; int st=s[x],ed=t[x]; if (st&gt;1) unite(st-1,st); if (ed&lt;n) unite(ed,ed+1); if (find(x)==x) f[v].push_back(x); &#125; &#125;int main()&#123; n=cnt=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(),fa[i]=i; for(int i=1;i&lt;=n;i++) s[i]=t[i]=i; for(int i=1;i&lt;n;i++) unite(i,i+1); for(int i=1;i&lt;=n;i++) if (i==find(i)) f[w[i]].push_back(i); for(int i=1;i&lt;=m;i++) &#123; int opt=read(); if (opt==1) update(); if (opt==2) printf("%d\n",cnt); &#125; return 0;&#125;]]></content>
       <categories>
         <category>OI</category>
       </categories>
       <tags>
         <tag>并查集</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -52,8 +65,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>二分答案</tag>
         <tag>动态规划</tag>
+        <tag>二分答案</tag>
       </tags>
   </entry>
   <entry>
