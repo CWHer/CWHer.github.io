@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[BZOJ2719]银河之星]]></title>
+    <url>%2F2018%2F07%2F05%2FBZOJ2719-%E9%93%B6%E6%B2%B3%E4%B9%8B%E6%98%9F%2F</url>
+    <content type="text"><![CDATA[通过观察可以发现点在%3意义下相同直接暴力搜索加剪枝但是要注意棋盘大小，棋盘小有些点跳不过去。代码没有考虑棋盘大小，有部分点会WA1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include&lt;cstdio&gt;#include&lt;set&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=15;int K,n,m,xx,yy,x[N],y[N],used[N],f,w[N],cnt=0;set&lt;LL&gt; S;int F(int x,int y) &#123;return x*3+y+1;&#125;void dfs(int k)&#123; if (f) return; if (k==1) &#123; for(int i=1;i&lt;=K;i++) if (!used[i]) f=xx==x[i]&amp;&amp;yy==y[i]; return; &#125; cnt=0;LL num=0; for(int i=1;i&lt;=K;i++) if (!used[i]) w[++cnt]=F(x[i],y[i]); sort(w+1,w+cnt+1); for(int i=1;i&lt;=cnt;i++) num=num*10+w[i]; if (!S.empty()&amp;&amp;S.find(num)!=S.end()) return; S.insert(num); for(int i=1;i&lt;=K;i++) if (!used[i]) for(int j=1;j&lt;=K;j++) if (!used[j]&amp;&amp;i!=j) if (!(xx==x[i]&amp;&amp;yy==y[i])) &#123; int u=x[i],v=y[i]; used[j]=1; x[i]=x[i]==x[j]?x[i]:3-x[i]-x[j]; y[i]=y[i]==y[j]?y[i]:3-y[i]-y[j]; dfs(k-1); used[j]=0; x[i]=u,y[i]=v; &#125;&#125;int main()&#123; while (scanf("%d%d%d%d%d",&amp;K,&amp;n,&amp;m,&amp;xx,&amp;yy)!=EOF) &#123; xx%=3,yy%=3;S.clear(); for(int i=1;i&lt;=K;i++) scanf("%d%d",&amp;x[i],&amp;y[i]); for(int i=1;i&lt;=K;i++) x[i]%=3,y[i]%=3; for(int i=1;i&lt;=K;i++) used[i]=0; f=0,dfs(K); printf("%s\n",f?"Yes":"No"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[藏妹子之处]]></title>
+    <url>%2F2018%2F07%2F05%2F%E8%97%8F%E5%A6%B9%E5%AD%90%E4%B9%8B%E5%A4%84%2F</url>
+    <content type="text"><![CDATA[首先要有个妹子问题描述：今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：（1）任意两个单元格都不在同一行。（2）任意两个单元格都不在同一列。选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗想知道的是，花费在minT到maxT之间的方案数有多少。答案模1000000007。所谓的两种不同方案是指：只要它选中的单元格有一个不同，就认为是不同的方案。 通过观察，不难发现在一个R*C的矩阵中，所有最大的三个单元格曼哈顿距离相等，均为2(R+C)-4通过简单地分析可以得出，在R*C的矩阵中，共有6（R-2)(C-2)组最大的三个单元格代码就很简单了 123456789101112131415#include&lt;cstdio&gt;#define LL long longconst int mod=1000000007;int r,c,mins,maxs;LL ans=0;int main()&#123; scanf("%d%d%d%d",&amp;r,&amp;c,&amp;mins,&amp;maxs); for(int i=2;i&lt;r;i++) for(int j=2;j&lt;c;j++) if (i*2+j*2&lt;=maxs&amp;&amp;i*2+j*2&gt;=mins) ans=(ans+6LL*(r-i)*(c-j)*(i-1)*(j-1))%mod; printf("%d",ans); return 0;&#125; 临山依水 景看旧 而你美胜 山水万筹]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[SCOI2005]互不侵犯]]></title>
+    <url>%2F2018%2F07%2F05%2FSCOI2005-%E4%BA%92%E4%B8%8D%E4%BE%B5%E7%8A%AF%2F</url>
+    <content type="text"><![CDATA[预处理一行所有可能的情况dp数组记录第d行，当前状态为s[i]，总共放置k个的方案数复杂度O\left ( nk4^{n} \right ) 1234567891011121314151617181920212223242526#include&lt;cstdio&gt;#define LL long longconst int N=10;int n,m,s[1&lt;&lt;N],w[1&lt;&lt;N],c[1&lt;&lt;N][1&lt;&lt;N],cnt=0;LL dp[N][N&lt;&lt;2][1&lt;&lt;N],ans=0;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(int i=0;i&lt;(1&lt;&lt;n);i++) if (!(i&amp;(i&lt;&lt;1))&amp;&amp;!(i&amp;(i&gt;&gt;1))) s[++cnt]=i; for(int i=1;i&lt;=cnt;i++) for(int k=1;k&lt;=n;k++) if (s[i]&amp;(1&lt;&lt;(k-1))) w[i]++; for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (!(s[i]&amp;s[j])) if (!(s[i]&amp;(s[j]&lt;&lt;1))&amp;&amp;!(s[i]&amp;(s[j]&gt;&gt;1))) c[i][j]=1; for(int i=1;i&lt;=cnt;i++) dp[1][w[i]][i]=1; for(int d=2;d&lt;=n;d++) for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (c[i][j]) for(int k=w[i];k&lt;=m-w[j];k++) dp[d][k+w[j]][j]+=dp[d-1][k][i]; for(int i=1;i&lt;=cnt;i++) ans+=dp[n][m][i]; printf("%lld",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>状态压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1429 平面最近点对]]></title>
+    <url>%2F2018%2F07%2F05%2F%E6%B4%9B%E8%B0%B7P1429-%E5%B9%B3%E9%9D%A2%E6%9C%80%E8%BF%91%E7%82%B9%E5%AF%B9%2F</url>
+    <content type="text"><![CDATA[裸的二分，复杂度O\left ( nlog^{2}n \right )1234567891011121314151617181920212223242526272829303132333435#include&lt;cstdio&gt;#include&lt;cmath&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;const int N=200050,INF=1&lt;&lt;30;struct dot &#123;double x,y;&#125; t[N];vector&lt;int&gt; w;bool cmp(dot a,dot b) &#123;return a.x==b.x?a.y&lt;b.y:a.x&lt;b.x;&#125;bool check(int a,int b) &#123;return t[a].y&lt;t[b].y;&#125;double sqr(double x) &#123;return x*x;&#125;double dist(dot a,dot b) &#123;return sqrt(sqr(a.x-b.x)+sqr(a.y-b.y));&#125;double calc(int l,int r)&#123; double ret=INF; if (l==r) return ret; int mid=(l+r)&gt;&gt;1; ret=min(ret,min(calc(l,mid),calc(mid+1,r))); w.clear(); for(int i=l;i&lt;=r;i++) if (fabs(t[i].x-t[mid].x)&lt;ret) w.push_back(i); sort(w.begin(),w.end(),check); for(int i=0;i&lt;w.size();i++) for(int j=i+1;j&lt;w.size()&amp;&amp;fabs(t[w[i]].y-t[w[j]].y)&lt;ret;j++) ret=min(ret,dist(t[w[i]],t[w[j]])); return ret; &#125;int main()&#123; int n;scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++) scanf("%lf%lf",&amp;t[i].x,&amp;t[i].y); sort(t+1,t+n+1,cmp); printf("%.4lf",calc(1,n)); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>二分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P3933 Chtholly Nota Seniorious]]></title>
+    <url>%2F2018%2F07%2F05%2F%E6%B4%9B%E8%B0%B7P3933-Chtholly-Nota-Seniorious%2F</url>
+    <content type="text"><![CDATA[神奇的二分答案题根据题目奇奇怪怪的限制，不难发现选择的行和列要连续为了方便计算，将矩阵转置四次，每次只需考虑行要连续二分一下ans进行检验对于矩阵中的mins和maxs，显然二者不能分在一起根据mins，maxs和二分出来的ans，贪心地确定每个值所在的分组，若不连续则不合法123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int N=2050,INF=1&lt;&lt;30;int n,m,now,w[2][N][N],ans,mins=INF,maxs=-INF;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void rotate()&#123; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) w[now^1][j][n-i+1]=w[now][i][j]; swap(n,m),now^=1;&#125;bool check(int k)&#123; int num=0; for(int i=1;i&lt;=n;i++) &#123; for(int j=1;j&lt;=m;j++) if (maxs-w[now][i][j]&gt;k) num=max(num,j); for(int j=1;j&lt;=num;j++) if (w[now][i][j]-mins&gt;k) return 0; &#125; return 1;&#125;void solve()&#123; int L=0,R=ans; while (L&lt;R) &#123; int mid=(L+R)&gt;&gt;1; if (check(mid)) R=mid; else L=mid+1; &#125; ans=R;&#125;int main()&#123; n=read(),m=read(),now=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) &#123; w[0][i][j]=read(); maxs=max(maxs,w[0][i][j]); mins=min(mins,w[0][i][j]); &#125; ans=maxs-mins; rotate(),solve(); rotate(),solve(); rotate(),solve(); rotate(),solve(); printf("%d",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>二分答案</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[最大化平均值]]></title>
+    <url>%2F2018%2F07%2F05%2Fmax-ave%2F</url>
+    <content type="text"><![CDATA[问题描述：有n个物品的重量和价值分别是 wi 和 vi。从中选出k个物品使得单位重量的价值最大。根据定义 \sum_{i=1}^{k}v_{i}=x\sum_{i=1}^{k}w_{i}即 \sum_{i=1}^{k}\left (v _{i}-xw_{i} \right )=0二分一下x，每次在\left (v _{i}-xw_{i} \right )贪心地找前k大的复杂度O\left ( nlog^{2}n \right )123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int N=10050;const double eps=1e-5;int n,m,w[N],v[N];double c[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;bool check(double k)&#123; for(int i=1;i&lt;=n;i++) c[i]=v[i]-k*w[i]; sort(c+1,c+n+1); double ret=0; for(int i=n;i&gt;n-m;i--) ret+=c[i]; return ret&gt;-eps;&#125;int main()&#123; n=read(),m=read(); double L=0,R; for(int i=1;i&lt;=n;i++) w[i]=read(); for(int i=1;i&lt;=n;i++) v[i]=read(),R=max((double)v[i],R); while (R-L&gt;eps) &#123; double mid=(L+R)/2; if (check(mid)) L=mid; else R=mid; &#125; printf("%.2lf",R); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>二分答案</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[NOIP2017]列队]]></title>
     <url>%2F2018%2F06%2F28%2FNOIP2017-%E5%88%97%E9%98%9F%2F</url>
     <content type="text"><![CDATA[感觉是至今为止做到的最难的数据结构题什么分块，嵌套，可持久化都没有这题给人的第一感觉难这题每个数据开一个点都开不下。考场上见到这题基本上一脸懵逼，想了很久写了个O\left ( q^{2}\right )但是不能优化的算法，结果没开LL只有30分用线段树维护每一行和最后一列，支持单点rank和insert两种操作最大长度为max\left ( n,m \right )+q动态开点减少内存，空间复杂度O\left ( 4qlog\left ( max\left ( n,m \right )+q\right ) \right )12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394#include&lt;cstdio&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=300050;struct node &#123;int l,r,sz,id;bool f;&#125; t[N*60];int n,m,T,cnt=0,idx=0,rt[N],sz[N],pos,u,v;LL w[N&lt;&lt;2];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void build(int &amp;o,int l,int r,int f)&#123; o=++cnt; if (l==r) &#123; t[o].sz=(!f&amp;&amp;r&lt;m)||(f&amp;&amp;r&lt;=n); return; &#125; int mid=(l+r)&gt;&gt;1; build(t[o].l,l,mid,f); build(t[o].r,mid+1,r,f); t[o].sz=t[t[o].l].sz+t[t[o].r].sz;&#125;LL ask(int &amp;o,int pre,int l,int r,int f)&#123; if (!t[o].f) o=++cnt,t[o]=t[pre],t[o].f=1; if (l==r) &#123; t[o].sz=0; if (!f&amp;&amp;r&lt;m) return (LL)(u-1)*m+l; if (f&amp;&amp;r&lt;=n) return (LL)r*m; return w[t[o].id]; &#125; int num=t[t[o].l].sz,mid=(l+r)&gt;&gt;1;LL ret; if (pos&lt;=num) ret=ask(t[o].l,t[pre].l,l,mid,f); else pos-=num,ret=ask(t[o].r,t[pre].r,mid+1,r,f); t[o].sz=t[t[o].l].sz+t[t[o].r].sz; return ret;&#125;void insert(int &amp;o,int pre,int l,int r,LL x)&#123; if (!t[o].f) o=++cnt,t[o]=t[pre],t[o].f=1; if (l==r) &#123; w[++idx]=x; t[o].id=idx,t[o].sz=1; return; &#125; int mid=(l+r)&gt;&gt;1; if (pos&lt;=mid) insert(t[o].l,t[pre].l,l,mid,x); else insert(t[o].r,t[pre].r,mid+1,r,x); t[o].sz=t[t[o].l].sz+t[t[o].r].sz;&#125;int main()&#123; n=read(),m=read(),T=read(); int maxs=max(n,m)+T; build(rt[0],1,maxs,0); for(int i=1;i&lt;=n;i++) rt[i]=++cnt,t[cnt]=t[rt[0]],t[cnt].f=1; for(int i=1;i&lt;=n;i++) sz[i]=m-1;sz[n+1]=n; build(rt[n+1],1,maxs,1); while (T--) &#123; u=read(),v=read(); if (v==m) &#123; LL x; pos=u,x=ask(rt[n+1],rt[n+1],1,maxs,1); printf("%lld\n",x); pos=++sz[n+1],insert(rt[n+1],rt[n+1],1,maxs,x); &#125; else &#123; LL x,w; pos=v,x=ask(rt[u],rt[u],1,maxs,0); printf("%lld\n",x); pos=u,w=ask(rt[n+1],rt[n+1],1,maxs,1); pos=++sz[u],insert(rt[u],rt[u],1,maxs,w); pos=++sz[n+1],insert(rt[n+1],rt[n+1],1,maxs,x); &#125; &#125; return 0;&#125;]]></content>

@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="并查集,链表," />
+  <meta name="keywords" content="组合数学," />
 
 
 
@@ -108,18 +108,18 @@
 
 
 
-<meta name="description" content="用并查集维护在代表元素中保存当前段的颜色（w[]），和左右端点（s[]，t[]）再用一个桶维护每种颜色的所有段当且仅当要合并两段颜色相同时进行合并，并更新左右端点对于每个桶用list维护，再进行启发式合并，这里偷懒直接用了vector">
-<meta name="keywords" content="并查集,链表">
+<meta name="description" content="首先要有个妹子">
+<meta name="keywords" content="组合数学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[HNOI2009]梦幻布丁">
-<meta property="og:url" content="http://yoursite.com/2018/06/20/HNOI2009-梦幻布丁/index.html">
+<meta property="og:title" content="藏妹子之处">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/藏妹子之处/index.html">
 <meta property="og:site_name" content="魍魉的小窝">
-<meta property="og:description" content="用并查集维护在代表元素中保存当前段的颜色（w[]），和左右端点（s[]，t[]）再用一个桶维护每种颜色的所有段当且仅当要合并两段颜色相同时进行合并，并更新左右端点对于每个桶用list维护，再进行启发式合并，这里偷懒直接用了vector">
+<meta property="og:description" content="首先要有个妹子">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-24T12:15:02.184Z">
+<meta property="og:updated_time" content="2018-07-05T12:50:57.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[HNOI2009]梦幻布丁">
-<meta name="twitter:description" content="用并查集维护在代表元素中保存当前段的颜色（w[]），和左右端点（s[]，t[]）再用一个桶维护每种颜色的所有段当且仅当要合并两段颜色相同时进行合并，并更新左右端点对于每个桶用list维护，再进行启发式合并，这里偷懒直接用了vector">
+<meta name="twitter:title" content="藏妹子之处">
+<meta name="twitter:description" content="首先要有个妹子">
 
 
 
@@ -149,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/20/HNOI2009-梦幻布丁/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/05/藏妹子之处/"/>
 
 
 
@@ -157,7 +157,7 @@
 
 
 
-  <title>[HNOI2009]梦幻布丁 | 魍魉的小窝</title>
+  <title>藏妹子之处 | 魍魉的小窝</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/HNOI2009-梦幻布丁/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/藏妹子之处/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[HNOI2009]梦幻布丁</h1>
+          <h1 class="post-title" itemprop="name headline">藏妹子之处</h1>
         
 
         <div class="post-meta">
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T16:51:24+08:00">
-                2018-06-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T20:38:57+08:00">
+                2018-07-05
               </time>
             
 
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  413
+                  383
                 </span>
               
 
@@ -456,7 +456,10 @@
       
 
       
-        <p>用并查集维护<br>在代表元素中保存当前段的颜色（<script type="math/tex">w[]</script>），和左右端点（<script type="math/tex">s[]，t[]</script>）<br>再用一个桶维护每种颜色的所有段<br>当且仅当要合并两段颜色相同时进行合并，并更新左右端点<br>对于每个桶用list维护，再进行启发式合并，这里偷懒直接用了vector<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100050</span>;</span><br><span class="line"><span class="keyword">int</span> fa[N],w[N],cnt,s[N],t[N],n,m;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; f[N*<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">int</span> x=<span class="number">0</span>,t=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">char</span> ch=getchar();</span><br><span class="line">    <span class="keyword">while</span> ((ch&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)&amp;&amp;ch!=<span class="string">'-'</span>) ch=getchar();</span><br><span class="line">    <span class="keyword">if</span> (ch==<span class="string">'-'</span>) &#123;t=<span class="number">-1</span>;ch=getchar();&#125;</span><br><span class="line">    <span class="keyword">while</span> (ch&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>) &#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=getchar();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;<span class="keyword">return</span> fa[x]==x?x:fa[x]=find(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!u||!v) <span class="keyword">return</span>;</span><br><span class="line">	u=find(u),v=find(v);</span><br><span class="line">	<span class="keyword">if</span> (w[u]!=w[v]) <span class="keyword">return</span>;<span class="keyword">else</span> cnt--;</span><br><span class="line">	fa[v]=u,s[u]=min(s[u],s[v]),t[u]=max(t[u],t[v]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u=read(),v=read();</span><br><span class="line">	<span class="keyword">if</span> (u==v) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">while</span> (!f[u].empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x=f[u].back();f[u].pop_back();</span><br><span class="line">		<span class="keyword">if</span> (find(x)!=x) <span class="keyword">continue</span>;<span class="keyword">else</span> w[x]=v;</span><br><span class="line">		<span class="keyword">int</span> st=s[x],ed=t[x];</span><br><span class="line">		<span class="keyword">if</span> (st&gt;<span class="number">1</span>) unite(st<span class="number">-1</span>,st);</span><br><span class="line">		<span class="keyword">if</span> (ed&lt;n) unite(ed,ed+<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span> (find(x)==x) f[v].push_back(x);</span><br><span class="line">	&#125;		</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=cnt=read(),m=read();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) w[i]=read(),fa[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) s[i]=t[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) unite(i,i+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">if</span> (i==find(i)) </span><br><span class="line">			f[w[i]].push_back(i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> opt=read();</span><br><span class="line">		<span class="keyword">if</span> (opt==<span class="number">1</span>) update();</span><br><span class="line">		<span class="keyword">if</span> (opt==<span class="number">2</span>) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,cnt);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p><del>首先要有个妹子</del><br><a id="more"></a><br><strong>问题描述：</strong><br>今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：<br>（1）任意两个单元格都不在同一行。<br>（2）任意两个单元格都不在同一列。<br>选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗想知道的是，花费在minT到maxT之间的方案数有多少。<br>答案模1000000007。所谓的两种不同方案是指：只要它选中的单元格有一个不同，就认为是不同的方案。</p>
+<p>通过观察，<del>不难</del>发现在一个<script type="math/tex">R*C</script>的矩阵中，所有最大的三个单元格曼哈顿距离相等，均为<script type="math/tex">2(R+C)-4</script><br>通过<del>简单地</del>分析可以得出，在<script type="math/tex">R*C</script>的矩阵中，共有<script type="math/tex">6（R-2)(C-2)</script>组最大的三个单元格<br>代码就很简单了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">int</span> r,c,mins,maxs;</span><br><span class="line">LL ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;r,&amp;c,&amp;mins,&amp;maxs);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;r;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>;j&lt;c;j++) </span><br><span class="line">			<span class="keyword">if</span> (i*<span class="number">2</span>+j*<span class="number">2</span>&lt;=maxs&amp;&amp;i*<span class="number">2</span>+j*<span class="number">2</span>&gt;=mins)</span><br><span class="line">				ans=(ans+<span class="number">6L</span>L*(r-i)*(c-j)*(i<span class="number">-1</span>)*(j<span class="number">-1</span>))%mod;		</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);				</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>临山依水 景看旧 而你美胜 山水万筹</em></p>
 
       
     </div>
@@ -474,9 +477,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/并查集/" <i class="fa fa-tag"></i> 并查集</a>
-          
-            <a href="/tags/链表/" <i class="fa fa-tag"></i> 链表</a>
+            <a href="/tags/组合数学/" <i class="fa fa-tag"></i> 组合数学</a>
           
         </div>
       
@@ -489,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/15/洛谷P1471-方差/" rel="next" title="洛谷P1471 方差">
-                <i class="fa fa-chevron-left"></i> 洛谷P1471 方差
+              <a href="/2018/07/05/SCOI2005-互不侵犯/" rel="next" title="[SCOI2005]互不侵犯">
+                <i class="fa fa-chevron-left"></i> [SCOI2005]互不侵犯
               </a>
             
           </div>
@@ -499,8 +500,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/22/NOIP2017-宝藏/" rel="prev" title="[NOIP2017]宝藏">
-                [NOIP2017]宝藏 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/05/BZOJ2719-银河之星/" rel="prev" title="[BZOJ2719]银河之星">
+                [BZOJ2719]银河之星 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1207,6 +1208,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
