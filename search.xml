@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[洛谷P3941 入阵曲]]></title>
+    <url>%2F2018%2F07%2F06%2F%E6%B4%9B%E8%B0%B7P3941-%E5%85%A5%E9%98%B5%E6%9B%B2%2F</url>
+    <content type="text"><![CDATA[用sum\left [ i \right ]\left [ j \right ]，记录第i行，前j个的和枚举i,j两列\left ( i]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>前缀和</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2568 GCD]]></title>
+    <url>%2F2018%2F07%2F06%2F%E6%B4%9B%E8%B0%B7P2568-GCD%2F</url>
+    <content type="text"><![CDATA[对于一组gcd(x,y)=1，若有一个质数p，则gcd(xp,yp)=p枚举所有的p，求所有xp]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[ZJOI2005]九数码游戏]]></title>
+    <url>%2F2018%2F07%2F06%2FZJOI2005-%E4%B9%9D%E6%95%B0%E7%A0%81%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[直接搜索加剪枝剪枝可以考虑Cantor展开，也可以直接用map12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include&lt;cstdio&gt;#include&lt;map&gt;#include&lt;queue&gt;#define LL long longusing namespace std;const int N=5,ed=12345678;struct node &#123;LL s;int k;&#125;;map&lt;LL,LL&gt; M;int ans=-1,w[N&lt;&lt;2];queue&lt;node&gt; Q;LL modify(LL s,int f)&#123; for(int i=9;i&gt;0;i--) w[i]=s%10,s/=10; if (f) &#123; int num=w[6];LL ret=0; w[6]=w[5],w[5]=w[4],w[4]=num; for(int i=1;i&lt;=9;i++) ret=ret*10+w[i]; return ret; &#125; else &#123; int num=w[1];LL ret=0; w[1]=w[4],w[4]=w[7],w[7]=w[8]; w[8]=w[9],w[9]=w[6],w[6]=w[3]; w[3]=w[2],w[2]=num; for(int i=1;i&lt;=9;i++) ret=ret*10+w[i]; return ret; &#125; &#125;void bfs(LL st)&#123; M[st]=0,Q.push((node)&#123;st,0&#125;); while (!Q.empty()) &#123; node x=Q.front();Q.pop(); if (x.s==ed) &#123;ans=x.k;return;&#125; LL nxt=modify(x.s,0); if (M.find(nxt)==M.end()) &#123; M[nxt]=x.s; Q.push((node)&#123;nxt,x.k+1&#125;); &#125; nxt=modify(x.s,1); if (M.find(nxt)==M.end()) &#123; M[nxt]=x.s; Q.push((node)&#123;nxt,x.k+1&#125;); &#125; &#125;&#125;void dfs(LL s)&#123; if (!s) return; dfs(M[s]); for(int i=9;i&gt;0;i--) w[i]=s%10,s/=10; for(int i=1;i&lt;=9;i++) printf("%d%c",w[i],i%3?' ':'\n'); printf("\n");&#125;int main()&#123; LL num=0; for(int i=1;i&lt;=9;i++) &#123; int x; scanf("%d",&amp;x); num=num*10+x; &#125; bfs(num); if (ans==-1) &#123;puts("UNSOLVABLE");return 0;&#125; printf("%d\n",ans),dfs(ed); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1484 种树]]></title>
+    <url>%2F2018%2F07%2F06%2F%E6%B4%9B%E8%B0%B7P1484-%E7%A7%8D%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[神奇的贪心对于a_{i}，若最终答案不包含a_{i}，则一定包含a_{i-1}+a_{i+1}因此每次取a_{i}时，加入a_{i-1}+a_{i+1}-a_{i}，允许撤销操作123456789101112131415161718192021222324252627282930313233343536373839#include&lt;cstdio&gt;#include&lt;queue&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=500050;int n,m,w[N],L[N],R[N],used[N];struct node &#123;LL val;int id;&#125;;struct cmp &#123;bool operator ()(node a,node b) &#123;return a.val&lt;b.val;&#125;&#125;;priority_queue&lt;node,vector&lt;node&gt;,cmp&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(),Q.push((node)&#123;w[i],i&#125;); for(int i=1;i&lt;=n;i++) L[i]=i-1,R[i]=i+1; R[0]=1,L[n+1]=n;LL ans=0; while (m--) &#123; while (used[Q.top().id]) Q.pop(); int k=Q.top().id; used[L[k]]=used[R[k]]=1; if (Q.top().val&lt;=0) break; ans=ans+Q.top().val,Q.pop(); Q.push((node)&#123;w[k]=w[L[k]]+w[R[k]]-w[k],k&#125;); L[k]=L[L[k]],R[L[k]]=k; R[k]=R[R[k]],L[R[k]]=k; &#125; printf("%lld",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>堆</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Nim游戏]]></title>
+    <url>%2F2018%2F07%2F06%2FNIM%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[当且仅当\left ( a_{1} \right ) xor\left ( a_{2}\right ) ...\left ( a_{n} \right )=0为一个P 最终状态为0 对于一个\left ( a_{1} \right ) xor\left ( a_{2}\right ) ...\left ( a_{n} \right )=k\left ( k>0 \right ) 的状态，必存在一个a_{i}>k，使得下一步\left ( a_{1} \right ) xor\left ( a_{2}\right ) ...\left ( a_{n} \right )=0 对于一个\left ( a_{1} \right ) xor\left ( a_{2}\right ) ...\left ( a_{n} \right )=0，不存在一种方案使得下一步\left ( a_{1} \right ) xor\left ( a_{2}\right ) ...\left ( a_{n} \right )=k\left ( k>0 \right )]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>博弈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[BZOJ2719]银河之星]]></title>
     <url>%2F2018%2F07%2F05%2FBZOJ2719-%E9%93%B6%E6%B2%B3%E4%B9%8B%E6%98%9F%2F</url>
     <content type="text"><![CDATA[通过观察可以发现点在%3意义下相同直接暴力搜索加剪枝但是要注意棋盘大小，棋盘小有些点跳不过去。代码没有考虑棋盘大小，有部分点会WA1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include&lt;cstdio&gt;#include&lt;set&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=15;int K,n,m,xx,yy,x[N],y[N],used[N],f,w[N],cnt=0;set&lt;LL&gt; S;int F(int x,int y) &#123;return x*3+y+1;&#125;void dfs(int k)&#123; if (f) return; if (k==1) &#123; for(int i=1;i&lt;=K;i++) if (!used[i]) f=xx==x[i]&amp;&amp;yy==y[i]; return; &#125; cnt=0;LL num=0; for(int i=1;i&lt;=K;i++) if (!used[i]) w[++cnt]=F(x[i],y[i]); sort(w+1,w+cnt+1); for(int i=1;i&lt;=cnt;i++) num=num*10+w[i]; if (!S.empty()&amp;&amp;S.find(num)!=S.end()) return; S.insert(num); for(int i=1;i&lt;=K;i++) if (!used[i]) for(int j=1;j&lt;=K;j++) if (!used[j]&amp;&amp;i!=j) if (!(xx==x[i]&amp;&amp;yy==y[i])) &#123; int u=x[i],v=y[i]; used[j]=1; x[i]=x[i]==x[j]?x[i]:3-x[i]-x[j]; y[i]=y[i]==y[j]?y[i]:3-y[i]-y[j]; dfs(k-1); used[j]=0; x[i]=u,y[i]=v; &#125;&#125;int main()&#123; while (scanf("%d%d%d%d%d",&amp;K,&amp;n,&amp;m,&amp;xx,&amp;yy)!=EOF) &#123; xx%=3,yy%=3;S.clear(); for(int i=1;i&lt;=K;i++) scanf("%d%d",&amp;x[i],&amp;y[i]); for(int i=1;i&lt;=K;i++) x[i]%=3,y[i]%=3; for(int i=1;i&lt;=K;i++) used[i]=0; f=0,dfs(K); printf("%s\n",f?"Yes":"No"); &#125; return 0;&#125;]]></content>
@@ -25,7 +81,7 @@
   <entry>
     <title><![CDATA[[SCOI2005]互不侵犯]]></title>
     <url>%2F2018%2F07%2F05%2FSCOI2005-%E4%BA%92%E4%B8%8D%E4%BE%B5%E7%8A%AF%2F</url>
-    <content type="text"><![CDATA[预处理一行所有可能的情况dp数组记录第d行，当前状态为s[i]，总共放置k个的方案数复杂度O\left ( nk4^{n} \right ) 1234567891011121314151617181920212223242526#include&lt;cstdio&gt;#define LL long longconst int N=10;int n,m,s[1&lt;&lt;N],w[1&lt;&lt;N],c[1&lt;&lt;N][1&lt;&lt;N],cnt=0;LL dp[N][N&lt;&lt;2][1&lt;&lt;N],ans=0;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(int i=0;i&lt;(1&lt;&lt;n);i++) if (!(i&amp;(i&lt;&lt;1))&amp;&amp;!(i&amp;(i&gt;&gt;1))) s[++cnt]=i; for(int i=1;i&lt;=cnt;i++) for(int k=1;k&lt;=n;k++) if (s[i]&amp;(1&lt;&lt;(k-1))) w[i]++; for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (!(s[i]&amp;s[j])) if (!(s[i]&amp;(s[j]&lt;&lt;1))&amp;&amp;!(s[i]&amp;(s[j]&gt;&gt;1))) c[i][j]=1; for(int i=1;i&lt;=cnt;i++) dp[1][w[i]][i]=1; for(int d=2;d&lt;=n;d++) for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (c[i][j]) for(int k=w[i];k&lt;=m-w[j];k++) dp[d][k+w[j]][j]+=dp[d-1][k][i]; for(int i=1;i&lt;=cnt;i++) ans+=dp[n][m][i]; printf("%lld",ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[预处理一行所有可能的情况用dp\left [d \right ]\left [ i\right ]\left [ k \right ]数组记录第d行，当前状态为s\left [ i \right ]，总共放置k个的方案数复杂度O\left ( nk4^{n} \right ) 1234567891011121314151617181920212223242526#include&lt;cstdio&gt;#define LL long longconst int N=10;int n,m,s[1&lt;&lt;N],w[1&lt;&lt;N],c[1&lt;&lt;N][1&lt;&lt;N],cnt=0;LL dp[N][N&lt;&lt;2][1&lt;&lt;N],ans=0;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(int i=0;i&lt;(1&lt;&lt;n);i++) if (!(i&amp;(i&lt;&lt;1))&amp;&amp;!(i&amp;(i&gt;&gt;1))) s[++cnt]=i; for(int i=1;i&lt;=cnt;i++) for(int k=1;k&lt;=n;k++) if (s[i]&amp;(1&lt;&lt;(k-1))) w[i]++; for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (!(s[i]&amp;s[j])) if (!(s[i]&amp;(s[j]&lt;&lt;1))&amp;&amp;!(s[i]&amp;(s[j]&gt;&gt;1))) c[i][j]=1; for(int i=1;i&lt;=cnt;i++) dp[1][w[i]][i]=1; for(int d=2;d&lt;=n;d++) for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (c[i][j]) for(int k=w[i];k&lt;=m-w[j];k++) dp[d][k+w[j]][j]+=dp[d-1][k][i]; for(int i=1;i&lt;=cnt;i++) ans+=dp[n][m][i]; printf("%lld",ans); return 0;&#125;]]></content>
       <categories>
         <category>OI</category>
       </categories>
