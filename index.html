@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  686
+                  692
                 </span>
               
 
@@ -458,7 +458,7 @@
 
       
         
-          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em>到<em>v</em>的，流量为<em>cap</em>的，费用为<em>cost</em>的弧与反弧<br>对于每个仓库连边<script type="math/tex">edge\left \{ S,x,u\left [ x \right ],0 \right \}</script><br>对于每个零售店连边<script type="math/tex">edge\left \{ x+n,T,v\left [ x \right ],0 \right \}</script><br>仓库<em>i</em>向零售店<em>j</em>连边<script type="math/tex">edge\left \{ i,j+n,INF,c\left [ i \right ]\left [ j \right ] \right \}</script><br>跑一边<em>S</em>到<em>T</em>的MCMF，cost为最小运输费用<br>边权取负，再跑一边<em>S</em>到<em>T</em>的MCMF，-cost为最大运输费用<br>
+          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em> 到<em>v</em> 的，流量为<em>cap</em> 的，费用为<em>cost</em> 的弧与反弧<br>对于每个仓库连边<script type="math/tex">edge\left \{ S,x,u\left [ x \right ],0 \right \}</script><br>对于每个零售店连边<script type="math/tex">edge\left \{ x+n,T,v\left [ x \right ],0 \right \}</script><br>仓库<em>i</em> 向零售店<em>j</em> 连边<script type="math/tex">edge\left \{ i,j+n,INF,c\left [ i \right ]\left [ j \right ] \right \}</script><br>跑一边<em>S</em> 到<em>T</em> 的MCMF，cost为最小运输费用<br>边权取负，再跑一边<em>S</em> 到<em>T</em> 的MCMF，-cost为最大运输费用<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/10/洛谷P4015-运输问题/#more" rel="contents">
@@ -597,7 +597,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  615
+                  616
                 </span>
               
 
@@ -635,7 +635,7 @@
 
       
         
-          <p>这题的另一种做法（<a href="https://cwher.github.io/2018/07/10/HAOI2008-糖果传递/#more" target="_blank" rel="noopener">传送门</a>）<br>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em>到<em>v</em>的，流量为<em>cap</em>的，费用为<em>cost</em>的弧与反弧<br>记<em>ave</em>为平均值<br>对于每个点x<br>若<script type="math/tex">w\left [ x \right ]-ave>0</script>，则连边<script type="math/tex">edge\left \{ S,x,w\left [ x \right ]-ave,0 \right \}</script><br>若<script type="math/tex">w\left [ x \right ]-ave<0</script>，则连边<script type="math/tex">edge\left \{ x,T,ave-w\left [ x \right ],0 \right \}</script><br>每个点向左向右连边<script type="math/tex">edge\left \{ x,to,INF,1 \right \}</script><br>跑一边MCMF，<em>cost</em>就是最少搬运量<br>
+          <p>这题的另一种做法（<a href="https://cwher.github.io/2018/07/10/HAOI2008-糖果传递/#more" target="_blank" rel="noopener">传送门</a>）<br>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em> 到<em>v</em> 的，流量为<em>cap</em> 的，费用为<em>cost</em> 的弧与反弧<br>记<em>ave</em> 为平均值<br>对于每个点x<br>若<script type="math/tex">w\left [ x \right ]-ave>0</script>，则连边<script type="math/tex">edge\left \{ S,x,w\left [ x \right ]-ave,0 \right \}</script><br>若<script type="math/tex">w\left [ x \right ]-ave<0</script>，则连边<script type="math/tex">edge\left \{ x,T,ave-w\left [ x \right ],0 \right \}</script><br>每个点向左向右连边<script type="math/tex">edge\left \{ x,to,INF,1 \right \}</script><br>跑一边MCMF，<em>cost</em> 就是最少搬运量<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/10/洛谷P4016-负载平衡问题/#more" rel="contents">
@@ -812,11 +812,11 @@
 
       
         
-          <p>环形均分纸牌<br>对于非环形均分纸牌，记<script type="math/tex">s\left [ i \right ]</script>为前i项的和，<em>ave</em>为平均数<br>可得交换数量为</p>
+          <p>环形均分纸牌<br>对于非环形均分纸牌，记<script type="math/tex">s\left [ i \right ]</script>为前i项的和，<em>ave</em> 为平均数<br>可得交换数量为</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^{n}\left | \left ( i*ave-s\left [ i \right ] \right ) \right |</script><p>记<script type="math/tex">S\left [ i \right ]</script>为前i项，每项减去<em>ave</em>的和<br>则交换数量为</p>
+\sum_{i=1}^{n}\left | \left ( i*ave-s\left [ i \right ] \right ) \right |</script><p>记<script type="math/tex">S\left [ i \right ]</script>为前i项，每项减去<em>ave</em> 的和<br>则交换数量为</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^{n}\left | \left ( S\left [ i \right ] \right ) \right |</script><p>对于环形均分纸牌，设在第<em>k</em>个人处断开<br>则<script type="math/tex">S\left [ \right ]</script>为</p>
+\sum_{i=1}^{n}\left | \left ( S\left [ i \right ] \right ) \right |</script><p>对于环形均分纸牌，设在第<em>k</em> 个人处断开<br>则<script type="math/tex">S\left [ \right ]</script>为</p>
 <script type="math/tex; mode=display">S\left [ k +1\right ]-S\left [ k \right ],S\left [ k +2\right ]-S\left [ k+1 \right ]...</script><script type="math/tex; mode=display">S\left [ n\right ]-S\left [ k \right ],S\left [ 1 \right ]+S\left [ n\right ]-S\left [ k \right ]...</script><script type="math/tex; mode=display">S\left [ k \right ]+S\left [ n\right ]-S\left [ k \right ]</script><p>根据定义可得<script type="math/tex">S\left [ n \right ]=0</script><br>总交换数量为</p>
 <script type="math/tex; mode=display">
 \sum_{i=1}^{n}\left | S\left [ i \right ] -S\left [ k \right ]\right |</script><p>取中位数即可<br>
@@ -958,7 +958,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  620
+                  624
                 </span>
               
 
@@ -996,7 +996,7 @@
 
       
         
-          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em>到<em>v</em>的，流量为<em>cap</em>的，费用为<em>cost</em>的弧与反弧<br>源点向每个房间连边<script type="math/tex">edge\left \{ S,x,1 \right \}</script><br>每道菜向汇点连边<script type="math/tex">edge\left \{ x+n*2+p,T,1 \right \}</script><br>每个人<del>拆成两个用</del>，<em>x+p</em>与房间连边，<em>x+p+n</em>与菜连边<br>当第<em>k</em>个人喜欢第<em>x</em>个房间，连边<script type="math/tex">edge\left \{ x,k+p,1 \right \}</script><br>当第<em>k</em>个人喜欢第<em>x</em>道菜，连边<script type="math/tex">edge\left \{ k+n+p,x+n*2+p,1 \right \}</script><br>跑一边<em>S</em>到<em>T</em>的最大流<br>
+          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em> 到<em>v</em> 的，流量为<em>cap</em> 的，费用为<em>cost</em> 的弧与反弧<br>源点向每个房间连边<script type="math/tex">edge\left \{ S,x,1 \right \}</script><br>每道菜向汇点连边<script type="math/tex">edge\left \{ x+n*2+p,T,1 \right \}</script><br>每个人<del>拆成两个用</del>，<em>x+p</em> 与房间连边，<em>x+p+n</em> 与菜连边<br>当第<em>k</em> 个人喜欢第<em>x</em> 个房间，连边<script type="math/tex">edge\left \{ x,k+p,1 \right \}</script><br>当第<em>k</em> 个人喜欢第<em>x</em> 道菜，连边<script type="math/tex">edge\left \{ k+n+p,x+n*2+p,1 \right \}</script><br>跑一边<em>S</em> 到<em>T</em> 的最大流<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/10/洛谷P1402-酒店之王/#more" rel="contents">
@@ -1135,7 +1135,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  515
+                  518
                 </span>
               
 
@@ -1173,7 +1173,7 @@
 
       
         
-          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em>到<em>v</em>的，流量为<em>cap</em>的，费用为<em>cost</em>的弧与反弧<br>拆点，对于点<em>x</em>，分为<em>x</em>和<em>x+n</em>两点，<em>x</em>负责流入，<em>x+n</em>负责流出<br>对于每个点连边<script type="math/tex">edge\left \{ x,x+n,1 \right \}</script><br>对于原图每条连接<em>u,v</em>的边，连边<script type="math/tex">edge\left \{ u+n,v,INF \right \}</script>，<script type="math/tex">edge\left \{ v+n,u,INF \right \}</script><br>跑一边<em>s+n</em>到<em>t</em>的最大流<br>最大流最小割<br>
+          <p>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em> 到<em>v</em> 的，流量为<em>cap</em> 的，费用为<em>cost</em> 的弧与反弧<br>拆点，对于点<em>x</em>，分为<em>x</em> 和<em>x+n</em> 两点，<em>x</em> 负责流入，<em>x+n</em> 负责流出<br>对于每个点连边<script type="math/tex">edge\left \{ x,x+n,1 \right \}</script><br>对于原图每条连接<em>u,v</em> 的边，连边<script type="math/tex">edge\left \{ u+n,v,INF \right \}</script>，<script type="math/tex">edge\left \{ v+n,u,INF \right \}</script><br>跑一边<em>s+n</em> 到<em>t</em> 的最大流<br>最大流最小割<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/10/USACO5-4-奶牛的电信Telecowmunication/#more" rel="contents">
@@ -2020,7 +2020,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  609
+                  612
                 </span>
               
 
@@ -2058,7 +2058,7 @@
 
       
         
-          <p>记<em>E</em>为Elaxia 的最短路DAG，<em>W</em>为w 的最短路DAG<br>根据<em>W</em>重构<em>E</em>每条边的权值<br>对于连接u，v，权值为val的边<br>当且仅当在<em>W</em>中<script type="math/tex">d\left [ u \right ]+val= d\left [ v \right ]</script>或<script type="math/tex">d\left [ v \right ]+val= d\left [ u\right ]</script>时，边权为val，否则为0<br>在<em>E</em>上跑一边最长路得出答案<br>
+          <p>记<em>E</em> 为Elaxia 的最短路DAG，<em>W</em> 为w 的最短路DAG<br>根据<em>W</em> 重构<em>E</em> 每条边的权值<br>对于连接u，v，权值为val的边<br>当且仅当在<em>W</em> 中<script type="math/tex">d\left [ u \right ]+val= d\left [ v \right ]</script>或<script type="math/tex">d\left [ v \right ]+val= d\left [ u\right ]</script>时，边权为val，否则为0<br>在<em>E</em> 上跑一边最长路得出答案<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/10/SDOI2009-Elaxia的路线/#more" rel="contents">
