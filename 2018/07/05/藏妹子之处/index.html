@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="魍魉的小窝">
 <meta property="og:description" content="首先要有个妹子 问题描述：今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：（1）任意两个单元格都不在同一行。（2）任意两个单元格都不在同一列。选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-06T00:40:33.041Z">
+<meta property="og:updated_time" content="2018-07-22T10:57:32.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="藏妹子之处">
 <meta name="twitter:description" content="首先要有个妹子 问题描述：今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：（1）任意两个单元格都不在同一行。（2）任意两个单元格都不在同一列。选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗">
@@ -459,7 +459,7 @@
         <p><del>首先要有个妹子</del></p>
 <p><strong>问题描述：</strong><br>今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：<br>（1）任意两个单元格都不在同一行。<br>（2）任意两个单元格都不在同一列。<br>选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗想知道的是，花费在minT到maxT之间的方案数有多少。<br>答案模1000000007。所谓的两种不同方案是指：只要它选中的单元格有一个不同，就认为是不同的方案。</p>
 <p>通过观察，<del>不难</del>发现在一个<script type="math/tex">R*C</script>的矩阵中，所有最大的三个单元格曼哈顿距离相等，均为<script type="math/tex">2(R+C)-4</script><br>通过<del>简单地</del>分析可以得出，在<script type="math/tex">R*C</script>的矩阵中，共有<script type="math/tex">6（R-2)(C-2)</script>组最大的三个单元格<br>代码就很简单了<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="keyword">int</span> r,c,mins,maxs;</span><br><span class="line">LL ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;r,&amp;c,&amp;mins,&amp;maxs);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;r;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>;j&lt;c;j++) </span><br><span class="line">			<span class="keyword">if</span> (i*<span class="number">2</span>+j*<span class="number">2</span>&lt;=maxs&amp;&amp;i*<span class="number">2</span>+j*<span class="number">2</span>&gt;=mins)</span><br><span class="line">				ans=(ans+<span class="number">6L</span>L*(r-i)*(c-j)*(i<span class="number">-1</span>)*(j<span class="number">-1</span>))%mod;		</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);				</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><em>临山依水 景看旧 而你美胜 山水万筹</em></p>
+<p><em>依水临山 景看旧 而你美胜 山水万筹</em></p>
 
       
     </div>
@@ -585,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -701,7 +701,7 @@
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.3k字</span>
+  <span class="post-count">博客全站共29.1k字</span>
 </div>
 <br>
 

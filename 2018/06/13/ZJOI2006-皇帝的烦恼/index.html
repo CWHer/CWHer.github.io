@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="动态规划,二分答案," />
+  <meta name="keywords" content="DP,二分答案," />
 
 
 
@@ -108,18 +108,18 @@
 
 
 
-<meta name="description" content="二分+dpdp不是很好想f记录与第一个位置相同个数的最大值g记录与第一个位置相同个数的最小值">
-<meta name="keywords" content="动态规划,二分答案">
+<meta name="description" content="二分答案，dp 检验dp 不是很好想f 记录与第一个位置相同个数的最大值g 记录与第一个位置相同个数的最小值">
+<meta name="keywords" content="DP,二分答案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[ZJOI2006]皇帝的烦恼">
 <meta property="og:url" content="http://yoursite.com/2018/06/13/ZJOI2006-皇帝的烦恼/index.html">
 <meta property="og:site_name" content="魍魉的小窝">
-<meta property="og:description" content="二分+dpdp不是很好想f记录与第一个位置相同个数的最大值g记录与第一个位置相同个数的最小值">
+<meta property="og:description" content="二分答案，dp 检验dp 不是很好想f 记录与第一个位置相同个数的最大值g 记录与第一个位置相同个数的最小值">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-06T00:38:11.636Z">
+<meta property="og:updated_time" content="2018-07-22T12:05:26.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[ZJOI2006]皇帝的烦恼">
-<meta name="twitter:description" content="二分+dpdp不是很好想f记录与第一个位置相同个数的最大值g记录与第一个位置相同个数的最小值">
+<meta name="twitter:description" content="二分答案，dp 检验dp 不是很好想f 记录与第一个位置相同个数的最大值g 记录与第一个位置相同个数的最小值">
 
 
 
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  222
+                  226
                 </span>
               
 
@@ -456,7 +456,7 @@
       
 
       
-        <p>二分+dp<br>dp不是很好想<br>f记录与第一个位置相同个数的最大值<br>g记录与第一个位置相同个数的最小值<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">20050</span>;</span><br><span class="line"><span class="keyword">int</span> n,maxs,sum=<span class="number">0</span>,w[N],f[N],g[N];<span class="comment">//f&gt;&gt;max g&gt;&gt;min</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f[<span class="number">1</span>]=g[<span class="number">1</span>]=w[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=min(w[<span class="number">1</span>]-g[i<span class="number">-1</span>],w[i]);  </span><br><span class="line">        g[i]=max(<span class="number">0</span>,w[i]-(k-w[i<span class="number">-1</span>]-w[<span class="number">1</span>]+f[i<span class="number">-1</span>]));  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !g[n];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;w[i]),sum+=w[i];</span><br><span class="line">    maxs=w[<span class="number">1</span>]+w[n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) maxs=max(maxs,w[i]+w[i+<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!(n&amp;<span class="number">1</span>)) &#123;<span class="built_in">printf</span>(<span class="string">"%d"</span>,maxs);<span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> L=maxs,R=sum;</span><br><span class="line">    <span class="keyword">while</span> (L&lt;R)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid))</span><br><span class="line">            R=mid;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            L=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,L);	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>二分答案，<em>dp</em> 检验<br><em>dp</em> 不是很好想<br><em>f</em> 记录与第一个位置相同个数的最大值<br><em>g</em> 记录与第一个位置相同个数的最小值<br><a id="more"></a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">20050</span>;</span><br><span class="line"><span class="keyword">int</span> n,maxs,sum=<span class="number">0</span>,w[N],f[N],g[N];<span class="comment">//f&gt;&gt;max g&gt;&gt;min</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    f[<span class="number">1</span>]=g[<span class="number">1</span>]=w[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=min(w[<span class="number">1</span>]-g[i<span class="number">-1</span>],w[i]);  </span><br><span class="line">        g[i]=max(<span class="number">0</span>,w[i]-(k-w[i<span class="number">-1</span>]-w[<span class="number">1</span>]+f[i<span class="number">-1</span>]));  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> !g[n];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;w[i]),sum+=w[i];</span><br><span class="line">    maxs=w[<span class="number">1</span>]+w[n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) maxs=max(maxs,w[i]+w[i+<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">if</span> (!(n&amp;<span class="number">1</span>)) &#123;<span class="built_in">printf</span>(<span class="string">"%d"</span>,maxs);<span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> L=maxs,R=sum;</span><br><span class="line">    <span class="keyword">while</span> (L&lt;R)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (check(mid))</span><br><span class="line">            R=mid;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            L=mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,L);	</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -474,7 +474,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动态规划/" <i class="fa fa-tag"></i> 动态规划</a>
+            <a href="/tags/DP/" <i class="fa fa-tag"></i> DP</a>
           
             <a href="/tags/二分答案/" <i class="fa fa-tag"></i> 二分答案</a>
           
@@ -584,7 +584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -606,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -700,7 +700,7 @@
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.3k字</span>
+  <span class="post-count">博客全站共29.1k字</span>
 </div>
 <br>
 
