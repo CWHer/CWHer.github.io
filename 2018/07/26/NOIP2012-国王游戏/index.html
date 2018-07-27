@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="魍魉的小窝">
 <meta property="og:description" content="考虑第i 个和第i+1 个位置  max\left \{ \frac{pre}{R_{i}} \frac{pre*L_{i}}{R_{i+1}}  \right \}交换之后则为  max\left \{  \frac{pre}{R_{i+1}} , \frac{pre*L_{i+1}}{R_{i}} \right \}其他人的并没有改变提取pre  max\left \{  \frac{1}{R">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-26T12:30:35.487Z">
+<meta property="og:updated_time" content="2018-07-27T12:09:51.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[NOIP2012]国王游戏">
 <meta name="twitter:description" content="考虑第i 个和第i+1 个位置  max\left \{ \frac{pre}{R_{i}} \frac{pre*L_{i}}{R_{i+1}}  \right \}交换之后则为  max\left \{  \frac{pre}{R_{i+1}} , \frac{pre*L_{i+1}}{R_{i}} \right \}其他人的并没有改变提取pre  max\left \{  \frac{1}{R">
@@ -467,7 +467,8 @@ max\left \{  \frac{1}{R_{i}} , \frac{L_{i}}{R_{i+1}} \right \}\quad \quad \quad 
 max\left \{  R_{i+1} , L_{i}R_{i} \right \}\quad \quad \quad max\left \{ R_{i}, L_{i+1}R_{i+1}  \right \}</script><p><em>L,R</em> 均为正整数</p>
 <script type="math/tex; mode=display">
 R_{i}< L_{i}R_{i} \quad \quad \quad R_{i+1}< L_{i+1}R_{i+1}</script><script type="math/tex; mode=display">
-L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}</script><p>因此将<script type="math/tex">L*R</script>较小的放在前面更优<br><del>人生苦短，我用Python</del><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n = int(input())</span><br><span class="line">x, y = map(int, input().split())</span><br><span class="line">w = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</span><br><span class="line">    L, R = map(int, input().split())</span><br><span class="line">    w.append(&#123;<span class="string">"L"</span>: L, <span class="string">"R"</span>: R, <span class="string">"val"</span>: L * R&#125;)</span><br><span class="line">w.sort(key=<span class="keyword">lambda</span> node: node[<span class="string">"val"</span>])</span><br><span class="line">cnt = x</span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</span><br><span class="line">    ans = max(ans, cnt // w[i][<span class="string">"R"</span>])</span><br><span class="line">    cnt *= w[i][<span class="string">"L"</span>]</span><br><span class="line">print(<span class="string">"%d"</span> % ans, end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure></p>
+L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}</script><p>因此将<script type="math/tex">L*R</script>较小的放在前面更优</p>
+<p><del>人生苦短，我用Python</del><br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">n = int(input())</span><br><span class="line">x, y = map(int, input().split())</span><br><span class="line">w = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</span><br><span class="line">    L, R = map(int, input().split())</span><br><span class="line">    w.append(&#123;<span class="string">"L"</span>: L, <span class="string">"R"</span>: R, <span class="string">"val"</span>: L * R&#125;)</span><br><span class="line">w.sort(key=<span class="keyword">lambda</span> node: node[<span class="string">"val"</span>])</span><br><span class="line">cnt = x</span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</span><br><span class="line">    ans = max(ans, cnt // w[i][<span class="string">"R"</span>])</span><br><span class="line">    cnt *= w[i][<span class="string">"L"</span>]</span><br><span class="line">print(<span class="string">"%d"</span> % ans, end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -595,7 +596,7 @@ L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}</script><p>因此将<script type="m
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +618,7 @@ L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}</script><p>因此将<script type="m
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -711,7 +712,7 @@ L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}</script><p>因此将<script type="m
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.6k字</span>
+  <span class="post-count">博客全站共33.9k字</span>
 </div>
 <br>
 
