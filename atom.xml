@@ -189,9 +189,9 @@
       <category term="OI" scheme="http://yoursite.com/categories/OI/"/>
     
     
-      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="倍增" scheme="http://yoursite.com/tags/%E5%80%8D%E5%A2%9E/"/>
+    
+      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
     
       <category term="二分答案" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88/"/>
     
@@ -376,9 +376,9 @@ L_{i}R_{i} \quad \quad \quad  L_{i+1}R_{i+1}&lt;/script&gt;&lt;p&gt;因此将&lt
       <category term="OI" scheme="http://yoursite.com/categories/OI/"/>
     
     
-      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
-    
       <category term="高精度" scheme="http://yoursite.com/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
+    
+      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
@@ -547,9 +547,9 @@ g\left[i\right]\left[j\right]=max\left\{ f\left[i\right]\left[k\right]+g\left[to
       <category term="OI" scheme="http://yoursite.com/categories/OI/"/>
     
     
-      <category term="搜索" scheme="http://yoursite.com/tags/%E6%90%9C%E7%B4%A2/"/>
-    
       <category term="数论" scheme="http://yoursite.com/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+      <category term="搜索" scheme="http://yoursite.com/tags/%E6%90%9C%E7%B4%A2/"/>
     
       <category term="高精度" scheme="http://yoursite.com/tags/%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
     

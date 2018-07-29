@@ -81,8 +81,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>倍增</tag>
+        <tag>贪心</tag>
         <tag>二分答案</tag>
       </tags>
   </entry>
@@ -156,8 +156,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>高精度</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -229,8 +229,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>数论</tag>
+        <tag>搜索</tag>
         <tag>高精度</tag>
       </tags>
   </entry>
@@ -276,8 +276,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>并查集</tag>
         <tag>倍增</tag>
+        <tag>并查集</tag>
         <tag>栈</tag>
         <tag>笛卡尔树</tag>
       </tags>
