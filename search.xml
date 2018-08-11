@@ -127,7 +127,6 @@
         <category>搜索</category>
       </categories>
       <tags>
-        <tag>迭代加深</tag>
         <tag>A*</tag>
         <tag>IDA*</tag>
       </tags>
@@ -199,8 +198,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>组合数学</tag>
         <tag>数论</tag>
+        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
@@ -908,8 +907,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>贪心</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
