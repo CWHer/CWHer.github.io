@@ -1,6 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[NOI2001]炮兵阵地]]></title>
+    <url>%2F2018%2F08%2F11%2FNOI2001-%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0%2F</url>
+    <content type="text"><![CDATA[先预处理出一行内所有可行方案，记为s，可以发现可行解并不多再预处理出所有可行方案的炮兵数目，记为w用dp\left [ d\right ]\left [ i\right ]\left [ j \right ]记录前d行，且上一行状态为s_{j}，上两行状态为s_{i}的最大炮兵数目 dp\left [ d \right ]\left [ j \right ]\left [ k \right ]=max\left \{ dp\left [ d-1 \right ]\left [ i \right ]\left [ j \right ]\right \}转移时需要判断状态之间是否合法，炮兵是否均在平原123456789101112131415161718192021222324252627282930313233343536373839404142434445#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int N=105,M=65;int n,m,dp[N][M][M],f[N];int cnt=0,c[M],w[M],ans=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;inline char get()&#123; register char ch=getchar(); while (ch!='P'&amp;&amp;ch!='H') ch=getchar(); return ch;&#125;int main()&#123; n=read(),m=read(); for(int s=0;s&lt;(1&lt;&lt;m);s++) if (!((s&gt;&gt;1)&amp;s)&amp;&amp;!((s&lt;&lt;1)&amp;s)) if (!((s&gt;&gt;2)&amp;s)&amp;&amp;!((s&lt;&lt;2)&amp;s)) c[++cnt]=s; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) f[i]+=(get()=='H')&lt;&lt;(m-j); for(int i=1;i&lt;=cnt;i++) for(int k=1;k&lt;=m;k++) w[i]+=(c[i]&gt;&gt;(k-1))&amp;1; for(int d=1;d&lt;=n;d++) for(int k=1;k&lt;=cnt;k++) if (!(f[d]&amp;c[k])) for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) if (!(c[i]&amp;c[j])) if (!(c[i]&amp;c[k])&amp;&amp;!(c[j]&amp;c[k])) dp[d][j][k]=max(dp[d][j][k],dp[d-1][i][j]+w[k]); for(int i=1;i&lt;=cnt;i++) for(int j=1;j&lt;=cnt;j++) ans=max(ans,dp[n][i][j]); printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>状态压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[SDOI2013]直径]]></title>
+    <url>%2F2018%2F08%2F11%2FSDOI2013-%E7%9B%B4%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[首先求一遍直径，记起点为S，终点为T所有可行边均在直径上（废话）考虑直径上某个点x，求出它不经过直径的能访问的最远距离，记为d_{x}复杂度显然是O\left(N\right)​的 从S到T，依次遍历直径上所有点 若d_{x}=D\left ( S,x \right )，则S到x之间所有的边均不是必须经过的 若d_{x}=D\left ( x,T \right )，则x到T之间所有的边均不是必须经过的 需要注意的是，有些算法在遇到第二种情况时需要及时退出1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include&lt;cstdio&gt;#include&lt;vector&gt;#define LL long longusing namespace std;const int N=200050;int n,st,ed,fa[N],col[N],ans=0;LL d[N],len;vector&lt;int&gt; e[N],g[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int val)&#123; e[u].push_back(v); g[u].push_back(val);&#125;void find(int o,int pre,int &amp;x)&#123; if (o==pre) d[o]=0,fa[o]=0; if (!x||d[o]&gt;d[x]) x=o; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; fa[to]=o; d[to]=d[o]+g[o][i]; find(to,o,x); &#125; &#125;&#125;LL dfs(int o)&#123; LL ret=0; col[o]=1; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!col[to]) ret=max(ret,dfs(to)+g[o][i]); &#125; return ret;&#125;int main()&#123; n=read(); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); int val=read(); add(u,v,val); add(v,u,val); &#125; find(n,n,ed); find(ed,ed,st); printf("%lld\n",len=d[st]); for(int i=st;i;i=fa[i]) col[i]=1; for(int f=0,i=st;i&amp;&amp;!f;i=fa[i]) for(int j=0;!f&amp;&amp;j&lt;e[i].size();j++) &#123; int to=e[i][j]; if (!col[to]) &#123; LL x=dfs(to)+g[i][j]; if (x==len-d[i]) st=i; if (x==d[i]) ed=i,f=1; &#125; &#125; for(int i=st;i!=ed;i=fa[i]) ans++; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>树的直径</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[扩展中国剩余定理]]></title>
+    <url>%2F2018%2F08%2F11%2F%E6%89%A9%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%2F</url>
+    <content type="text"><![CDATA[\left\{\begin{matrix} x\equiv a_{1}\left ( mod \ m_{1} \right ) \\ x\equiv a_{2}\left ( mod \ m_{2} \right )\\ \cdots \\ x\equiv a_{n}\left ( mod \ m_{n} \right )\\ \end{matrix}\right.不保证m两两互质 设已求出前k个方程的解，记为x_{k}记M_{k}=\prod _{i=1}^{k}m_{i}则x_{k}+tM_{k}\left ( k \in\mathbb{Z} \right )为前k个方程的通解 考虑第k+1个方程 x_{k}+tM_{k} \equiv a_{k+1} \left ( mod \ m_{k+1}\right )用exgcd解出t若无解则方程组无解若有解则x_{k+1}=x_{k}+tM_{k}123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#define LL long longconst int N=100050;LL n,x,y,a[N],m[N],M=1;LL mul(LL a,LL b,LL mod)&#123; LL ret=0; for(;b;b&gt;&gt;=1) &#123; if (b&amp;1) ret=(ret+a)%mod; a=(a&lt;&lt;1)%mod; &#125; return ret;&#125;void exgcd(LL a,LL b,LL &amp;x,LL &amp;y)&#123; if (!b) &#123;x=1,y=0;return;&#125; exgcd(b,a%b,y,x); y-=a/b*x;&#125;LL gcd(LL a,LL b)&#123;return b?gcd(b,a%b):a;&#125;LL exCRT()&#123; LL M=m[1],ans=a[1]; for(int i=2;i&lt;=n;i++) &#123; LL w=gcd(M,m[i]); LL c=(a[i]-ans)%m[i]+m[i]; exgcd(M/w,m[i]/w,x,y); x=mul(x,c%m[i]/w,m[i]); ans+=x*M,M*=m[i]/w; &#125; return (ans%M+M)%M;&#125;int main()&#123; scanf("%lld",&amp;n); for(int i=1;i&lt;=n;i++) scanf("%lld%lld",&amp;m[i],&amp;a[i]); printf("%lld\n",exCRT()); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>模板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[K短路]]></title>
+    <url>%2F2018%2F08%2F11%2Fk%E7%9F%AD%E8%B7%AF%2F</url>
+    <content type="text"><![CDATA[其实K短路是有有理有据的做法的，但我不会啊 建立一个以d为关键字的优先队列放入\left ( S,0 \right )，然后进行扩展易证，当\left ( x,d \right )被第K次取出时，d为S到x的K短路 考虑用启发式优化来提高效率到T的估计距离f_{x}可以为x到T的最短路对于点x，g_{x}=d_{now}+f_{x}优先队列以g为关键字 还可以继续优化 当取出其中某个点K次后，不需要将其再放入优先队列中 对于有距离要求的K短路，当取出元素的d大于给定值可直接退出 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;queue&gt;#include&lt;cstring&gt;using namespace std;const int N=5050,INF=1&lt;&lt;30;struct edge&#123;int to;double val;&#125;;struct node&#123;int id;double d;&#125;;int n,m,ans=0,inq[N],cnt[N];double E,f[N];vector&lt;edge&gt; e[N],r[N];queue&lt;int&gt; Q;struct cmp&#123; bool operator()(node a,node b) &#123; return a.d+f[a.id]&gt;b.d+f[b.id]; &#125;&#125;;priority_queue&lt;node,vector&lt;node&gt;,cmp&gt; S;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void SPFA(int s)&#123; for(int i=1;i&lt;=n;i++) f[i]=INF; f[s]=0,inq[s]=1,Q.push(s); while (!Q.empty()) &#123; int x=Q.front(); Q.pop(),inq[x]=0; for(int i=0;i&lt;r[x].size();i++) &#123; int to=r[x][i].to; double val=r[x][i].val; if (f[x]+val&lt;f[to]) &#123; f[to]=f[x]+val; if (!inq[to]) inq[to]=1,Q.push(to); &#125; &#125; &#125;&#125;void A_star(int s,int t,int sz)&#123; S.push((node)&#123;s,0&#125;); while (!S.empty()) &#123; node x=S.top(); if (cnt[x.id]&gt;sz) return; S.pop(),cnt[x.id]++; if (x.d&gt;E) return; if (x.id==t) &#123; ans++,E-=x.d; sz=E/x.d; memset(cnt,0,sizeof(cnt)); &#125; for(int i=0;i&lt;e[x.id].size();i++) &#123; int to=e[x.id][i].to; double val=e[x.id][i].val; if (x.d+val&lt;=E) S.push((node)&#123;to,x.d+val&#125;); &#125; &#125;&#125;int main()&#123; n=read(),m=read(); scanf("%lf",&amp;E); for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); double val; scanf("%lf",&amp;val); e[u].push_back((edge)&#123;v,val&#125;); r[v].push_back((edge)&#123;u,val&#125;); &#125; SPFA(n); A_star(1,n,E/f[1]); printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>模板</tag>
+        <tag>图论</tag>
+        <tag>A*</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P1382 楼房]]></title>
+    <url>%2F2018%2F08%2F11%2F%E6%B4%9B%E8%B0%B7P1382-%E6%A5%BC%E6%88%BF%2F</url>
+    <content type="text"><![CDATA[线段树实现起来细节有点多，用了multiset参考了一下大佬的题解 排序时需要注意顺序问题 先左后右 先入后出 入边从高到低 出边从低到高 感性理解一下即可 加入边时考虑是否会变高删除边时考虑是否会变低123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566#include&lt;cstdio&gt;#include&lt;set&gt;#include&lt;algorithm&gt;using namespace std;const int N=200050;struct node&#123;int x,h,opt;&#125;t[N&lt;&lt;2];struct dot&#123;int x,y;&#125;ans[N&lt;&lt;2];int n,cnt=0;multiset&lt;int&gt; S;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;bool cmp(node a,node b)&#123; if (a.x!=b.x) return a.x&lt;b.x; if (a.opt!=b.opt) return a.opt&gt;b.opt; if (a.opt==1) return a.h&gt;b.h; if (a.opt==-1) return a.h&lt;b.h;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) &#123; int h=read(),l=read(),r=read(); t[i]=(node)&#123;l,h,1&#125;; t[i+n]=(node)&#123;r,h,-1&#125;; &#125; n&lt;&lt;=1; sort(t+1,t+n+1,cmp); S.insert(0); for(int i=1;i&lt;=n;i++) &#123; int H=*S.rbegin(); if (t[i].opt==1) &#123; if (t[i].h&gt;H) &#123; ans[++cnt]=(dot)&#123;t[i].x,H&#125;; ans[++cnt]=(dot)&#123;t[i].x,t[i].h&#125;; S.insert(t[i].h); &#125; else S.insert(t[i].h); &#125; if (t[i].opt==-1) &#123; if (t[i].h==H&amp;&amp;S.count(H)==1) &#123; S.erase(H); ans[++cnt]=(dot)&#123;t[i].x,H&#125;; ans[++cnt]=(dot)&#123;t[i].x,*S.rbegin()&#125;; &#125; else S.erase(S.find(t[i].h)); &#125; &#125; printf("%d\n",cnt); for(int i=1;i&lt;=cnt;i++) printf("%d %d\n",ans[i].x,ans[i].y); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>扫描线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[USACO5.5]Picture]]></title>
+    <url>%2F2018%2F08%2F11%2FUSACO5-5-Picture%2F</url>
+    <content type="text"><![CDATA[扫描线参考HDU1542 Atlantis可以横竖各做一遍需要注意的是会重复计算，需要与上一次结果作差 也可以只做一遍用sz数组记录宽度，c数组记录竖线数量还需要L，R记录是否有左右端点竖线需要注意的是端点竖线重合和顺序问题高度相同时先做覆盖再做取消覆盖，否则会重叠线段会多次计算123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int N=2e4+50;struct node&#123;int l,r,h,val;&#125;t[N&lt;&lt;2];int n,cnt=0,ans=0,ql,qr;int num[N&lt;&lt;2],sz[N&lt;&lt;2],w[N&lt;&lt;2];int c[N&lt;&lt;2],L[N&lt;&lt;2],R[N&lt;&lt;2];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;bool cmp(node a,node b)&#123; return a.h==b.h?a.val&gt;b.val:a.h&lt;b.h;&#125;;void calc(int o,int l,int r)&#123; if (num[o]) &#123; sz[o]=w[r+1]-w[l]; c[o]=(L[o]=1)+(R[o]=1); &#125; else &#123; L[o]=L[o&lt;&lt;1],R[o]=R[o&lt;&lt;1|1]; c[o]=c[o&lt;&lt;1]+c[o&lt;&lt;1|1]; c[o]-=(R[o&lt;&lt;1]&amp;L[o&lt;&lt;1|1])&lt;&lt;1; sz[o]=sz[o&lt;&lt;1]+sz[o&lt;&lt;1|1]; &#125;&#125;void modify(int o,int l,int r,int x)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) &#123; num[o]+=x; calc(o,l,r); return; &#125; int mid=(l+r)&gt;&gt;1; if (ql&lt;=mid) modify(o&lt;&lt;1,l,mid,x); if (qr&gt;mid) modify(o&lt;&lt;1|1,mid+1,r,x); calc(o,l,r);&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) &#123; int x1=read(),y1=read(); int x2=read(),y2=read(); w[i]=x1,w[i+n]=x2; t[++cnt]=(node)&#123;x1,x2,y1,1&#125;; t[++cnt]=(node)&#123;x1,x2,y2,-1&#125;; &#125; n&lt;&lt;=1; sort(w+1,w+n+1); int idx=unique(w+1,w+n+1)-w-1; sort(t+1,t+n+1,cmp); for(int pre=0,i=1;i&lt;=n;i++) &#123; ql=lower_bound(w+1,w+idx+1,t[i].l)-w; qr=lower_bound(w+1,w+idx+1,t[i].r)-w-1; if (ql&lt;=qr) modify(1,1,idx,t[i].val); ans+=c[1]*(t[i+1].h-t[i].h); ans+=abs(sz[1]-pre),pre=sz[1]; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>扫描线</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU1255 覆盖的面积]]></title>
+    <url>%2F2018%2F08%2F11%2FHDU1255-%E8%A6%86%E7%9B%96%E7%9A%84%E9%9D%A2%E7%A7%AF%2F</url>
+    <content type="text"><![CDATA[扫描线参考HDU1542 Atlantis需要修改的只有calc函数用sz数组记录被覆盖到两次或以上的宽度用c数组记录被覆盖到一次的宽度 具体细节看代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int N=2050;struct node&#123;double l,r,h;int val;&#125;t[N&lt;&lt;2];int num[N&lt;&lt;4],ql,qr;double sz[N&lt;&lt;4],c[N&lt;&lt;4],w[N&lt;&lt;4]; //2 1inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;bool cmp(node a,node b)&#123;return a.h&lt;b.h;&#125;;void calc(int o,int l,int r)&#123; if (num[o]&gt;=2) sz[o]=w[r+1]-w[l]; if (num[o]==1) &#123; c[o]=w[r+1]-w[l]; sz[o]=c[o&lt;&lt;1]+c[o&lt;&lt;1|1]; &#125; if (!num[o]) &#123; c[o]=c[o&lt;&lt;1]+c[o&lt;&lt;1|1]; sz[o]=sz[o&lt;&lt;1]+sz[o&lt;&lt;1|1]; &#125;&#125;void modify(int o,int l,int r,int x)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) &#123; num[o]+=x; calc(o,l,r); return; &#125; int mid=(l+r)&gt;&gt;1; if (ql&lt;=mid) modify(o&lt;&lt;1,l,mid,x); if (qr&gt;mid) modify(o&lt;&lt;1|1,mid+1,r,x); calc(o,l,r);&#125;int main()&#123; int Case=0,T=read(); while (T--) &#123; double ans=0; int cnt=0,n=read(); memset(num,0,sizeof(num)); memset(sz,0,sizeof(sz)); memset(c,0,sizeof(c)); for(int i=1;i&lt;=n;i++) &#123; double x1,y1,x2,y2; scanf("%lf%lf%lf%lf",&amp;x1,&amp;y1,&amp;x2,&amp;y2); w[i]=x1,w[i+n]=x2; t[++cnt]=(node)&#123;x1,x2,y1,1&#125;; t[++cnt]=(node)&#123;x1,x2,y2,-1&#125;; &#125; n&lt;&lt;=1; sort(w+1,w+n+1); int idx=unique(w+1,w+n+1)-w-1; sort(t+1,t+cnt+1,cmp); for(int i=1;i&lt;n;i++) &#123; ql=lower_bound(w+1,w+idx+1,t[i].l)-w; qr=lower_bound(w+1,w+idx+1,t[i].r)-w-1; if (ql&lt;=qr) modify(1,1,idx,t[i].val); ans+=sz[1]*(t[i+1].h-t[i].h); &#125; printf("%.2lf\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>扫描线</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[USACO07OPEN]城市的地平线]]></title>
+    <url>%2F2018%2F08%2F11%2FUSACO07OPEN-%E5%9F%8E%E5%B8%82%E7%9A%84%E5%9C%B0%E5%B9%B3%E7%BA%BF%2F</url>
+    <content type="text"><![CDATA[竖版的扫描线扫描线参考HDU1542 Atlantis 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include&lt;cstdio&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=80050;struct node&#123;int x,h,val;&#125;t[N];int n,cnt=0,ql,qr,w[N];LL ans=0,sz[N&lt;&lt;4],num[N&lt;&lt;4];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void calc(int o,int l,int r)&#123; if (num[o]) sz[o]=w[r+1]-w[l]; else sz[o]=sz[o&lt;&lt;1]+sz[o&lt;&lt;1|1];&#125;void modify(int o,int l,int r,int x)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) &#123; num[o]+=x; calc(o,l,r); return; &#125; int mid=(l+r)&gt;&gt;1; if (ql&lt;=mid) modify(o&lt;&lt;1,l,mid,x); if (qr&gt;mid) modify(o&lt;&lt;1|1,mid+1,r,x); calc(o,l,r);&#125;bool cmp(node a,node b)&#123;return a.x&lt;b.x;&#125;;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) &#123; int l=read(),r=read(),h; w[i]=h=read(); t[++cnt]=(node)&#123;l,h,1&#125;; t[++cnt]=(node)&#123;r,h,-1&#125;; &#125; w[n+1]=0; sort(w+1,w+n+2); int idx=unique(w+1,w+n+2)-w-1; n&lt;&lt;=1; sort(t+1,t+n+1,cmp); for(int i=1;i&lt;n;i++) &#123; ql=1,qr=lower_bound(w+1,w+idx+1,t[i].h)-w-1; if (ql&lt;=qr) modify(1,1,n,t[i].val); ans+=sz[1]*((LL)t[i+1].x-t[i].x); &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>扫描线</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU1542 Atlantis]]></title>
+    <url>%2F2018%2F08%2F11%2FHDU1542-Atlantis%2F</url>
+    <content type="text"><![CDATA[扫描线入门题 借用一下某位大佬的图 先离散化横坐标每个矩形分成上下两条线，下入上出用sz数组记录当前区间被覆盖宽度具体细节看代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int N=205;struct node&#123;double l,r,h;int val;&#125;t[N&lt;&lt;2];int num[N&lt;&lt;4],ql,qr;double sz[N&lt;&lt;4],w[N&lt;&lt;4];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;bool cmp(node a,node b)&#123;return a.h&lt;b.h;&#125;;void calc(int o,int l,int r)&#123; if (num[o]) //full sz[o]=w[r+1]-w[l]; else //not sz[o]=sz[o&lt;&lt;1]+sz[o&lt;&lt;1|1];&#125;void modify(int o,int l,int r,int x)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) &#123; num[o]+=x; calc(o,l,r); return; &#125; int mid=(l+r)&gt;&gt;1; if (ql&lt;=mid) modify(o&lt;&lt;1,l,mid,x); if (qr&gt;mid) modify(o&lt;&lt;1|1,mid+1,r,x); calc(o,l,r);&#125;int main()&#123; int Case=0,n; while (n=read()) &#123; double ans=0; int cnt=0; memset(num,0,sizeof(num)); memset(sz,0,sizeof(sz)); for(int i=1;i&lt;=n;i++) &#123; double x1,y1,x2,y2; scanf("%lf%lf%lf%lf",&amp;x1,&amp;y1,&amp;x2,&amp;y2); w[i]=x1,w[i+n]=x2; t[++cnt]=(node)&#123;x1,x2,y1,1&#125;; t[++cnt]=(node)&#123;x1,x2,y2,-1&#125;; &#125; n&lt;&lt;=1; sort(w+1,w+n+1); int idx=unique(w+1,w+n+1)-w-1; sort(t+1,t+cnt+1,cmp); for(int i=1;i&lt;n;i++) &#123; ql=lower_bound(w+1,w+idx+1,t[i].l)-w; qr=lower_bound(w+1,w+idx+1,t[i].r)-w-1; if (ql&lt;=qr) modify(1,1,idx,t[i].val); ans+=sz[1]*(t[i+1].h-t[i].h); &#125; printf("%.2lf\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>扫描线</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P4388 付公主的矩形]]></title>
+    <url>%2F2018%2F08%2F11%2F%E6%B4%9B%E8%B0%B7P4388-%E4%BB%98%E5%85%AC%E4%B8%BB%E7%9A%84%E7%9F%A9%E5%BD%A2%2F</url>
+    <content type="text"><![CDATA[首先有一个结论对于一个\left ( r,c \right ), \ gcd\left ( r,c \right )=1的矩形，经过格子数目为r+c-1个更一般的，可由上式化简，对于\left ( r,c \right )，经过格子数目为r+c-gcd\left ( r,c \right ) 证明有多种给出一种我当时想出来的 \left ( r,c \right )中对角线只有初末位置在格点上 当对角线穿过某一网格边时，必然会在两边经过各一个格子 对角线穿过的网格边数显然为r+c-2 由于中间无格点，按照上述计算时中间每个格子会被计算到两次 初末位置的格子仅会被计算到一次 化简后可得格子数为r+c-1 暴力统计就能过了，复杂度比较玄学，大概是O\left ( c*ans \right )，c为一个不是很大常数（我猜的） 其实还有更有理有据的做法 \sum _{d\mid n}\sum \left [r+c=d+1,gcd\left ( r,c \right )=1 \right ]= \frac{\sum _{d\mid n}\varphi\left ( d+1 \right )+1}{2}每一对\left ( r,c \right )都会被算到两次，但\left ( n,n \right )只会被算到一次复杂度O\left ( N \right ) 代码为暴力统计12345678910111213141516171819202122#include&lt;cstdio&gt;const int N=1e6+50;int n,ans=0,idx=0,w[N];int gcd(int a,int b)&#123;return b?gcd(b,a%b):a;&#125;int main()&#123; scanf("%d",&amp;n); for(int i=1;i*i&lt;=n;i++) if (n%i==0) &#123; w[++idx]=i; if (i*i!=n) w[++idx]=n/i; &#125; for(int i=1;i&lt;=idx;i++) &#123; int sz=w[i]+1; for(int k=1;k&lt;=sz/2;k++) if (gcd(k,sz-k)==1) ans++; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[SCOI2005]骑士精神]]></title>
+    <url>%2F2018%2F08%2F11%2FSCOI2005-%E9%AA%91%E5%A3%AB%E7%B2%BE%E7%A5%9E%2F</url>
+    <content type="text"><![CDATA[每次移动空位而不是骑士 设当前搜到第k步，剩下num个骑士未回到位置若k+num>dep_{now}，则返回跑得飞快 其实还可以加点什么小剪枝若当前和\left ( x,y \right )交换，则下次不换回去既然直接搜能过（实现起来有点小烦），就没加这个剪枝12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int n=5,N=6;const int dx[]=&#123;1,-1,1,-1,2,-2,2,-2&#125;;const int dy[]=&#123;2,2,-2,-2,1,1,-1,-1&#125;;const int to[N][N]=&#123;&#123;'0','0','0','0','0','0'&#125;, &#123;'0','1','1','1','1','1'&#125;, &#123;'0','0','1','1','1','1'&#125;, &#123;'0','0','0','*','1','1'&#125;, &#123;'0','0','0','0','0','1'&#125;, &#123;'0','0','0','0','0','0'&#125;&#125;;int dep,w[N][N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;inline char get()&#123; register char ch=getchar(); while (ch!='1'&amp;&amp;ch!='0'&amp;&amp;ch!='*') ch=getchar(); return ch;&#125;bool dfs(int k,int xx,int yy,int num)&#123; if (k+num&gt;dep) return 0; if (!num) return 1; for(int i=0;i&lt;8;i++) &#123; int x=xx+dx[i],y=yy+dy[i]; if (x&gt;0&amp;&amp;x&lt;=n&amp;&amp;y&gt;0&amp;&amp;y&lt;=n) &#123; int nxt=num; nxt+=w[x][y]==to[x][y]; nxt-=w[x][y]==to[xx][yy]; swap(w[x][y],w[xx][yy]); if (dfs(k+1,x,y,nxt)) return 1; swap(w[x][y],w[xx][yy]); &#125; &#125; return 0;&#125;int main()&#123; int T=read(); while (T--) &#123; int num=0,f=0,xx,yy; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) &#123; w[i][j]=get(); if (to[i][j]!=w[i][j]&amp;&amp;w[i][j]!='*') num++; if (w[i][j]=='*') xx=i,yy=j; &#125; for(dep=num;dep&lt;=15&amp;&amp;!f;dep++) if (dfs(0,xx,yy,num)) f=1,printf("%d\n",dep); if (!f) puts("-1"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>搜索</category>
+      </categories>
+      <tags>
+        <tag>迭代加深</tag>
+        <tag>A*</tag>
+        <tag>IDA*</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[NOI1999]生日蛋糕]]></title>
+    <url>%2F2018%2F08%2F11%2FNOI1999-%E7%94%9F%E6%97%A5%E8%9B%8B%E7%B3%95%2F</url>
+    <content type="text"><![CDATA[很综合的一道搜索题 从下往上搜记v\left [ k \right ]为1-k 层最小体积，s\left [ k \right ]为1-k 层最小面积记V为剩余体积，S为当前面积对于第k层 h_{k}\in \left [ k,min\left ( h_{k+1} -1,\frac{V-v\left [ k-1 \right ]}{k^{2}}\right ) \right ] r_{k}\in \left [ k,min\left ( r_{k+1}-1,\sqrt{\frac{\left ( V-v\left [ k-1 \right ] \right )}{h_{k}} }\right )\right ]可行性剪枝 若V>v\left [ k \right ]，则返回 最优化剪枝 若S+s\left [ k \right ]>ans，则返回 若S+\frac{2V}{r_{k+1}}>ans，则返回 对于最后一种剪枝的证明 \sum_{i=1}^{k}2r_{i}h_{i}>\frac{2}{r_{k+1}}\sum_{i=1}^{k}r_{i}^{2}h_{i}=\frac{2V}{r_{k+1}} 1234567891011121314151617181920212223242526272829303132#include&lt;cstdio&gt;#include&lt;cmath&gt;#include&lt;algorithm&gt;using namespace std;const int INF=1&lt;&lt;30,N=20;int n,m,v[N],s[N],ans=INF;void dfs(int V,int k,int H,int R,int S)&#123; if (k&lt;=0) &#123; if (!V) ans=min(ans,S); return; &#125; if (V&lt;v[k]) return; if (S+s[k]&gt;ans) return; if (S+2*V/R&gt;ans) return; for(int h=min(H-1,(V-v[k-1])/(k*k));h&gt;=k;h--) for(int r=min(R-1,(int)sqrt((V-v[k-1])/h));r&gt;=k;r--) dfs(V-r*r*h,k-1,h,r,S+2*r*h+r*r*(k==m));&#125;int main()&#123; scanf("%d%d",&amp;n,&amp;m); for(int i=1;i&lt;=m;i++) &#123; v[i]=v[i-1]+i*i*i; s[i]=s[i-1]+2*i*i; &#125; dfs(n,m,INF,INF,0); printf("%d\n",ans==INF?0:ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[USACO08DEC]农场的万圣节]]></title>
+    <url>%2F2018%2F08%2F11%2FUSACO08DEC-%E5%86%9C%E5%9C%BA%E7%9A%84%E4%B8%87%E5%9C%A3%E8%8A%82%2F</url>
+    <content type="text"><![CDATA[缩完点之后，求一遍每个点到终点的路径长即可1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;stack&gt;using namespace std;const int N=100050;struct node&#123;int sz;&#125;t[N];int n,idx[N],cnt=0,sz[N],used[N];int dfn[N],low[N],num=0,inq[N];vector&lt;int&gt; e[N],f[N];stack&lt;int&gt; S;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void tarjan(int o)&#123; dfn[o]=low[o]=++num; inq[o]=1,S.push(o); for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dfn[to]) &#123; tarjan(to); low[o]=min(low[o],low[to]); &#125; else if (inq[to]) low[o]=min(low[o],dfn[to]); &#125; if (low[o]==dfn[o]) &#123; int x;cnt++; do&#123; x=S.top(); idx[x]=cnt; S.pop(),inq[x]=0; t[cnt].sz++; &#125;while (x!=o); &#125;&#125;void dfs(int o)&#123; if (used[o]) return; used[o]=1; sz[o]=t[o].sz; for(int i=0;i&lt;f[o].size();i++) &#123; int to=f[o][i]; dfs(to); sz[o]+=sz[to]; &#125;&#125;int main()&#123; n=read(); for(int u=1;u&lt;=n;u++) &#123; int v=read(); e[u].push_back(v); &#125; for(int i=1;i&lt;=n;i++) if (!dfn[i]) tarjan(i); for(int u=1;u&lt;=n;u++) for(int i=0;i&lt;e[u].size();i++) &#123; int v=e[u][i]; if (idx[u]!=idx[v]) f[idx[u]].push_back(idx[v]); &#125; for(int i=1;i&lt;=cnt;i++) if (!used[i]) dfs(i); for(int i=1;i&lt;=n;i++) printf("%d\n",sz[idx[i]]); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>缩点</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[USACO06NOV]玉米田]]></title>
+    <url>%2F2018%2F08%2F11%2FUSACO06NOV-%E7%8E%89%E7%B1%B3%E7%94%B0%2F</url>
+    <content type="text"><![CDATA[用一下上次的配图 不为草地直接转移若要种草则需要s_{5},s_{1}不为草地，且当前位置适合种草需要注意的是，若当前位置为行首则不需要考虑s_{1}123456789101112131415161718192021222324252627282930313233343536#include&lt;cstdio&gt;const int N=15,mod=1e8;int n,m,w[N][N],dp[2][1&lt;&lt;N],ans=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++) w[i][j]=read(); dp[0][0]=1; for(int i=1,now=1;i&lt;=n;i++) for(int j=1;j&lt;=m;j++,now^=1) &#123; int r=(1&lt;&lt;m)-1; for(int s=0;s&lt;(1&lt;&lt;m);s++) dp[now][s]=0; for(int s=0;s&lt;(1&lt;&lt;m);s++) &#123; dp[now][(s&lt;&lt;1)&amp;r]=(dp[now][(s&lt;&lt;1)&amp;r]+dp[now^1][s])%mod; if (w[i][j]&amp;&amp;(s&gt;&gt;(m-1))&amp;1^1) if (s&amp;1^1||j==1) dp[now][(s&lt;&lt;1)|1&amp;r]=(dp[now][(s&lt;&lt;1)|1&amp;r]+dp[now^1][s])%mod; &#125; &#125; for(int s=0;s&lt;(1&lt;&lt;m);s++) ans=(ans+dp[(n*m)&amp;1][s])%mod; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>状态压缩</tag>
+        <tag>轮廓线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[HAOI2006]均分数据]]></title>
+    <url>%2F2018%2F08%2F11%2FHAOI2006-%E5%9D%87%E5%88%86%E6%95%B0%E6%8D%AE%2F</url>
+    <content type="text"><![CDATA[如果贪心是一只兔子不断往目标跳去，那模拟退火就是一只喝醉的兔子不停乱跳 SA 算法的基本思想是用马尔可夫链的形式进行随机搜索，它不仅接受改善目标函数的变化，而且还能保留一些不理想的变化。对于改善目标函数的变化直接转移对于不理想的变化，发生转移的概率为P=e^{\frac{\Delta E}{kT_{0}}}其中T_{0}为当前温度，k为玻尔兹曼常数，为了方便计算可设k=1需要设定的参数为初温S，末温T，和降温系数dT 适当的温度至关重要 若T_{0}过大\left ( T\rightarrow \infty \right )，几乎所有转移都会被接受 若T_{0}过小\left ( T\rightarrow0 \right )，几乎所有不理想的转移均无法被接受，算法将会变为贪心，容易陷入局部最优解 此外，优秀的状态产生函数和状态评估函数将会提高SA的效率最好是能面向数据编程 放一张Wiki的动图 有了SA这题就好写了状态生产函数采用随机交换两个元素状态评估函数采用动态规划设dp\left [ i\right ]\left [ j \right ]为前i 个分成j 组的最小j\sigma ^{2} dp\left [ i\right ]\left [ j \right ]=min\left \{ dp\left [ k \right ] \left [ j-1 \right ]+\left ( \sum_{k+1}^{i}x-\bar{x} \right )^{2} \right \}调参调了很久12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include&lt;cstdio&gt;#include&lt;ctime&gt;#include&lt;cmath&gt;#include&lt;cstdlib&gt;#include&lt;algorithm&gt;using namespace std;const int N=25,INF=1&lt;&lt;30;const double st=1e8,ed=1e-5;const double dt=0.998;double ave,ans=INF,dp[N][N],s[N];int n,m,w[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;double pow(double x)&#123;return x*x;&#125;double calc()&#123; for(int i=0;i&lt;=n;i++) for(int j=0;j&lt;=m;j++) dp[i][j]=INF; for(int i=1;i&lt;=n;i++) s[i]=s[i-1]+w[i]; for(int i=0;i&lt;=m;i++) dp[0][i]=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=min(i,m);j++) for(int k=j-1;k&lt;=i;k++) dp[i][j]=min(dp[i][j],dp[k][j-1]+pow(s[i]-s[k]-ave)); return dp[n][m];&#125;bool check(double u,double v,double t)&#123; return u&gt;v||exp((u-v)/t)*rand()&gt;rand();&#125;void SA(double s,double t)&#123; double now=calc(); ans=min(ans,now); while (s&gt;t) &#123; int u=rand()%n+1; int v=rand()%n+1; if (u==v) continue; swap(w[u],w[v]); double nxt=calc(); ans=min(ans,nxt),s*=dt; if (!check(now,nxt,s)) swap(w[u],w[v]); else now=nxt; &#125;&#125;int main()&#123; srand((unsigned)time(0)); n=read(),m=read(); for(int i=1;i&lt;=n;i++) ave+=w[i]=read(); ave/=m; SA(st,ed); printf("%.2lf\n",sqrt(ans/m)); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>模拟退火</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP2004 虫食算]]></title>
+    <url>%2F2018%2F08%2F11%2FNOIP2004-%E8%99%AB%E9%A3%9F%E7%AE%97%2F</url>
+    <content type="text"><![CDATA[听说正解是高斯消元，但我还是选择搜索 考虑从右往左搜退出条件是搜完所有位置剪枝好像只能可行性剪枝复杂度还是很高 枚举的时候还能再优化一下 三个数均未确定 枚举其中两个计算第三个 两个数未确定 枚举一个计算一个 一个数未确定 直接计算 均确定 可行性剪枝 比较容易忽略的是回溯过程不合法也要先回溯再退出 最慢点1000+ms，吸口氧就能过了123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990#include&lt;cstdio&gt;#include&lt;cstdlib&gt;const int N=500;int n,x[N],y[N],z[N],w[N],used[N],f[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;inline char get()&#123; register char ch=getchar(); while (!('A'&lt;=ch&amp;&amp;ch&lt;='Z')) ch=getchar(); return ch;&#125;void print()&#123; for(int i=0;i&lt;n;i++) printf("%d ",w['A'+i]);&#125;void dfs(int t,int d)&#123; if (t&lt;=0) &#123; print(); exit(0); &#125; if (f[x[t]]&amp;f[y[t]]&amp;f[z[t]]) &#123; if ((w[x[t]]+w[y[t]]+d)%n==w[z[t]]) dfs(t-1,(w[x[t]]+w[y[t]]+d)/n); return; &#125; for(int fx=0,i=n-1;i&gt;=0&amp;&amp;!fx;i--) //1 &#123; if (f[x[t]]) fx=1; //Already if (!fx&amp;&amp;f[y[t]]&amp;f[z[t]]) //2&amp;3 &#123; fx=1; int val=(w[z[t]]+n-d-w[y[t]])%n; if (!used[val]) &#123; f[x[t]]=used[w[x[t]]=val]=1; dfs(t-1,(w[x[t]]+w[y[t]]+d)/n); f[x[t]]=used[val]=0; &#125; &#125; if (!fx&amp;&amp;!used[i]) f[x[t]]=used[w[x[t]]=i]=1; for(int fy=0,j=n-1;j&gt;=0&amp;&amp;!fy;j--) if (f[x[t]]) &#123; if (f[y[t]]) fy=1; //Already if (!fy&amp;&amp;f[z[t]]) //1&amp;3 &#123; fy=1; int val=(w[z[t]]+n-d-w[x[t]])%n; if (!used[val]) &#123; f[y[t]]=used[w[y[t]]=val]=1; dfs(t-1,(w[x[t]]+w[y[t]]+d)/n); f[y[t]]=used[val]=0; &#125; &#125; if (!fy&amp;&amp;!used[j]) f[y[t]]=used[w[y[t]]=j]=1; if (f[y[t]]) &#123; int fz=0,val=(w[x[t]]+w[y[t]]+d)%n; if (f[z[t]]) fz=1; //Already if (!fz&amp;&amp;!used[val]) f[z[t]]=used[w[z[t]]=val]=1; if ((w[x[t]]+w[y[t]]+d)%n==w[z[t]]) if (f[z[t]]) dfs(t-1,(w[x[t]]+w[y[t]]+d)/n); if (!fz&amp;&amp;f[z[t]]) f[z[t]]=used[val]=0; &#125; if (!fy&amp;&amp;f[y[t]]) f[y[t]]=used[j]=0; &#125; if (!fx&amp;&amp;f[x[t]]) f[x[t]]=used[i]=0; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) x[i]=get(); for(int i=1;i&lt;=n;i++) y[i]=get(); for(int i=1;i&lt;=n;i++) z[i]=get(); dfs(n,0); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[CQOI2014]数三角形]]></title>
+    <url>%2F2018%2F08%2F11%2FCQOI2014-%E6%95%B0%E4%B8%89%E8%A7%92%E5%BD%A2%2F</url>
+    <content type="text"><![CDATA[正难则反合法答案 = 所有三角形 - 水平（竖直）共线 - 斜共线 所有三角形C_{\left (n+1 \right )\left (m+1 \right )}^{3}水平（竖直）共线C_{n+1}^{3}\left ( m+1 \right )+C_{m+1}^{3}(n+1) 斜共线不好直接求，考虑枚举向量\left ( i,j \right )\ i\leq n+1,j\leq m+1为了保证不重不漏，第一和第二个点分别为\left ( i,j \right )起点与终点，第三个点在\left ( i,j \right )中间对于一组\left ( i,j \right )，共有\left ( n-i+1 \right )\left ( m-j+1 \right )种可能，其中第三个点还有gcd\left ( i,j \right )-1种可能考虑到左右对称，答案还需要*2123456789101112131415161718192021222324252627282930313233#include&lt;cstdio&gt;#define LL long longint n,m;LL ans=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;LL gcd(LL a,LL b)&#123;return b?gcd(b,a%b):a;&#125;LL C(LL m,LL n)&#123; if (m&lt;n) return 0; LL ret=1; for(LL i=1;i&lt;=n;i++) ret=ret*(m-i+1)/i; return ret;&#125;int main()&#123; n=read()+1,m=read()+1; ans=C(n*m,3); ans-=C(m,3)*n+C(n,3)*m; for(int i=1;i&lt;n;i++) for(int j=1;j&lt;m;j++) ans-=(n-i)*(m-j)*(gcd(i,j)-1)*2; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[NOIP2009]靶形数独]]></title>
     <url>%2F2018%2F07%2F27%2FNOIP2009-%E9%9D%B6%E5%BD%A2%E6%95%B0%E7%8B%AC%2F</url>
     <content type="text"><![CDATA[x，y，z 分别记录行，列和九宫格内已填数的集合每次选可填数最少的格子进行扩展12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;cstdio&gt;#include&lt;algorithm&gt;using namespace std;const int n=9,N=10;const int score[N][N]=&#123;&#123;0,0,0,0,0,0,0,0,0,0&#125;, &#123;0,6,6,6,6,6,6,6,6,6&#125;, &#123;0,6,7,7,7,7,7,7,7,6&#125;, &#123;0,6,7,8,8,8,8,8,7,6&#125;, &#123;0,6,7,8,9,9,9,8,7,6&#125;, &#123;0,6,7,8,9,10,9,8,7,6&#125;, &#123;0,6,7,8,9,9,9,8,7,6&#125;, &#123;0,6,7,8,8,8,8,8,7,6&#125;, &#123;0,6,7,7,7,7,7,7,7,6&#125;, &#123;0,6,6,6,6,6,6,6,6,6&#125;&#125;;int ans=0,cnt=0,w[N][N],x[N],y[N],z[N],idx[1&lt;&lt;N];int F(int u,int v)&#123;return (u-1)/3*3+(v+2)/3;&#125;int calc()&#123; int ret=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) ret=ret+w[i][j]*score[i][j]; return ret;&#125;void dfs()&#123; if (cnt==n*n) &#123; ans=max(ans,calc()); return; &#125; int u,v,sz=0; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) if (!w[i][j]) &#123; int s=x[i]|y[j]|z[F(i,j)]; if (idx[s]&lt;=idx[sz]) u=i,v=j,sz=s; &#125; for(int i=1;i&lt;=n;i++) if ((sz&gt;&gt;(i-1))&amp;1^1) &#123; w[u][v]=i,cnt++; x[u]|=1&lt;&lt;(i-1); y[v]|=1&lt;&lt;(i-1); z[F(u,v)]|=1&lt;&lt;(i-1); dfs(); x[u]^=1&lt;&lt;(i-1); y[v]^=1&lt;&lt;(i-1); z[F(u,v)]^=1&lt;&lt;(i-1); w[u][v]=0,cnt--; &#125;&#125;int main()&#123; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) scanf("%d",&amp;w[i][j]); for(int s=0;s&lt;(1&lt;&lt;n);s++) for(int i=1;i&lt;=n;i++) idx[s]+=(s&gt;&gt;(i-1))&amp;1^1; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) if (w[i][j]) &#123; int s=1&lt;&lt;(w[i][j]-1); if ((x[i]|y[j]|z[F(i,j)])&amp;s) &#123; puts("0"); return 0; &#125; x[i]|=s,y[j]|=s; z[F(i,j)]|=s,cnt++; &#125; dfs(); printf("%d\n",ans?ans:-1); return 0;&#125;]]></content>
@@ -81,8 +284,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>倍增</tag>
         <tag>贪心</tag>
+        <tag>倍增</tag>
         <tag>二分答案</tag>
       </tags>
   </entry>
@@ -109,8 +312,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>组合数学</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -121,8 +324,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>组合数学</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -156,8 +359,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>高精度</tag>
         <tag>贪心</tag>
+        <tag>高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -170,6 +373,7 @@
       <tags>
         <tag>DP</tag>
         <tag>状态压缩</tag>
+        <tag>轮廓线</tag>
       </tags>
   </entry>
   <entry>
@@ -229,8 +433,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>搜索</tag>
+        <tag>数论</tag>
         <tag>高精度</tag>
       </tags>
   </entry>
@@ -276,8 +480,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>倍增</tag>
         <tag>并查集</tag>
+        <tag>倍增</tag>
         <tag>栈</tag>
         <tag>笛卡尔树</tag>
       </tags>
@@ -325,8 +529,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>强联通分量</tag>
         <tag>缩点</tag>
+        <tag>强联通分量</tag>
       </tags>
   </entry>
   <entry>
@@ -348,8 +552,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>强联通分量</tag>
         <tag>缩点</tag>
+        <tag>强联通分量</tag>
       </tags>
   </entry>
   <entry>
@@ -704,8 +908,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>线段树</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>

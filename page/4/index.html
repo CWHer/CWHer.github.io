@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/洛谷P1273-有线电视网/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/POJ2411-Mondriaan-s-Dream/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -354,7 +354,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/19/洛谷P1273-有线电视网/" itemprop="url">洛谷P1273 有线电视网</a></h1>
+                <a class="post-title-link" href="/2018/07/22/POJ2411-Mondriaan-s-Dream/" itemprop="url">POJ2411 Mondriaan's Dream</a></h1>
         
 
         <div class="post-meta">
@@ -366,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T19:51:19+08:00">
-                2018-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T20:09:20+08:00">
+                2018-07-22
               </time>
             
 
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  314
+                  300
                 </span>
               
 
@@ -458,12 +458,10 @@
 
       
         
-          <p>记<script type="math/tex">dp\left [  i\right ]\left [ j \right ]</script>为<em>i</em> 节点，取<em>j</em> 个能获得的最大收入<br>叶节点<script type="math/tex">dp\left [  i\right ]\left [ 1 \right ]=w\left [ i \right ]</script><br>转移方程</p>
-<script type="math/tex; mode=display">
-dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ j \right ]+dp\left [ x \right ]\left [ i-j \right ]-cost\left [ x \right ]\left [ to \right ] \right \}\left ( to\in x_{son} \right )</script>
+          <p>经典的状压DP题，解法很多<br>这里讲下状压轮廓线的做法<br><img src="/2018/07/22/POJ2411-Mondriaan-s-Dream/mtrx.jpg" alt="Mtrx"><br><em>s</em> 从大到小保存<br>若<script type="math/tex">s_{5}=0</script>，必须要竖放一个<br>否则可以横放也可以不放<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/19/洛谷P1273-有线电视网/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/POJ2411-Mondriaan-s-Dream/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -514,7 +512,7 @@ dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ 
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/TJOI2010-中位数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/ZJOI2012-灾难/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -533,7 +531,7 @@ dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/19/TJOI2010-中位数/" itemprop="url">[TJOI2010]中位数</a></h1>
+                <a class="post-title-link" href="/2018/07/22/ZJOI2012-灾难/" itemprop="url">[ZJOI2012]灾难</a></h1>
         
 
         <div class="post-meta">
@@ -545,8 +543,8 @@ dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ 
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T19:45:57+08:00">
-                2018-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T19:57:48+08:00">
+                2018-07-22
               </time>
             
 
@@ -599,362 +597,7 @@ dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ 
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  228
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对顶堆的模板题<br>对顶堆为一个大根堆<em>A</em> ,和一个小根堆<em>B</em> ,分别维护一个序列的前一段和后一段<br>要求中位数，只需要将序列均分入两个堆中即可<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/19/TJOI2010-中位数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/严格次小生成树-BJWC2010/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CWHer">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/cwher.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魍魉的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/19/严格次小生成树-BJWC2010/" itemprop="url">严格次小生成树[BJWC2010]</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T19:32:32+08:00">
-                2018-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OI/" itemprop="url" rel="index">
-                    <span itemprop="name">OI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  816
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>首先要知道怎么求非严格次小生成树<br>记<script type="math/tex">max\left \{ u,v \right \}</script>为<em>u，v</em> 路径上的最大边权<br>先求一遍最小生成树，记权值为<em>mins</em><br>然后枚举所有不在树中的边<script type="math/tex">edge\left \{ u,v,val \right \}</script><br>非严格次小生成树的权值为<script type="math/tex">min\left \{ mins-max\left \{ u,v \right \} +val\right \}</script><br>用倍增或树剖都可以求</p>
-<p>现在要求严格次小的<br>于是记录<script type="math/tex">\left \{ u,v \right \}</script>的次大边权，保证其严格小于最大值，记为<script type="math/tex">nxt\left \{ u,v \right \}</script><br>然后依旧是枚举所有不在树中的边<script type="math/tex">edge\left \{ u,v,val \right \}</script><br>若<script type="math/tex">val>max\left \{ u,v \right \}</script>，则为<script type="math/tex">mins-max\left \{ u,v \right \} +val</script>，否则为<script type="math/tex">mins-nxt\left \{ u,v \right \} +val</script><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/19/严格次小生成树-BJWC2010/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/USACO07NOV-奶牛接力Cow-Relays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CWHer">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/cwher.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魍魉的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/19/USACO07NOV-奶牛接力Cow-Relays/" itemprop="url">[USACO07NOV]奶牛接力Cow Relays</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T19:19:20+08:00">
-                2018-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OI/" itemprop="url" rel="index">
-                    <span itemprop="name">OI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  434
+                  484
                 </span>
               
 
@@ -992,14 +635,14 @@ dp\left [  x\right ]\left [ i \right ]=max\left \{ dp\left [ to \right ]\left [ 
 
       
         
-          <p>记<script type="math/tex">dp\left [ t \right ]\left [ i \right ]\left [  j\right ]</script>为<em>i</em> 到<em>j</em> 经过<em>t</em> 条边的最短路<br>转移方程为</p>
-<script type="math/tex; mode=display">
-dp\left [ t+1 \right ]\left [ i \right ]\left [  j\right ]=min\left \{ dp\left [ t \right ]\left [ i \right ]\left [ k \right ]+ d\left [ k \right ]\left [ j \right ]\right \}\left ( 1\leq k\leq n \right )</script><p><del>通过观察</del>，发现很像矩阵乘法，然后还满足交换律<br>因此</p>
-<script type="math/tex; mode=display">
-dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/tex">dp\left [ 0 \right ]</script>矩阵中除<script type="math/tex">dp\left [ 0 \right ]\left [ st \right ]\left [ st \right ]= 0</script>，其它为<em>INF</em><br></p>
+          <p><del>支配树的证明我意会了一下，并不会证</del><br>这里稍微理一下DAG中支配树的构造</p>
+<ul>
+<li>拓扑排序</li>
+<li>对于每个点，求其所有入边的LCA，将其作为LCA的儿子</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/19/USACO07NOV-奶牛接力Cow-Relays/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/ZJOI2012-灾难/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1050,7 +693,7 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/19/洛谷P1891-疯狂LCM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/NOI2005-聪聪与可可/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -1069,7 +712,7 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/19/洛谷P1891-疯狂LCM/" itemprop="url">洛谷P1891 疯狂LCM</a></h1>
+                <a class="post-title-link" href="/2018/07/22/NOI2005-聪聪与可可/" itemprop="url">[NOI2005]聪聪与可可</a></h1>
         
 
         <div class="post-meta">
@@ -1081,8 +724,8 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-19T18:26:25+08:00">
-                2018-07-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T19:42:48+08:00">
+                2018-07-22
               </time>
             
 
@@ -1135,7 +778,7 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  287
+                  520
                 </span>
               
 
@@ -1151,7 +794,7 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -1173,16 +816,17 @@ dp\left [ t \right ]=dp\left [ 0 \right ]*D^{t}</script><p><script type="math/te
 
       
         
-          <p><em>lcm</em> 过大无法枚举，考虑枚举<em>gcd</em><br>对于一组<script type="math/tex">gcd\left ( x,n \right )=k</script>，有<script type="math/tex">gcd\left ( \frac{x}{k},\frac{n}{k} \right )=1</script>，且<script type="math/tex">lcm\left(x,n\right)=\frac{xn}{k}</script><br>记</p>
-<script type="math/tex; mode=display">
-f\left [ k \right ]=\sum_{i=1}^{k}i\left [ gcd\left ( i,k \right )=1 \right ]</script><p>根据定义，若<script type="math/tex">gcd\left ( x,n \right )=1</script>，则<script type="math/tex">gcd\left ( n-x,n \right )=1</script><br>因此</p>
-<script type="math/tex; mode=display">
-f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}</script><p>枚举所有的<em>k</em><br>则</p>
-<script type="math/tex; mode=display">
-\sum lcm\left ( x,n \right )=k*\frac{n}{k}*f\left [ \frac{n}{k} \right ]\left ( k|n,gcd\left ( x,n \right )=k \right )</script><p>复杂度<script type="math/tex">O\left ( T\sqrt{N} \right )</script><br></p>
+          <p>首先预处理出可可在点<em>s</em> ，聪聪在点<em>i</em> 时，聪聪的下一步<br>对每个<em>s</em> 做一遍单源最短路，枚举所有点<em>i</em> 的出边，选择其中距离较短且序号较小的点作为下一步<br>设<script type="math/tex">p\left[u\right]\left[v\right]</script>为聪聪在点<em>u</em> 可可在点<em>v</em> 的期望步数</p>
+<ul>
+<li><em>u=v</em> ，<script type="math/tex">p\left[u\right]\left[v\right]=0</script></li>
+<li>当前回合能抓到，<script type="math/tex">p\left[u\right]\left[v\right]=1</script></li>
+<li>其他情况<br>设<em>x</em> 为聪聪下一步<script type="math/tex; mode=display">
+p\left[u\right]\left[v\right]=\sum\frac{p\left[x\right]\left[to\right]}{k+1}+\frac{p\left[x\right]\left[v\right]}{k+1}+1</script></li>
+</ul>
+<p>记忆优化搜索即可<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/19/洛谷P1891-疯狂LCM/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/NOI2005-聪聪与可可/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1233,7 +877,7 @@ f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}</script><p>枚举所�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/洛谷P2398-GCD-SUM/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/SCOI2005-最大子矩阵/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -1252,7 +896,7 @@ f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}</script><p>枚举所�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/15/洛谷P2398-GCD-SUM/" itemprop="url">洛谷P2398 GCD SUM</a></h1>
+                <a class="post-title-link" href="/2018/07/22/SCOI2005-最大子矩阵/" itemprop="url">[SCOI2005]最大子矩阵</a></h1>
         
 
         <div class="post-meta">
@@ -1264,8 +908,8 @@ f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}</script><p>枚举所�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T18:52:09+08:00">
-                2018-07-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T19:26:11+08:00">
+                2018-07-22
               </time>
             
 
@@ -1318,190 +962,7 @@ f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}</script><p>枚举所�
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  305
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>直接计算复杂度过高无法接受<br>考虑枚举所有<script type="math/tex">gcd</script>值计算<br>若<script type="math/tex">gcd=k</script><br>对于所有<script type="math/tex">gcd\left ( x,y \right )=1</script>，有<script type="math/tex">gcd\left ( xk,yk \right )=k\left ( xk\leq n,yk\leq n \right )</script><br>所以<script type="math/tex">gcd=k</script>的个数为</p>
-<script type="math/tex; mode=display">
-2\sum_{i=1}^{\left \lfloor \frac{n}{k} \right \rfloor}\varphi \left ( i \right )-1</script><p>复杂度<script type="math/tex">O\left (N \right )</script></p>
-<p>还有一种更妙的做法<br>设<script type="math/tex">f\left [ k \right ]</script>为<script type="math/tex">gcd=k</script>的个数<br>设<script type="math/tex">g\left [ k \right ]</script>为<script type="math/tex">k|gcd</script>的个数</p>
-<script type="math/tex; mode=display">
-g\left [ k \right ]=\sum_{i=1}^{\left \lfloor \frac{n}{k} \right \rfloor}f\left [ ik \right ]=\left [ \frac{n}{k} \right ]^{2}</script><script type="math/tex; mode=display">
-f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \right \rfloor}f\left [ ik \right ]</script><p>倒序计算即可<br>复杂度<script type="math/tex">O\left ( NlogN \right )</script><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/洛谷P2398-GCD-SUM/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/洛谷P2801-教主的魔法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CWHer">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/cwher.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魍魉的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/15/洛谷P2801-教主的魔法/" itemprop="url">洛谷P2801 教主的魔法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T18:23:14+08:00">
-                2018-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OI/" itemprop="url" rel="index">
-                    <span itemprop="name">OI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  666
+                  714
                 </span>
               
 
@@ -1539,10 +1000,18 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
 
       
         
-          <p>想了好久发现套不了数据结构。<br>然后看了看数据范围用了分块。<br>分成<script type="math/tex">\sqrt{n }</script>个块，块内保持有序<br>对于<em>M</em> 操作，覆盖整块就打标记，否则暴力更新并重新排序<br>对于<em>A</em> 操作，覆盖整块就二分查找，否则暴力查找<br>复杂度<script type="math/tex">O\left ( QlogN \sqrt{N} \right )</script><br></p>
+          <p>观察到<em>m</em> 比较小<br>考虑记录每行所有状态</p>
+<ul>
+<li><p><em>m=1</em><br><em>dp</em> 数组记录第<em>i</em> 行，放了<em>j</em> 个，当前行放<em>1</em> 不放<em>0</em></p>
+<script type="math/tex; mode=display">
+dp\left[i\right]\left[j\right]\left[0\right]=max\left(  dp\left[i-1\right]\left[j\right]\left[0\right] ,dp\left[i-1\right]\left[j\right]\left[1\right]\right)</script><script type="math/tex; mode=display">
+dp\left[i\right]\left[j\right]\left[1\right]=max\left( dp\left[i-1\right]\left[j\right]\left[1\right] ,dp\left[i-1\right]\left[j-1\right]\left[0\right] ,dp\left[i-1\right]\left[j-1\right]\left[1\right]   \right)+w\left[i\right]\left[1\right]</script></li>
+<li><p><em>m=2</em><br><em>0</em> 表示两格均不放<br><em>1</em> 表示放左边<br><em>2</em> 表示放右边<br><em>3</em> 表示两格均有，且为两格个矩形<br><em>4</em> 表示两格均有，且为一个矩形<br>转移方程因为空间问题<del>（懒）</del>，请看代码</p>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/洛谷P2801-教主的魔法/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/SCOI2005-最大子矩阵/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1593,7 +1062,7 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/CQOI2007-余数求和/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/CQOI2017-小Q的棋盘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -1612,7 +1081,7 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/15/CQOI2007-余数求和/" itemprop="url">[CQOI2007]余数求和</a></h1>
+                <a class="post-title-link" href="/2018/07/22/CQOI2017-小Q的棋盘/" itemprop="url">[CQOI2017]小Q的棋盘</a></h1>
         
 
         <div class="post-meta">
@@ -1624,8 +1093,8 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T18:06:58+08:00">
-                2018-07-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T19:05:22+08:00">
+                2018-07-22
               </time>
             
 
@@ -1678,7 +1147,7 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  99
+                  296
                 </span>
               
 
@@ -1694,7 +1163,7 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -1716,12 +1185,16 @@ f\left [ k \right ]=g\left [ k \right ]-\sum_{i=2}^{\left \lfloor \frac{n}{k} \r
 
       
         
-          <script type="math/tex; mode=display">
-k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="math/tex; mode=display">
-\sum_{i=1}^{n}k \ mod \ i=\sum_{i=1}^{n}\left ( k-\left \lfloor \frac{k}{i} \right \rfloor*i \right )=nk-\sum_{i=1}^{n}\left ( \left \lfloor \frac{k}{i} \right \rfloor*i \right )</script><p>分块求解即可<br></p>
+          <p><em>f</em> 记录第<em>i</em> 个点，访问<em>j</em> 条边，且返回<em>i</em> 点，经过的最大格点数量<br><em>g</em> 则记录不返回的</p>
+<script type="math/tex; mode=display">
+f\left[i\right]\left[j\right]=max\left\{ f\left[i\right]\left[k\right]+f\left[to\right]\left[j-k-2\right]\right\}\left ( to\in i_{son} \right )</script><p>不在该子节点一去不回头</p>
+<script type="math/tex; mode=display">
+g\left[i\right]\left[j\right]=max\left\{ g\left[i\right]\left[k\right]+f\left[to\right]\left[j-k-2\right]\right\}\left ( to\in i_{son} \right )</script><p>在该子节点一去不回头</p>
+<script type="math/tex; mode=display">
+g\left[i\right]\left[j\right]=max\left\{ f\left[i\right]\left[k\right]+g\left[to\right]\left[j-k-1\right]\right\}\left ( to\in i_{son} \right )</script>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/15/CQOI2007-余数求和/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/CQOI2017-小Q的棋盘/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1772,7 +1245,7 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/洛谷P1108-低价购买/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/HNOI2001-求正整数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -1791,7 +1264,7 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/13/洛谷P1108-低价购买/" itemprop="url">洛谷P1108 低价购买</a></h1>
+                <a class="post-title-link" href="/2018/07/22/HNOI2001-求正整数/" itemprop="url">[HNOI2001]求正整数</a></h1>
         
 
         <div class="post-meta">
@@ -1803,8 +1276,8 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-13T20:42:45+08:00">
-                2018-07-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T18:35:54+08:00">
+                2018-07-22
               </time>
             
 
@@ -1857,7 +1330,7 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  212
+                  437
                 </span>
               
 
@@ -1873,7 +1346,7 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -1895,14 +1368,10 @@ k\ mod \ i=k-\left \lfloor \frac{k}{i} \right \rfloor*i</script><script type="ma
 
       
         
-          <p><em>dp</em> 数组记录方案数，<em>f</em> 数组记录购买次数</p>
-<script type="math/tex; mode=display">
-dp\left [ i \right ]=\sum_{j=1}^{i-1}dp\left [ j \right ] \ \ \ \left  ( f\left [ j \right ]+1=f\left [ i \right ] ,w\left [ j \right ]<w\left [ i \right ]\right )</script><p>同时去重</p>
-<script type="math/tex; mode=display">
-dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right ],w\left [ i \right ] = w\left [ j \right ]\right )</script>
+          <p>设<script type="math/tex">N=\prod p_{i}^{a_{i}}</script><br>则<em>N</em> 的约数个数为<script type="math/tex">\prod \left( a_{i}+1 \right)</script><br>题目中<em>n</em> 最大值为50000，因此<em>N</em> 的质因子不超过16个<br>为了方便保存状态用了<em>dfs</em><br>当然搜索不可能用高精度，于是取对数保存<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/13/洛谷P1108-低价购买/#more" rel="contents">
+            <a class="btn" href="/2018/07/22/HNOI2001-求正整数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1953,7 +1422,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/TJOI2015-线性代数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/ZJOI2007-棋盘制作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -1972,7 +1441,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/13/TJOI2015-线性代数/" itemprop="url">[TJOI2015]线性代数</a></h1>
+                <a class="post-title-link" href="/2018/07/20/ZJOI2007-棋盘制作/" itemprop="url">[ZJOI2007]棋盘制作</a></h1>
         
 
         <div class="post-meta">
@@ -1984,8 +1453,8 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-13T20:25:32+08:00">
-                2018-07-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T20:16:27+08:00">
+                2018-07-20
               </time>
             
 
@@ -2038,7 +1507,547 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  705
+                  511
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>对于图上所有的棋盘一定属于以下两种类型：</p>
+<ul>
+<li><p>黑格行列奇偶性相同，白格不同</p>
+</li>
+<li><p>白格行列奇偶性相同，黑格不同</p>
+</li>
+</ul>
+<p>分两类讨论<br>每次翻转一部分棋盘的颜色<br>然后问题就变成了求全<em>1</em> 的最大正方形和最大矩形<br>参考<a href="https://cwher.github.io/2018/07/20/洛谷P1736-创意吃鱼法" target="_blank" rel="noopener">洛谷P1736 创意吃鱼法</a>，<a href="https://cwher.github.io/2018/07/20/洛谷P4147-玉蟾宫" target="_blank" rel="noopener">洛谷P4147-玉蟾宫</a><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/20/ZJOI2007-棋盘制作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/洛谷P1736-创意吃鱼法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/20/洛谷P1736-创意吃鱼法/" itemprop="url">洛谷P1736 创意吃鱼法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T20:09:03+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  412
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>对于每个元素<br>预处理出其左端和上方最近的<em>1</em> 的位置，分别记为<em>L</em> 和<em>U</em> </p>
+<script type="math/tex; mode=display">
+dp\left [i  \right ]\left [j \right ]=max\left (dp\left [i-1 \right ]\left [ j-1 \right ],L\left [i \right ]\left [ j-1 \right ],U\left [i-1 \right ]\left [j \right ] \right )+1 \left ( w\left [i \right ]\left [j \right ]=1\right)</script><p>水平翻转矩阵后再求一次<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/20/洛谷P1736-创意吃鱼法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/洛谷P4147-玉蟾宫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/20/洛谷P4147-玉蟾宫/" itemprop="url">洛谷P4147 玉蟾宫</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T19:58:34+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  309
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先预处理出<em>f</em> 数组为当前位置向左延伸的最大长度<br>然后枚举每一列做一遍<a href="https://cwher.github.io/2018/07/20/%E6%9C%80%E5%A4%A7%E5%AD%90%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/" target="_blank" rel="noopener">最大子矩形面积</a><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/20/洛谷P4147-玉蟾宫/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/20/最大子矩形面积/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/20/最大子矩形面积/" itemprop="url">最大子矩形面积</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-20T19:23:41+08:00">
+                2018-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  766
                 </span>
               
 
@@ -2076,11 +2085,24 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
 
       
         
-          <p><del>首先要看得懂题目</del><br>同时取<em>A</em> 中的<em>i,j</em> 两点可获得<script type="math/tex">b\left [ i \right ]\left [j \right ]+b\left [ j \right ]\left [i \right ]</script>，但要减去<script type="math/tex">c\left [ i \right ]+c\left [ j \right ]</script><br>记<script type="math/tex">edge\left \{ u,v,capacity,cost \right \}</script>为一条从<em>u</em> 到<em>v</em> 的，流量为<em>cap</em> 的，费用为<em>cost</em> 的弧与反弧<br>转化成最小割<br>对于<em>B</em> 中每个二元组<script type="math/tex">\left ( i,j \right )</script>，连边<script type="math/tex">edge\left \{ S,\left ( i,j \right ), b\left [ i \right ]\left [j \right ]+b\left [ j \right ]\left [i \right ]\right \}</script>，<script type="math/tex">edge\left \{ \left ( i,j \right ),i, INF\right \}</script>和<script type="math/tex">edge\left \{ \left ( i,j \right ),j, INF\right \}</script><br><em>i= j</em> 的情况需要特殊处理<br>对于<em>C</em> 中的第<em>k</em> 个元素，连边<script type="math/tex">edge\left \{ k,T, c\left [ k \right ]\right \}</script></p>
-<p>关于网络流，应该在这里就要暂告一段落了<br></p>
+          <p><img src="/2018/07/20/最大子矩形面积/matrix.jpg" alt="题目"></p>
+<p>经典题目<br>这里简要的总结一下它的四种做法<br><del>最大子矩阵有四种做法，你知道吗</del></p>
+<ul>
+<li>单调栈<br> 维护一个单调递增的栈<br> 栈中保存一个二元组<script type="math/tex">\left ( height,sz \right )</script>，分别为高度和能覆盖到的宽度<br> 一个元素只会在超过它能覆盖的最大宽度后退栈<br> 此时更新答案即可</li>
+</ul>
+<ul>
+<li>笛卡尔树<br> 笛卡尔树的定义这里就不赘述了<br> 如果有一棵以高度为权值构造好的笛卡尔树<br> 只需一遍<em>dfs</em> 即可得出答案<br> 用单调栈可在<script type="math/tex">O\left ( N\right )</script>时间内建树<br> 维护一个单调递增的栈<br> 对于新加入的元素<em>x</em> ，将最后一个退栈元素作为其左儿子，将其作为栈中<em>top</em> 元素的右儿子</li>
+</ul>
+<ul>
+<li>并查集<br> 一种看似暴力的做法<br> 实际上复杂度<del>应该</del>是<script type="math/tex">O\left ( N\right )</script><br> 具体看代码实现<br> 其中<em>L</em> 为当前位置向左能延伸的最大位置，<em>R</em> 为向右的</li>
+</ul>
+<ul>
+<li>倍增<br> 对于一个区间<br> 找到其最小值所在位置<br> 可将其分为左右两个区间递归处理，且互不影响<br> 倍增数组维护最小值和最小值位置即可<br> <del>倍增代码就不放了</del></li>
+</ul>
+<p>代码依次给出<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/13/TJOI2015-线性代数/#more" rel="contents">
+            <a class="btn" href="/2018/07/20/最大子矩形面积/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2122,7 +2144,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2172,7 +2194,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2183,7 +2205,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2194,7 +2216,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2288,7 +2310,7 @@ dp\left [ j \right ]=0 \ \ \left ( j< i,f\left [ i \right ] = f\left [ j \right 
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共33.9k字</span>
+  <span class="post-count">博客全站共41.3k字</span>
 </div>
 <br>
 
