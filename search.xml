@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HDU3625 Examining the Rooms]]></title>
+    <url>%2F2018%2F08%2F12%2FHDU3625-Examining-the-Rooms%2F</url>
+    <content type="text"><![CDATA[若某些门之间成环，则破开环中任意一扇门可以打开环中所有门于是问题等价于n 扇门形成1-k 个环有几种方案，再除总方案数总方案显然是n!第一类斯特林数参考组合数学入门题目还限制一号门不能单独成环，需减去一号单独成环的方案数因此方案数为 \sum _{i=1}^{k}S_{n}^{i}-S_{n-1}^{i-1}代码就不放了]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU2643 Rank]]></title>
+    <url>%2F2018%2F08%2F12%2FHDU2643-Rank%2F</url>
+    <content type="text"><![CDATA[首先将排名相同的选手放入同一个集合这样的集合个数可以为1-n集合之间相对顺序并不清楚，因此是一个全排列第二类斯特林数参考组合数学入门设S\left ( n,k \right )为n个元素放入k个非空集合的方案数不难得出总方案数为 \sum_{i=1}^{n}S\left ( n,i \right )*i!代码就不放了]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[组合数学入门]]></title>
+    <url>%2F2018%2F08%2F12%2F%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[写在前面感觉组合数学是OI （高中数学）中比较难啃的一部分还是得写点什么来总结一下组合数C,A的有关性质这里就不赘述了，高中数学里有水平不高，只能写一点个人的理解 小球与盒子n 个球放入m 个盒子这个应该是组合数学最经典的题目了 球相同，盒不相同 不允许空盒 C_{n-1}^{m-1}经典的插板法，n 个小球有n-1 个空隙，插入m-1 块板，分成m 个集合 允许空盒 C_{n+m-1}^{m-1}增加m 个球分给每个盒子，分好后从每个盒子中取出一个 球不相同，盒相同 不允许空盒 S_{n}^{m}S 为第二类斯特林数 递推公式 S_{n}^{k}=k*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个盒子中，由于球不相同，可以产生k 种方案也可以自己放入一个新的盒子中易证其正确性 边界条件 S_{n}^{0}=0,S_{n}^{n}=1 允许空盒 \sum _{i=0}^{n}S_{n}^{i}可以有1-n个空盒 球不相同，盒不相同 允许空盒 m^{n}放入每个球时均有m 种方案 不允许空盒 S_{n}^{m}*m!盒子不同，需要考虑顺序 球相同，盒相同 不允许空盒不会生成函数，只能用DP设dp\left [ i \right ]\left [ j \right ]为前i 个球，放入j 个盒子的方案数 dp\left [ i \right ]\left [ j \right ]=dp\left [ i -1\right ]\left [ j-1 \right ]+dp\left [ i -j\right ]\left [ j \right ] 若方案中有若干个盒子只有一个球，挑出其中一个盒子继续求解，方案数为dp\left [ i -1\right ]\left [ j-1 \right ] 若方案中不存在某个盒子只有一个球，将每个盒子均取出一个球之后继续求解，方案数为dp\left [ i -j\right ]\left [ j \right ] 答案为dp\left [n \right ]\left [m \right ] 初始化dp\left [0 \right ]\left [0 \right ]=1 允许空盒 dp\left [n+m \right ]\left [m \right ]相似的套路，增加m 个球分给每个盒子，分好后从每个盒子中取出一个 补充一下第一类斯特林数 第一类斯特林数定义用n 个不同元素构成m 个圆排列的方案数 递推公式 S_{n}^{k}=\left ( n-1 \right )*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个圆排列中，共有n-1 个不同的位置，也可以自己放入一个新的盒子中 错位排列定义每个数都不在自己位置上的方案数 由于通项公式计算计算比较烦琐，且不易取模，这里仅讨论递推公式递推公式 D_{i}=\left ( i-1 \right )\left ( D_{i-1}+D_{i-2} \right )将新加入的元素与每个D_{i-1}中的每个元素交换，可生成\left ( i-1 \right )*D_{i-1}个合法排列这样少考虑了一种情况例如，元素1 在自己位置，元素2-（i-1） 均不在自己位置，这时1 与i 进行交换也可生成合法排列每个元素均有可能在自己的位置，因此共有\left ( i-1 \right )*D_{i-2}种方案我是在一节语文课上才想通的 重复排列有k 个元素，每个元素出现c_{i}次，n=\sum c_{i}易得方案数 \frac{n!}{\prod_{i=1}^{k} c_{i}!}重复组合有k 个不同的元素，每种元素选择的个数没有限制，选出n 个问题等价于选n 次，每次可以选k 种球，且不分先后等价于将n 次选择机会分给k 种球，机会相同，球不同等价于将n 个相同的球放入k 个不同的盒子，且可以为空方案数为 C_{n+k-1}^{k-1}Catlan数定义有多种，这里讲其中一种借用一下神犇wuyiqi 的图 从左下角到右上角，且不穿过对角线的方案数就是Catlan数 任何一种非法方案均与绿线有交点，例如红线将其按绿线做对称，例如红线与蓝线 可以发现 终点均为\left ( n-1,n+1 \right ) 每一种非法方案对应一种\left ( 0,0 \right )到\left ( n-1,n+1 \right )的方案 所以总方案数为 C_{2n}^{n}-C_{2n}^{n-1}=\frac{C_{2n}^{n}}{n+1}再补充两个Catlan数的递推公式 T_{n+1}=\frac{4n+2}{n+2}T_{n} T_{n+1}=\sum _{i=0}^{n}T_{i}T_{n-i}另外，在上述模型中比较容易求出一个合法前缀\left ( x,y \right )的方案数 C_{2n-x-y}^{n-x}-C_{2n-x-y}^{n-1-x}先写这一些，其它的等熟练了再补充(･ω´･ )]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-739B]]></title>
+    <url>%2F2018%2F08%2F12%2FCodeForces-739B%2F</url>
+    <content type="text"><![CDATA[题目大意: 给出一棵n 个节点的树，每条边有一个权值若v 在u 的子树内，且d_{u-v}\leq a_{v}，则称u 能控制v问每个点能控制多少点 因为v 在u 的子树内，所以d_{u-v}=dep_{v}-dep_{u}化简得dep_{v}-a_{v}\leq dep_{u}观察到dep_{v}-a_{v}为定值，且dep_{u}单调递增找到第一个点u，满足dep_{v}-a_{v}\leq dep_{u}，则u-v_{fa}路径上所有点均可控制点v由于只有一次询问，可用树上差分至于怎么找第一个满足的点u，可以用二分或倍增 感觉倍增实现起来会简单一点，代码用的是二分1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include&lt;cstdio&gt;#include&lt;vector&gt;#define LL long longusing namespace std;const int N=200050,rt=1;int n,w[N],cnt[N],fa[N];LL dep[N];vector&lt;int&gt; e[N],g[N],Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int val)&#123; e[u].push_back(v); g[u].push_back(val);&#125;int find(LL key)&#123; if (Q.empty()) return 0; if (dep[Q.back()]&lt;key) return Q.back(); int L=0,R=Q.size()-1; while (L&lt;R) &#123; int mid=(L+R)&gt;&gt;1; if (dep[Q[mid]]&lt;key) L=mid+1; else R=mid; &#125; return Q[R];&#125;void dfs(int o,int pre)&#123; if (!Q.empty()&amp;&amp;dep[o]-w[o]&lt;=dep[Q.back()]) &#123; cnt[fa[find(dep[o]-w[o])]]--; cnt[fa[o]]++; &#125; Q.push_back(o); for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; dep[to]=dep[o]+g[o][i]; fa[to]=o; dfs(to,o); &#125; &#125; Q.pop_back();&#125;void calc(int o)&#123; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (dep[to]&gt;dep[o]) &#123; calc(to); cnt[o]+=cnt[to]; &#125; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int u=2;u&lt;=n;u++) &#123; int v=read(),val=read(); add(u,v,val); add(v,u,val); &#125; dfs(rt,0),calc(rt); for(int i=1;i&lt;=n;i++) printf("%d ",cnt[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-337D]]></title>
+    <url>%2F2018%2F08%2F12%2FCodeForces-337D%2F</url>
+    <content type="text"><![CDATA[问题大意：给出一棵n 个节点的树，每条边距离为1其中有m 个节点受到了（来自东方的）神秘力量的影响如果点x 有神秘力量来源，则距离x 小于等于d 的点均会被影响神秘力量来源只有一个，问有几个点可能有神秘力量来源 一个节点可能有神秘力量来源，当且仅当它与所有受影响点距离均小于等于d 首先考虑求子树内的最大距离设f\left [ x \right ]为点x 到子树中节点的最远距离，不难得出 f\left [ x \right ]=max\left \{ f\left [ x_{son} \right ]+1 \right \}要保证x_{son}中有被神秘力量影响的节点 设g\left [ x \right ]为x 到非子树中节点的最远距离对于非子树中的节点，有两种可能 来自兄弟节点 g\left [ x \right ]=max\left \{ f\left [ x_{brother} \right ]+2\right \} 来自父节点 g\left [ x \right ]=max\left \{ g\left [ x_{fa} \right ]+1\right \}对于来自兄弟节点的转移，暴力枚举会超时考虑用son\left [ x \right ]记录x 子节点中距离最大值仅在x=son\left [ x_{fa} \right ]遍历所有兄弟节点12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;using namespace std;const int N=100050;int fa[N],son[N],f[N],g[N]; // subtree/notint n,d,m,w[N],ans=0;vector&lt;int&gt; e[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void calc(int o,int pre)&#123; if (w[o]) f[o]=0; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; fa[to]=o; calc(to,o); if (f[to]!=-1) &#123; f[o]=max(f[to]+1,f[o]); if (!son[o]||f[to]&gt;f[son[o]]) son[o]=to; &#125; &#125; &#125;&#125;void dfs(int o,int pre)&#123; if (w[o]) g[o]=0; if (o!=pre) &#123; if (g[pre]!=-1) g[o]=max(g[o],g[pre]+1); if (o!=son[pre]) g[o]=max(g[o],f[son[pre]]+2); for(int i=0;o==son[pre]&amp;&amp;i&lt;e[pre].size();i++) &#123; int to=e[pre][i]; if (to!=o&amp;&amp;to!=fa[pre]&amp;&amp;f[to]!=-1) g[o]=max(g[o],f[to]+2); &#125; &#125; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) dfs(to,o); &#125;&#125;int main()&#123; n=read(),m=read(),d=read(); for(int i=1;i&lt;=m;i++) w[read()]=1; for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; memset(f,-1,sizeof(f)); memset(g,-1,sizeof(g)); calc(1,1); dfs(1,1); for(int i=1;i&lt;=n;i++) if (f[i]&lt;=d&amp;&amp;g[i]&lt;=d) ans++; printf("%d\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>树形结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[NOIP2016]天天爱跑步]]></title>
+    <url>%2F2018%2F08%2F12%2FNOIP2016-%E5%A4%A9%E5%A4%A9%E7%88%B1%E8%B7%91%E6%AD%A5%2F</url>
+    <content type="text"><![CDATA[刚学OI 两个月上考场碰到这题表示一脸懵逼 每条路径\left ( u,v \right )​分成两条链，一条\left ( u,LCA \right )​，一条\left ( LCA,v \right )​ 首先考虑\left ( u,LCA \right )不难得出，当dep_{u}-dep_{x}=w_{x}会被观察到观察到dep_{x}+w_{x}为定值，用桶统计即可在点u，cnt\left [ dep_{u} \right ]+1在LCA，cnt\left [ dep_{u} \right ]-1 然后是\left ( LCA,v \right )同理可得，当t_{i}-\left ( dep_{v}-dep_{x} \right )=w_{x}会被观察到其中t_{i}为\left ( u,v \right )的结束时间t_{i}=dep_{u}+dep_{v}-2dep_{LCA}化简得dep_{u}-2dep_{LCA}=w_{x}-dep_{x}，仍然用桶统计需要注意的是可能会有负值 还有，当dep_{u}-dep_{LCA}=w_{LCA}时，LCA会重复计算，记得减掉1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include&lt;cstdio&gt;#include&lt;vector&gt;using namespace std;const int N=300050,rt=1;struct node&#123;int u,v,top;&#125;t[N];int n,m,w[N],cnt[N&lt;&lt;1],ans[N];int dep[N],fa[N][25],log[N];vector&lt;int&gt; e[N],S[N],T[N],top[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void dfs(int o)&#123; for(int i=1;i&lt;=log[dep[o]];i++) fa[o][i]=fa[fa[o][i-1]][i-1]; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dep[to]) &#123; fa[to][0]=o; dep[to]=dep[o]+1; dfs(to); &#125; &#125;&#125;int LCA(int u,int v)&#123; if (dep[u]&lt;dep[v]) swap(u,v); for(int i=0;i&lt;=log[dep[u]-dep[v]];i++) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) u=fa[u][i]; if (u==v) return u; for(int i=log[dep[u]];i&gt;=0;i--) if (fa[u][i]!=fa[v][i]) u=fa[u][i],v=fa[v][i]; return fa[u][0];&#125;void dfs_S(int o)&#123; int pre=cnt[dep[o]+w[o]]; for(int i=0;i&lt;e[o].size();i++) if (dep[e[o][i]]&gt;dep[o]) dfs_S(e[o][i]); cnt[dep[o]]+=S[o].size(); ans[o]+=cnt[dep[o]+w[o]]-pre; for(int i=0;i&lt;top[o].size();i++) cnt[dep[t[top[o][i]].u]]--; &#125;void dfs_T(int o)&#123; int pre=cnt[w[o]-dep[o]+N]; for(int i=0;i&lt;e[o].size();i++) if (dep[e[o][i]]&gt;dep[o]) dfs_T(e[o][i]); for(int i=0;i&lt;T[o].size();i++) cnt[dep[t[T[o][i]].u]-2*dep[t[T[o][i]].top]+N]++; ans[o]+=cnt[w[o]-dep[o]+N]-pre; for(int i=0;i&lt;top[o].size();i++) cnt[dep[t[top[o][i]].u]-2*dep[t[top[o][i]].top]+N]--;&#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) log[i]=log[i-1]+(1&lt;&lt;log[i-1]==i); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; dep[rt]=1,dfs(rt); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int i=1;i&lt;=m;i++) &#123; t[i].u=read(); t[i].v=read(); t[i].top=LCA(t[i].u,t[i].v); &#125; for(int i=1;i&lt;=m;i++) &#123; S[t[i].u].push_back(i); T[t[i].v].push_back(i); top[t[i].top].push_back(i); &#125; dfs_S(rt),dfs_T(rt); for(int i=1;i&lt;=m;i++) if (w[t[i].top]+dep[t[i].top]==dep[t[i].u]) ans[t[i].top]--; for(int i=1;i&lt;=n;i++) printf("%d ",ans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>桶</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1891 疯狂LCM]]></title>
     <url>%2F2018%2F08%2F12%2F%E6%B4%9B%E8%B0%B7P1891-%E7%96%AF%E7%8B%82LCM%2F</url>
     <content type="text"><![CDATA[lcm 过大无法枚举，考虑枚举gcd对于一组gcd\left ( x,n \right )=k，有gcd\left ( \frac{x}{k},\frac{n}{k} \right )=1，且lcm\left(x,n\right)=\frac{xn}{k}记 f\left [ k \right ]=\sum_{i=1}^{k}i\left [ gcd\left ( i,k \right )=1 \right ]根据定义，若gcd\left ( x,n \right )=1，则gcd\left ( n-x,n \right )=1因此 f\left [ k \right ]= \frac{k*\varphi\left [ k \right ]}{2}枚举所有的k则 \sum lcm\left ( x,n \right )=k*\frac{n}{k}*f\left [ \frac{n}{k} \right ]\left ( k|n,gcd\left ( x,n \right )=k \right )复杂度O\left ( T\sqrt{N} \right ) 直到有一天我被卡了，才发现有复杂度更低的做法继续化简上式 \sum lcm\left ( x,n \right )=n*f\left [ \frac{n}{k} \right ]\left ( k|n,gcd\left ( x,n \right )=k \right )好吧没啥区别 \sum_{i=1}^{n}lcm(i,n)=\sum _{d\mid n}f\left [ d \right ]*n可以O\left ( NlogN \right )，O\left (1 \right )回答123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#define LL long longconst int N=1000050;int phi[N],prime[N],cnt=0;LL f[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void init()&#123; for(int i=2;i&lt;N;i++) &#123; if (!phi[i]) prime[++cnt]=i,phi[i]=i-1; for(int j=1;j&lt;=cnt;j++) &#123; if ((LL)i*prime[j]&gt;N) break; if (i%prime[j]==0) &#123; phi[i*prime[j]]=phi[i]*prime[j]; break; &#125; else phi[i*prime[j]]=phi[i]*(prime[j]-1); &#125; &#125; for(int i=2;i&lt;N;i++) for(int j=i;j&lt;N;j+=i) f[j]+=(LL)phi[i]*i/2*j; for(int i=1;i&lt;N;i++) f[i]+=i;&#125;int main()&#123; init(); int T=read(); while (T--) printf("%lld\n",f[read()]); return 0;&#125;]]></content>
@@ -991,8 +1059,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>贪心</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
