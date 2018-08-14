@@ -108,18 +108,18 @@
 
 
 
-<meta name="description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法 ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解 123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
+<meta name="description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解  123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
 <meta name="keywords" content="数论,逆元">
 <meta property="og:type" content="article">
 <meta property="og:title" content="乘法逆元">
 <meta property="og:url" content="http://yoursite.com/2018/07/10/乘法逆元/index.html">
 <meta property="og:site_name" content="魍魉的小窝">
-<meta property="og:description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法 ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解 123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
+<meta property="og:description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解  123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-11T23:38:59.484Z">
+<meta property="og:updated_time" content="2018-08-14T00:42:54.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="乘法逆元">
-<meta name="twitter:description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法 ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解 123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
+<meta name="twitter:description" content="若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元  扩展欧几里得算法ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解  123456void exgcd(LL a,LL b,LL &amp;amp;x,LL &amp;a">
 
 
 
@@ -458,10 +458,10 @@
       
         <p>若<script type="math/tex">ax\equiv 1\left ( mod \ p \right )</script>，则称<em>x，a</em> 互为<em>mod p</em> 意义下的逆元</p>
 <ol>
-<li><p>扩展欧几里得算法</p>
-<script type="math/tex; mode=display">ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1</script><p>若<script type="math/tex">gcd\left ( a,p \right )\neq 1</script>则无解</p>
+<li>扩展欧几里得算法<script type="math/tex; mode=display">ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1</script>若<script type="math/tex">gcd\left ( a,p \right )\neq 1</script>则无解</li>
+</ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(LL a,LL b,LL &amp;x,LL &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!b) &#123;x=<span class="number">1</span>,y=<span class="number">0</span>;<span class="keyword">return</span>;&#125;</span><br><span class="line">    exgcd(b,a%b,y,x);</span><br><span class="line">    y-=a/b*x;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<ol>
 <li><p>费马小定理<br>若<em>p</em> 为质数，则<script type="math/tex">a^{p}\equiv a\left ( mod \ p \right )</script></p>
 <script type="math/tex; mode=display">x\equiv a^{p-2}\left ( mod \ p \right )</script></li>
 <li><p>欧拉定理<br>若<script type="math/tex">gcd\left ( a,p \right )=1</script>，则<script type="math/tex">a^{\varphi\left ( p \right )}\equiv 1\left ( mod \ p \right )</script></p>
@@ -597,7 +597,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">110</span>
+                  <span class="site-state-item-count">119</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -713,7 +713,7 @@
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共46.9k字</span>
+  <span class="post-count">博客全站共52.1k字</span>
 </div>
 <br>
 

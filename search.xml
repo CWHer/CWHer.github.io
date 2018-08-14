@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[HNOI2004]树的计数]]></title>
+    <url>%2F2018%2F08%2F14%2FHNOI2004-%E6%A0%91%E7%9A%84%E8%AE%A1%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[这题是一道结论题 首先引入$Prufer$序列定义$Prufer$序列是一种无根树的编码表示，对于一棵$n$个节点带编号的无根树，对应唯一长度为$n-2$的$Prufer$编码。 转化过程 树转$Prufer$序列 每次找到最小的叶子节点并删除，然后在序列中添加其相邻节点的编号，直至剩下两个节点如下图其$Prufer$序列为$3,5,1,3$转化过程用优先队列维护可以做到$O\left ( NlogN \right )$ $Prufer$序列转树 设点集$V=\left \{x\mid x\notin Prufer \right \}$每次取出$Prufer$序列的$front$，将其与$V$中最小元素连边，并删除这两个元素若$front$在之后序列中没有出现，则将其加入$V$遍历完整个序列后，将$V$中剩下的两个元素连边同样可以用优先队列做到$O\left ( NlogN \right )$ 性质与结论 观察上述过程，不难得出$Prufer$序列与树一一对应因此可以快速得出一张$n$个点的完全图有$n^{n-2}$棵生成树，即Cayley公式 另外，不难发现$Prufer$序列中$x$的出现次数等于$d_{x}-1$，其中$d_{x}$为$x$的度数因此当$n$个点的度数分别为$d_{1},d_{2}\dots d_{n}$时，共有$\frac{\left(n-2\right)!}{\prod \left ( d_{i}-1 \right )!}$种生成树 更一般的，当其中$x$个点度数已知，$y$个点度数未知时记 sum=\sum_{i=1}^{x}\left ( d_{i} -1\right )首先考虑$x$个已知节点的方案不难得出 C_{n-2}^{sum}*\frac{sum!}{\prod_{i=1}^{x}\left ( d_{i}-1 \right )!}然后是$y​$个未知节点考虑到每个未填位置均有$y$种可能，共有y^{n-2-sum}种方案根据乘法原理，总方案数为 C_{n-2}^{sum}*\frac{sum!}{\prod_{i=1}^{x}\left ( d_{i}-1 \right )!}*y^{n-2-sum} 代码就不放了]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>组合数学</tag>
+        <tag>树形结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeChef Flooring]]></title>
+    <url>%2F2018%2F08%2F13%2FCodeChef-Flooring%2F</url>
+    <content type="text"><![CDATA[题目大意：求 \left ( \sum_{i=1}^{n}i^{4}\left \lfloor \frac{n}{i} \right \rfloor \right )\% M套路是很常见的分块求解难点主要是i^{4}求和，$M$不一定为质数 首先有如下几个恒等式 \sum_{i=1}^{n}i^{2}=\frac{n\left ( n+1 \right )\left ( 2n+1 \right )}{6} \sum_{i=1}^{n}i^{3}=\left ( \frac{n\left ( n+1 \right )}{2} \right )^{2} \sum_{i=1}^{n}i^{4}=\frac{n\left ( n+1 \right )\left ( 2n+1 \right )\left ( 3n^{2} +3n-1\right )}{30}其中平方和公式推导如下$\left ( n+1 \right )^{3}-n^{3}=3n^{2}+3n+1$$n^{3}-\left ( n-1 \right )^{3}=3\left ( n-1 \right )^{2}+3\left ( n-1 \right )+1$$\cdots$累加得 \left ( n+1 \right )^{3}-1^{3}=3*\sum_{i=1}^{n}i^{2}+3*\sum_{i=1}^{n}+n化简可得 \sum_{i=1}^{n}i^{2}=\frac{n\left ( n+1 \right )\left ( 2n+1 \right )}{6}立方和，四次方和同理可得 然后是$M$不为质数的问题有如下公式 \frac{a}{b}\%c=\frac{a\%\left (bc \right )}{b}然而我以前一直都不知道1234567891011121314151617181920212223242526272829303132333435#include&lt;cstdio&gt;#include&lt;cmath&gt;#define LL long longusing namespace std;LL n,mod;LL sqr(LL x)&#123;return x*x%mod;&#125;LL gcd(LL a,LL b)&#123;return b?gcd(b,a%b):a;&#125;LL calc(LL k)&#123; k%=mod*30; LL ret=k*(k+1)%(mod*30); ret=ret*(2LL*k+1)%(mod*30); ret=ret*(3LL*k*k%(mod*30)+3LL*k%(mod*30)-1); return ret%(mod*30)/30;&#125;int main()&#123; LL T; scanf("%lld",&amp;T); while (T--) &#123; scanf("%lld%lld",&amp;n,&amp;mod); LL sz=sqrt(n),ans=0; for(LL i=1;n/i&gt;sz;i++) ans=(ans+sqr(sqr(i))*(n/i)%mod)%mod; for(LL i=sz;i&gt;0;i--) &#123; LL L=n/(i+1)+1,R=n/i; LL val=(calc(R)-calc(L-1)+mod)%mod; ans=(ans+val*i%mod)%mod; &#125; printf("%lld\n",(ans%mod+mod)%mod); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>数论</tag>
+        <tag>分块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU4822 Tri-war]]></title>
+    <url>%2F2018%2F08%2F13%2FHDU4822-Tri-war%2F</url>
+    <content type="text"><![CDATA[三色** 首先考虑两种颜色，分别在u，v由于路径唯一，两种颜色还是比较好求的只要取$\left ( u,v \right )$路径中点，将树分为两半即可，每个点分别控制一半如图 现在有三种颜色，也就是求交集求交集可以用线段树，先把树转化为dfs 序，然后第一次区间加，第二次区间询问 不知道为什么写挂了，于是写了个分类讨论记录一个二元组$\left ( opt,x \right )$，$x$为子树根节点，$opt=1$表示可选，0 则表示不可选观察到两棵子树之间只有两种关系，要么不相交，要么一棵树是另一棵树的子树判断是否相交用$LCA$即可然后分类讨论，设两棵子树分别以$A$，$B$为根，且$A_{sz}\leq B_{sz}$ 均可选，若两棵子树不相交则为0 ，否则为$A_{sz}$ 均不可选，若两棵子树不相交则为$n-A_{sz}-B_{sz}$，否则为$B_{sz}$ 一个可选，一个不可选 设$A_{opt}=1$，$B_{opt}=0$，这里对$sz$没有要求 $LCA\left ( A,B \right )=A$，答案为$A_{sz}-B_{sz}$ $LCA\left ( A,B \right )=B$，答案为0 ，但事实上并不会出现这种情况 否则为$A_{sz}$ 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int N=1e5+50,rt=1;struct node&#123;int opt,x;&#125;;int fa[N][25],log[N],sz[N],dep[N],n,m;vector&lt;int&gt; e[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void dfs(int o)&#123; sz[o]=1; for(int i=1;i&lt;=log[dep[o]];i++) fa[o][i]=fa[fa[o][i-1]][i-1]; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dep[to]) &#123; dep[to]=dep[o]+1; fa[to][0]=o; dfs(to); sz[o]+=sz[to]; &#125; &#125;&#125;int update(int x,int k)&#123; for(int i=0;i&lt;=log[k];i++) if ((k&gt;&gt;i)&amp;1) x=fa[x][i]; return x;&#125;int LCA(int u,int v)&#123; if (dep[u]&lt;dep[v]) swap(u,v); u=update(u,dep[u]-dep[v]); if (u==v) return u; for(int i=log[dep[u]];i&gt;=0;i--) if (fa[u][i]!=fa[v][i]) u=fa[u][i],v=fa[v][i]; return fa[u][0];&#125;node find(int u,int v,int pre)&#123; int len=dep[u]+dep[v]-dep[pre]*2; if (dep[u]&gt;=dep[v]) return (node)&#123;1,update(u,(len-1)/2)&#125;; else return (node)&#123;0,update(v,len/2)&#125;;&#125;int calc(int x,int u,int v)&#123; node A=find(x,u,LCA(x,u)); node B=find(x,v,LCA(x,v)); if (A.opt&amp;&amp;B.opt) &#123; if (dep[A.x]&lt;dep[B.x]) swap(A,B); if (LCA(A.x,B.x)!=B.x) return 0; return sz[A.x]; &#125; else if (!A.opt&amp;&amp;!B.opt) &#123; if (dep[A.x]&lt;dep[B.x]) swap(A,B); if (LCA(A.x,B.x)!=B.x) return n-sz[A.x]-sz[B.x]; else return n-sz[B.x]; &#125; else &#123; if (!A.opt) swap(A,B); int pre=LCA(A.x,B.x); if (pre==A.x) return sz[A.x]-sz[B.x]; return sz[A.x]; &#125;&#125;int main()&#123; int T=read(); for(int i=1;i&lt;N;i++) log[i]=log[i-1]+(1&lt;&lt;log[i-1]==i); while (T--) &#123; n=read(); for(int i=1;i&lt;=n;i++) e[i].clear(); memset(dep,0,sizeof(dep)); memset(fa,0,sizeof(fa)); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; dep[rt]=1,dfs(rt); m=read(); for(int i=1;i&lt;=m;i++) &#123; int a=read(),b=read(),c=read(); printf("%d ",calc(a,b,c)); printf("%d ",calc(b,a,c)); printf("%d\n",calc(c,a,b)); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ZOJ3649 Social Net]]></title>
+    <url>%2F2018%2F08%2F13%2FZOJ3649-Social-Net%2F</url>
+    <content type="text"><![CDATA[乍一看以为裸的树剖后来发现事情没那么简单，$c_{k}-c_{j}$是有顺序的，$j\leq k$ 第一问很简单第二问维护一大堆倍增数组 首先$fa$不用说，然后是$mx$，$mn$记录往上走的最大（最小）值还需要$f$记录上面节点-下面节点的最大值，$g$记录下面节点-上面节点的最大值 预处理 mx\left [ x \right ]\left [ i \right ]=max\left ( mx\left [ x \right ]\left [ i-1 \right ] ,mx\left [fa\left [ x\right ] \left [ i-1 \right ]\right ]\left [ i-1 \right ]\right ) mn\left [ x \right ]\left [ i \right ]=min\left ( mn\left [ x \right ]\left [ i-1 \right ] ,mn\left [fa\left [ x\right ] \left [ i-1 \right ]\right ]\left [ i-1 \right ]\right ) f\left [ x \right ]\left [ i \right ]=max\left ( f\left [ x \right ]\left [ i-1 \right ] ,f\left [fa\left [ x\right ] \left [ i-1 \right ]\right ]\left [ i-1 \right ],mx\left [ fa\left [ x\right ] \left [ i-1 \right ] \right ]\left [ i-1 \right ]-mn\left [ x \right ]\left [ i-1 \right ]\right ) g\left [ x \right ]\left [ i \right ]=max\left ( g\left [ x \right ]\left [ i-1 \right ] ,g\left [fa\left [ x\right ] \left [ i-1 \right ]\right ]\left [ i-1 \right ],mx\left [ x \right ]\left [ i-1 \right ]-mn\left [ fa\left [ x\right ] \left [ i-1 \right ] \right ]\left [ i-1 \right ]\right )有了这些倍增数组之后就好求解了记$LCA\left ( u,v \right )$为$pre$，将$\left ( u,v \right )$拆为$\left ( u,pre \right )$，$\left ( pre,v \right )$两条链首先$max\left ( pre,v \right )-min\left ( u,pre\right )$肯定合法 然后考虑怎么求$\left ( u,pre \right )$的答案设在倍增时已跳到$x$，用一个$num$记录\left ( u,x \right )的最小值则下一次跳跃时 ans=max\left \{ f\left [ x \right ] \left [ i \right ],mx\left [ x \right ]\left [ i \right ]-num\right \}之后更新$num$ num=min\left \{ mn\left [ x \right ]\left [ i \right ] \right \}同理可求$\left ( pre,v \right )$的答案，用$num$记录最大值即可123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;const int N=50050,rt=1,INF=1&lt;&lt;30;struct edge&#123;int u,v,val;&#125;t[N];int n,m,w[N],f[N],sum;int fa[N][25],dep[N],log[N];int mx[N][25],mn[N][25],dp[2][N][25]; //max&#123;pre-son&#125; max&#123;son-pre&#125;vector&lt;int&gt; e[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;bool cmp(edge a,edge b)&#123;return a.val&gt;b.val;&#125;int find(int x)&#123;return f[x]==x?x:f[x]=find(f[x]);&#125;void unite(int u,int v)&#123;f[find(u)]=find(v);&#125;void dfs(int o)&#123; for(int i=1;i&lt;log[dep[o]];i++) &#123; fa[o][i]=fa[fa[o][i-1]][i-1]; mx[o][i]=max(mx[o][i-1],mx[fa[o][i-1]][i-1]); mn[o][i]=min(mn[o][i-1],mn[fa[o][i-1]][i-1]); dp[0][o][i]=max(dp[0][o][i-1],mx[fa[o][i-1]][i-1]-mn[o][i-1]); dp[0][o][i]=max(dp[0][o][i],dp[0][fa[o][i-1]][i-1]); dp[1][o][i]=max(dp[1][o][i-1],mx[o][i-1]-mn[fa[o][i-1]][i-1]); dp[1][o][i]=max(dp[1][o][i],dp[1][fa[o][i-1]][i-1]); &#125; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dep[to]) &#123; dep[to]=dep[o]+1; fa[to][0]=o; mx[to][0]=max(w[o],w[to]); mn[to][0]=min(w[o],w[to]); dp[0][to][0]=w[o]-w[to]; dp[1][to][0]=w[to]-w[o]; dfs(to); &#125; &#125;&#125;int LCA(int u,int v)&#123; if (dep[u]&lt;dep[v]) swap(u,v); for(int i=0;i&lt;=log[dep[u]-dep[v]];i++) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) u=fa[u][i]; if (u==v) return u; for(int i=log[dep[u]];i&gt;=0;i--) if (fa[u][i]!=fa[v][i]) u=fa[u][i],v=fa[v][i]; return fa[u][0];&#125;int MAX(int u,int v)&#123; int ret=0; if (dep[u]&lt;dep[v]) swap(u,v); for(int i=0;i&lt;=log[dep[u]-dep[v]];i++) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) ret=max(ret,mx[u][i]),u=fa[u][i]; return ret;&#125;int MIN(int u,int v)&#123; int ret=INF; if (dep[u]&lt;dep[v]) swap(u,v); for(int i=0;i&lt;=log[dep[u]-dep[v]];i++) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) ret=min(ret,mn[u][i]),u=fa[u][i]; return ret;&#125;int pre(int u,int v)&#123; int ret=0,num=INF; for(int i=log[dep[u]];i&gt;=0;i--) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) &#123; ret=max(ret,dp[0][u][i]); ret=max(ret,mx[u][i]-num); num=min(num,mn[u][i]); u=fa[u][i]; &#125; return ret;&#125;int nxt(int u,int v)&#123; int ret=0,num=0; for(int i=log[dep[u]];i&gt;=0;i--) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) &#123; ret=max(ret,dp[1][u][i]); ret=max(ret,num-mn[u][i]); num=max(num,mx[u][i]); u=fa[u][i]; &#125; return ret;&#125;int calc(int u,int v)&#123; int top=LCA(u,v); int ret=MAX(v,top)-MIN(u,top); ret=max(ret,pre(u,top)); ret=max(ret,nxt(v,top)); return ret;&#125;int main()&#123; for(int i=1;i&lt;N;i++) log[i]=log[i-1]+(1&lt;&lt;log[i-1]==i); while (~scanf("%d",&amp;n)) &#123; for(int i=1;i&lt;=n;i++) w[i]=read(); for(int i=1;i&lt;=n;i++) f[i]=i; for(int i=1;i&lt;=n;i++) e[i].clear(); m=read(),sum=0; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); t[i]=(edge)&#123;u,v,read()&#125;; &#125; sort(t+1,t+m+1,cmp); for(int i=1;i&lt;=m;i++) &#123; int u=t[i].u,v=t[i].v; if (find(u)!=find(v)) &#123; sum+=t[i].val; e[u].push_back(v); e[v].push_back(u); unite(u,v); &#125; &#125; printf("%d\n",sum); memset(dep,0,sizeof(dep)); memset(fa,0,sizeof(fa)); memset(mx,0,sizeof(mx)); memset(mn,63,sizeof(mn)); memset(dp,0,sizeof(dp)); dep[rt]=1,dfs(rt); int T=read(); while (T--) &#123; int u=read(),v=read(); printf("%d\n",calc(u,v)); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>倍增</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU4582 DFS spanning tree]]></title>
+    <url>%2F2018%2F08%2F13%2FHDU4582-DFS-spanning-tree%2F</url>
+    <content type="text"><![CDATA[如果问题是在一个区间上的，那就成了一个经典的贪心问题将所有区间按照右端点升序排序之后，每个未满足的区间尽可能向右染即可 在树上也可以贪心将所有链按父节点深度降序排序之后，每条未满足的链尽可能往高处染 因为是按照父节点深度降序，如下图，在处理红链时不可能出现未处理的蓝链 对于每条未满足的链，显然染的越高能覆盖的就越多 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;using namespace std;const int N=20050,rt=1;struct edge&#123;int u,v;&#125;t[N];int n,m,dep[N],fa[N],used[N];vector&lt;int&gt; e[N];void dfs(int o)&#123; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dep[to]) &#123; dep[to]=dep[o]+1; fa[to]=o; dfs(to); &#125; &#125;&#125;bool cmp(edge a,edge b)&#123; if (dep[a.u]==dep[b.u]) return dep[a.v]&gt;dep[b.v]; return dep[a.u]&gt;dep[b.u];&#125;int check(int k)&#123; int x=t[k].v; for(;fa[x]!=t[k].u;x=fa[x]) if (used[x]) return 0; if (used[x]) return 0; return used[x]=1; &#125;int main()&#123; while (~scanf("%d%d",&amp;n,&amp;m)&amp;&amp;n&amp;&amp;m) &#123; for(int i=1;i&lt;=n;i++) e[i].clear(); memset(dep,0,sizeof(dep)); memset(used,0,sizeof(used)); memset(fa,0,sizeof(fa)); for(int i=1;i&lt;n;i++) &#123; int u,v; scanf("%d%d",&amp;u,&amp;v); e[u].push_back(v); e[v].push_back(u); &#125; dep[rt]=1,dfs(rt); for(int i=n;i&lt;=m;i++) &#123; int u,v; scanf("%d%d",&amp;u,&amp;v); if (dep[u]&gt;dep[v]) swap(u,v); t[i-n+1].u=u; t[i-n+1].v=v; &#125; sort(t+1,t+m-n+2,cmp); int ans=0; for(int i=n;i&lt;=m;i++) if (check(i-n+1)) ans++; printf("%d\n",ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-813C The Tag Game]]></title>
+    <url>%2F2018%2F08%2F13%2FCodeForces-813C%2F</url>
+    <content type="text"><![CDATA[题目大意：给出一棵以1 为根的树Alice在1，Bob在x两人轮流操作，Bob先走当两人相遇时游戏结束Bob希望相遇越晚越好，Alice希望相遇越早越好问游戏最多能进行几轮 观察到Bob一定在Alice的子树内因此Alice不停向Bob移动即可 Bob则有两种选择 在当前点往深度最深的点走 先往上走几步，再往深度最深的点走 考虑枚举终点y，记pre 为$LCA\left ( x,y \right )$当且仅当$dep\left [ pre \right ]-dep\left [ rt \right ]&gt;dep\left [ x \right ]-dep\left [ pre \right ]$，Bob可以走到y且终点在y 时，最多能进行$2*\left ( dep\left [ y \right ]-dep\left [ rt \right ] \right )$轮123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;const int N=200050,rt=1;int log[N],fa[N][25],dep[N],n,x,ans;vector&lt;int&gt; e[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void dfs(int o)&#123; for(int i=1;i&lt;=log[dep[o]];i++) fa[o][i]=fa[fa[o][i-1]][i-1]; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!dep[to]) &#123; dep[to]=dep[o]+1; fa[to][0]=o; dfs(to); &#125; &#125;&#125;int LCA(int u,int v)&#123; if (dep[u]&lt;dep[v]) swap(u,v); for(int i=0;i&lt;=log[dep[u]-dep[v]];i++) if (((dep[u]-dep[v])&gt;&gt;i)&amp;1) u=fa[u][i]; if (u==v) return u; for(int i=log[dep[u]];i&gt;=0;i--) if (fa[u][i]!=fa[v][i]) u=fa[u][i],v=fa[v][i]; return fa[u][0];&#125;int main()&#123; n=read(),x=read(); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; for(int i=1;i&lt;=n;i++) log[i]=log[i-1]+(1&lt;&lt;log[i-1]==i); dep[rt]=1,dfs(rt); for(int i=1;i&lt;=n;i++) &#123; int pre=LCA(i,x); if (dep[pre]-dep[rt]&gt;dep[x]-dep[pre]) ans=max(ans,dep[i]-dep[rt]); &#125; printf("%d\n",ans*2); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>博弈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-294E Shaass the Great]]></title>
+    <url>%2F2018%2F08%2F12%2FCodeForces-294E%2F</url>
+    <content type="text"><![CDATA[题目大意：给出一棵n 个节点树去掉其中一条边，再重新加入一条长度相同的边问新树中任意两点之间距离的总和最小是多少 原树去掉一条边之后变为两棵树，分别记为A，B，它们的节点个数分别为$A_{sz}$，$B_{sz}$设去掉边长度为d，新连接的两点分别为u，v记A 中所有点到u 距离之和为$S_{u}$，同理$S_{v}$记A 中任意两点的距离之和为$C_{A}$，同理$C_{B}$ 新树中任意两点的距离和分两部分考虑 在A，B 树内，即$C_{A}+C_{B}$ 在两棵树之间 例如$x-u-v-y$，其中x 为A 中的节点，y 为B 中的节点将这样的路径分三部分考虑 首先是$u-v$，不难发现共经过$A_{sz}*B_{sz}$次 然后是$x-u$，每个$x-u$都会经过$B_{sz}$次 同理$v-y$ 全部加起来就是 C_{A}+C_{B}+d*A_{sz}*B_{sz}+S_{u}*B_{sz}+S_{v}*A_{sz}观察到$C_{A},C_{B},d,A_{sz},B_{sz}$与$u,v$无关因此只需找$S_{u},S_{v}$最小的$u,v$ 关于$S$的计算分为两个部分，以A 树为例 第一遍dfs 求出每个节点x 的子树大小和子树中节点到x 的距离和 S_{x}+=S_{x_{son}}+val_{x-x_{son}}*sz_{x_{son}} 第二遍dfs S_{x_{son}}=S_{x}+val_{x-x_{son}}*\left (A_{sz}-sz_{x_{son}} \right )-val_{x-x_{son}}*sz_{x_{son}}​ 就是把中心点从x 移到$x_{son}$，$\left (A_{sz}-sz_{x_{son}} \right )$多经过一条边，$sz_{x_{son}}$少经过一条边 有了$S$，$C$就好计算了 C_{A}=\frac{\sum _{x \in A} S_{x}}{2}每条边$x-y$，会在x，y 各计算一次123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include&lt;cstdio&gt;#include&lt;vector&gt;#define LL long longusing namespace std;const int N=5050;const LL INF=1LL&lt;&lt;60;struct edge&#123;int u,v,val;&#125;t[N];LL sz[N],c[N],ans=INF;//c[x] 所有点到x的sumLL s1,s2,r1,r2,n,size;//sum&#123;Any 2&#125; min&#123;Any c[x]&#125;vector&lt;int&gt; e[N],g[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int val)&#123; e[u].push_back(v); g[u].push_back(val);&#125;void dfs(int o,int fa)&#123; sz[o]=1,c[o]=0; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=fa) &#123; dfs(to,o); sz[o]+=sz[to]; c[o]+=c[to]+sz[to]*g[o][i]; &#125; &#125;&#125;void calc(int o,int fa,LL &amp;sum,LL &amp;x)&#123; sum+=c[o],x=min(x,c[o]); for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=fa) &#123; c[to]=c[o]+(size-sz[to]*2)*g[o][i]; calc(to,o,sum,x); &#125; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); int val=read(); t[i]=(edge)&#123;u,v,val&#125;; add(u,v,val); add(v,u,val); &#125; for(int i=1;i&lt;n;i++) &#123; r1=r2=INF,s1=s2=0; int u=t[i].u,v=t[i].v; dfs(u,v),size=sz[u]; calc(u,v,s1,r1),s1/=2; dfs(v,u),size=sz[v]; calc(v,u,s2,r2),s2/=2; ans=min(ans,sz[u]*sz[v]*t[i].val+s1+s2+r1*sz[v]+r2*sz[u]); &#125; printf("%lld\n",ans); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-379F New Year Tree]]></title>
+    <url>%2F2018%2F08%2F12%2FCodeForces-379F%2F</url>
+    <content type="text"><![CDATA[题目大意：初始时有一棵4个节点的三叉树每次操作在一个叶子节点下面加入两个节点问每次操作完树的直径 设当前树的直径为S-T每次加入节点后，树的直径至多只会改变一个端点，另一个节点仍是S 或T 证明如下 考虑加入节点x 的父节点$x_{fa}$，在x 未加入时，根据直径的求法，离$x_{fa}$最远的点一定是S 或T 再加入x 后，易得离$x_{fa}$最远的点还是S 或T，因此离x 最远的点也是S 或T 因此每次求一遍x 到S，T 的距离，若大于S-T 就更新 代码就不放了]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>直径</tag>
+        <tag>倍增</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeForces-734E Anton and Tree]]></title>
+    <url>%2F2018%2F08%2F12%2FCodeForces-734E%2F</url>
+    <content type="text"><![CDATA[题目大意： 给出一棵黑白两色的树每次操作可以改变一个同色联通块的颜色问最少需要几次操作 首先缩个点，显然每次操作改变整个同色联通块更优然后求直径，答案为\left \lceil \frac{len}{2} \right \rceil因为在缩直径时，其它枝叶也会缩掉，这个感性理解即可1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include&lt;cstdio&gt;#include&lt;vector&gt;using namespace std;const int N=200050;int col[N],n,idx[N],d[N],st,ed,cnt=0;vector&lt;int&gt; e[N],f[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void dfs(int o)&#123; idx[o]=cnt; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (!idx[to]&amp;&amp;col[o]==col[to]) dfs(to); &#125;&#125;void find(int o,int pre,int &amp;x)&#123; if (o==pre) d[o]=0; if (!x||d[o]&gt;d[x]) x=o; for(int i=0;i&lt;f[o].size();i++) &#123; int to=f[o][i]; if (to!=pre) &#123; d[to]=d[o]+1; find(to,o,x); &#125; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) col[i]=read(); for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; for(int i=1;i&lt;=n;i++) if (!idx[i]) cnt++,dfs(i); for(int u=1;u&lt;=n;u++) for(int i=0;i&lt;e[u].size();i++) &#123; int v=e[u][i]; if (idx[u]!=idx[v]) f[idx[u]].push_back(idx[v]); &#125; find(cnt,cnt,ed); find(ed,ed,st); printf("%d\n",(d[st]+1)/2); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>树形结构</tag>
+        <tag>直径</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HDU3625 Examining the Rooms]]></title>
     <url>%2F2018%2F08%2F12%2FHDU3625-Examining-the-Rooms%2F</url>
     <content type="text"><![CDATA[若某些门之间成环，则破开环中任意一扇门可以打开环中所有门于是问题等价于n 扇门形成1-k 个环有几种方案，再除总方案数总方案显然是n!第一类斯特林数参考组合数学入门题目还限制一号门不能单独成环，需减去一号单独成环的方案数因此方案数为 \sum _{i=1}^{k}S_{n}^{i}-S_{n-1}^{i-1}代码就不放了]]></content>
@@ -25,7 +132,7 @@
   <entry>
     <title><![CDATA[组合数学入门]]></title>
     <url>%2F2018%2F08%2F12%2F%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[写在前面感觉组合数学是OI （高中数学）中比较难啃的一部分还是得写点什么来总结一下组合数C,A的有关性质这里就不赘述了，高中数学里有水平不高，只能写一点个人的理解 小球与盒子n 个球放入m 个盒子这个应该是组合数学最经典的题目了 球相同，盒不相同 不允许空盒 C_{n-1}^{m-1}经典的插板法，n 个小球有n-1 个空隙，插入m-1 块板，分成m 个集合 允许空盒 C_{n+m-1}^{m-1}增加m 个球分给每个盒子，分好后从每个盒子中取出一个 球不相同，盒相同 不允许空盒 S_{n}^{m}S 为第二类斯特林数 递推公式 S_{n}^{k}=k*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个盒子中，由于球不相同，可以产生k 种方案也可以自己放入一个新的盒子中易证其正确性 边界条件 S_{n}^{0}=0,S_{n}^{n}=1 允许空盒 \sum _{i=0}^{n}S_{n}^{i}可以有1-n个空盒 球不相同，盒不相同 允许空盒 m^{n}放入每个球时均有m 种方案 不允许空盒 S_{n}^{m}*m!盒子不同，需要考虑顺序 球相同，盒相同 不允许空盒不会生成函数，只能用DP设dp\left [ i \right ]\left [ j \right ]为前i 个球，放入j 个盒子的方案数 dp\left [ i \right ]\left [ j \right ]=dp\left [ i -1\right ]\left [ j-1 \right ]+dp\left [ i -j\right ]\left [ j \right ] 若方案中有若干个盒子只有一个球，挑出其中一个盒子继续求解，方案数为dp\left [ i -1\right ]\left [ j-1 \right ] 若方案中不存在某个盒子只有一个球，将每个盒子均取出一个球之后继续求解，方案数为dp\left [ i -j\right ]\left [ j \right ] 答案为dp\left [n \right ]\left [m \right ] 初始化dp\left [0 \right ]\left [0 \right ]=1 允许空盒 dp\left [n+m \right ]\left [m \right ]相似的套路，增加m 个球分给每个盒子，分好后从每个盒子中取出一个 补充一下第一类斯特林数 第一类斯特林数定义用n 个不同元素构成m 个圆排列的方案数 递推公式 S_{n}^{k}=\left ( n-1 \right )*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个圆排列中，共有n-1 个不同的位置，也可以自己放入一个新的盒子中 错位排列定义每个数都不在自己位置上的方案数 由于通项公式计算计算比较烦琐，且不易取模，这里仅讨论递推公式递推公式 D_{i}=\left ( i-1 \right )\left ( D_{i-1}+D_{i-2} \right )将新加入的元素与每个D_{i-1}中的每个元素交换，可生成\left ( i-1 \right )*D_{i-1}个合法排列这样少考虑了一种情况例如，元素1 在自己位置，元素2-（i-1） 均不在自己位置，这时1 与i 进行交换也可生成合法排列每个元素均有可能在自己的位置，因此共有\left ( i-1 \right )*D_{i-2}种方案我是在一节语文课上才想通的 重复排列有k 个元素，每个元素出现c_{i}次，n=\sum c_{i}易得方案数 \frac{n!}{\prod_{i=1}^{k} c_{i}!}重复组合有k 个不同的元素，每种元素选择的个数没有限制，选出n 个问题等价于选n 次，每次可以选k 种球，且不分先后等价于将n 次选择机会分给k 种球，机会相同，球不同等价于将n 个相同的球放入k 个不同的盒子，且可以为空方案数为 C_{n+k-1}^{k-1}Catlan数定义有多种，这里讲其中一种借用一下神犇wuyiqi 的图 从左下角到右上角，且不穿过对角线的方案数就是Catlan数 任何一种非法方案均与绿线有交点，例如红线将其按绿线做对称，例如红线与蓝线 可以发现 终点均为\left ( n-1,n+1 \right ) 每一种非法方案对应一种\left ( 0,0 \right )到\left ( n-1,n+1 \right )的方案 所以总方案数为 C_{2n}^{n}-C_{2n}^{n-1}=\frac{C_{2n}^{n}}{n+1}再补充两个Catlan数的递推公式 T_{n+1}=\frac{4n+2}{n+2}T_{n} T_{n+1}=\sum _{i=0}^{n}T_{i}T_{n-i}另外，在上述模型中比较容易求出一个合法前缀\left ( x,y \right )的方案数 C_{2n-x-y}^{n-x}-C_{2n-x-y}^{n-1-x}先写这一些，其它的等熟练了再补充(･ω´･ )]]></content>
+    <content type="text"><![CDATA[写在前面感觉组合数学是OI （高中数学）中比较难啃的一部分还是得写点什么来总结一下组合数C,A的有关性质这里就不赘述了，高中数学里有水平不高，只能写一点个人的理解 小球与盒子n 个球放入m 个盒子这个应该是组合数学最经典的题目了 球相同，盒不相同 不允许空盒 C_{n-1}^{m-1}经典的插板法，n 个小球有n-1 个空隙，插入m-1 块板，分成m 个集合 允许空盒 C_{n+m-1}^{m-1}增加m 个球分给每个盒子，分好后从每个盒子中取出一个 球不相同，盒相同 不允许空盒 S_{n}^{m}S 为第二类斯特林数 递推公式 S_{n}^{k}=k*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个盒子中，由于球不相同，可以产生k 种方案也可以自己放入一个新的盒子中易证其正确性 边界条件 S_{n}^{0}=0,S_{n}^{n}=1 允许空盒 \sum _{i=0}^{n}S_{n}^{i}可以有1-n个空盒 球不相同，盒不相同 允许空盒 m^{n}放入每个球时均有m 种方案 不允许空盒 S_{n}^{m}*m!盒子不同，需要考虑顺序 球相同，盒相同 不允许空盒不会生成函数，只能用DP设dp\left [ i \right ]\left [ j \right ]为前i 个球，放入j 个盒子的方案数 dp\left [ i \right ]\left [ j \right ]=dp\left [ i -1\right ]\left [ j-1 \right ]+dp\left [ i -j\right ]\left [ j \right ] 若方案中有若干个盒子只有一个球，挑出其中一个盒子继续求解，方案数为dp\left [ i -1\right ]\left [ j-1 \right ] 若方案中不存在某个盒子只有一个球，将每个盒子均取出一个球之后继续求解，方案数为dp\left [ i -j\right ]\left [ j \right ] 答案为dp\left [n \right ]\left [m \right ] 初始化dp\left [0 \right ]\left [0 \right ]=1 允许空盒 dp\left [n+m \right ]\left [m \right ]相似的套路，增加m 个球分给每个盒子，分好后从每个盒子中取出一个 第一类斯特林数补充一下第一类斯特林数 定义用n 个不同元素构成m 个圆排列的方案数 递推公式 S_{n}^{k}=\left ( n-1 \right )*S_{n-1}^{k}+S_{n-1}^{k-1}对于第n 个球它可以放入前面k 个圆排列中，共有n-1 个不同的位置，也可以自己放入一个新的盒子中 错位排列定义每个数都不在自己位置上的方案数 由于通项公式计算计算比较烦琐，且不易取模，这里仅讨论递推公式递推公式 D_{i}=\left ( i-1 \right )\left ( D_{i-1}+D_{i-2} \right )将新加入的元素与每个D_{i-1}中的每个元素交换，可生成\left ( i-1 \right )*D_{i-1}个合法排列这样少考虑了一种情况例如，元素1 在自己位置，元素2-（i-1） 均不在自己位置，这时1 与i 进行交换也可生成合法排列每个元素均有可能在自己的位置，因此共有\left ( i-1 \right )*D_{i-2}种方案我是在一节语文课上才想通的 重复排列有k 个元素，每个元素出现c_{i}次，n=\sum c_{i}易得方案数 \frac{n!}{\prod_{i=1}^{k} c_{i}!}重复组合有k 个不同的元素，每种元素选择的个数没有限制，选出n 个问题等价于选n 次，每次可以选k 种球，且不分先后等价于将n 次选择机会分给k 种球，机会相同，球不同等价于将n 个相同的球放入k 个不同的盒子，且可以为空方案数为 C_{n+k-1}^{k-1}Catlan数定义有多种，这里讲其中一种借用一下神犇wuyiqi 的图 从左下角到右上角，且不穿过对角线的方案数就是Catlan数 任何一种非法方案均与绿线有交点，例如红线将其按绿线做对称，例如红线与蓝线 可以发现 终点均为\left ( n-1,n+1 \right ) 每一种非法方案对应一种\left ( 0,0 \right )到\left ( n-1,n+1 \right )的方案 所以总方案数为 C_{2n}^{n}-C_{2n}^{n-1}=\frac{C_{2n}^{n}}{n+1}再补充两个Catlan数的递推公式 T_{n+1}=\frac{4n+2}{n+2}T_{n} T_{n+1}=\sum _{i=0}^{n}T_{i}T_{n-i}另外，在上述模型中比较容易求出一个合法前缀\left ( x,y \right )的方案数 C_{2n-x-y}^{n-x}-C_{2n-x-y}^{n-1-x}先写这一些，其它的等熟练了再补充(･ω´･ )]]></content>
       <categories>
         <category>OI</category>
       </categories>
@@ -34,9 +141,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CodeForces-739B]]></title>
+    <title><![CDATA[CodeForces-739B Alyona and a tree]]></title>
     <url>%2F2018%2F08%2F12%2FCodeForces-739B%2F</url>
-    <content type="text"><![CDATA[题目大意: 给出一棵n 个节点的树，每条边有一个权值若v 在u 的子树内，且d_{u-v}\leq a_{v}，则称u 能控制v问每个点能控制多少点 因为v 在u 的子树内，所以d_{u-v}=dep_{v}-dep_{u}化简得dep_{v}-a_{v}\leq dep_{u}观察到dep_{v}-a_{v}为定值，且dep_{u}单调递增找到第一个点u，满足dep_{v}-a_{v}\leq dep_{u}，则u-v_{fa}路径上所有点均可控制点v由于只有一次询问，可用树上差分至于怎么找第一个满足的点u，可以用二分或倍增 感觉倍增实现起来会简单一点，代码用的是二分1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include&lt;cstdio&gt;#include&lt;vector&gt;#define LL long longusing namespace std;const int N=200050,rt=1;int n,w[N],cnt[N],fa[N];LL dep[N];vector&lt;int&gt; e[N],g[N],Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int val)&#123; e[u].push_back(v); g[u].push_back(val);&#125;int find(LL key)&#123; if (Q.empty()) return 0; if (dep[Q.back()]&lt;key) return Q.back(); int L=0,R=Q.size()-1; while (L&lt;R) &#123; int mid=(L+R)&gt;&gt;1; if (dep[Q[mid]]&lt;key) L=mid+1; else R=mid; &#125; return Q[R];&#125;void dfs(int o,int pre)&#123; if (!Q.empty()&amp;&amp;dep[o]-w[o]&lt;=dep[Q.back()]) &#123; cnt[fa[find(dep[o]-w[o])]]--; cnt[fa[o]]++; &#125; Q.push_back(o); for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; dep[to]=dep[o]+g[o][i]; fa[to]=o; dfs(to,o); &#125; &#125; Q.pop_back();&#125;void calc(int o)&#123; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (dep[to]&gt;dep[o]) &#123; calc(to); cnt[o]+=cnt[to]; &#125; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int u=2;u&lt;=n;u++) &#123; int v=read(),val=read(); add(u,v,val); add(v,u,val); &#125; dfs(rt,0),calc(rt); for(int i=1;i&lt;=n;i++) printf("%d ",cnt[i]); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[题目大意： 给出一棵n 个节点的树，每条边有一个权值若v 在u 的子树内，且d_{u-v}\leq a_{v}，则称u 能控制v问每个点能控制多少点 因为v 在u 的子树内，所以d_{u-v}=dep_{v}-dep_{u}化简得dep_{v}-a_{v}\leq dep_{u}观察到dep_{v}-a_{v}为定值，且dep_{u}单调递增找到第一个点u，满足dep_{v}-a_{v}\leq dep_{u}，则u-v_{fa}路径上所有点均可控制点v由于只有一次询问，可用树上差分至于怎么找第一个满足的点u，可以用二分或倍增 感觉倍增实现起来会简单一点，代码用的是二分1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283#include&lt;cstdio&gt;#include&lt;vector&gt;#define LL long longusing namespace std;const int N=200050,rt=1;int n,w[N],cnt[N],fa[N];LL dep[N];vector&lt;int&gt; e[N],g[N],Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int val)&#123; e[u].push_back(v); g[u].push_back(val);&#125;int find(LL key)&#123; if (Q.empty()) return 0; if (dep[Q.back()]&lt;key) return Q.back(); int L=0,R=Q.size()-1; while (L&lt;R) &#123; int mid=(L+R)&gt;&gt;1; if (dep[Q[mid]]&lt;key) L=mid+1; else R=mid; &#125; return Q[R];&#125;void dfs(int o,int pre)&#123; if (!Q.empty()&amp;&amp;dep[o]-w[o]&lt;=dep[Q.back()]) &#123; cnt[fa[find(dep[o]-w[o])]]--; cnt[fa[o]]++; &#125; Q.push_back(o); for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; dep[to]=dep[o]+g[o][i]; fa[to]=o; dfs(to,o); &#125; &#125; Q.pop_back();&#125;void calc(int o)&#123; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (dep[to]&gt;dep[o]) &#123; calc(to); cnt[o]+=cnt[to]; &#125; &#125;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int u=2;u&lt;=n;u++) &#123; int v=read(),val=read(); add(u,v,val); add(v,u,val); &#125; dfs(rt,0),calc(rt); for(int i=1;i&lt;=n;i++) printf("%d ",cnt[i]); return 0;&#125;]]></content>
       <categories>
         <category>OI</category>
       </categories>
@@ -45,7 +152,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CodeForces-337D]]></title>
+    <title><![CDATA[CodeForces-337D Book of Evil]]></title>
     <url>%2F2018%2F08%2F12%2FCodeForces-337D%2F</url>
     <content type="text"><![CDATA[问题大意：给出一棵n 个节点的树，每条边距离为1其中有m 个节点受到了（来自东方的）神秘力量的影响如果点x 有神秘力量来源，则距离x 小于等于d 的点均会被影响神秘力量来源只有一个，问有几个点可能有神秘力量来源 一个节点可能有神秘力量来源，当且仅当它与所有受影响点距离均小于等于d 首先考虑求子树内的最大距离设f\left [ x \right ]为点x 到子树中节点的最远距离，不难得出 f\left [ x \right ]=max\left \{ f\left [ x_{son} \right ]+1 \right \}要保证x_{son}中有被神秘力量影响的节点 设g\left [ x \right ]为x 到非子树中节点的最远距离对于非子树中的节点，有两种可能 来自兄弟节点 g\left [ x \right ]=max\left \{ f\left [ x_{brother} \right ]+2\right \} 来自父节点 g\left [ x \right ]=max\left \{ g\left [ x_{fa} \right ]+1\right \}对于来自兄弟节点的转移，暴力枚举会超时考虑用son\left [ x \right ]记录x 子节点中距离最大值仅在x=son\left [ x_{fa} \right ]遍历所有兄弟节点12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;vector&gt;using namespace std;const int N=100050;int fa[N],son[N],f[N],g[N]; // subtree/notint n,d,m,w[N],ans=0;vector&lt;int&gt; e[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void calc(int o,int pre)&#123; if (w[o]) f[o]=0; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) &#123; fa[to]=o; calc(to,o); if (f[to]!=-1) &#123; f[o]=max(f[to]+1,f[o]); if (!son[o]||f[to]&gt;f[son[o]]) son[o]=to; &#125; &#125; &#125;&#125;void dfs(int o,int pre)&#123; if (w[o]) g[o]=0; if (o!=pre) &#123; if (g[pre]!=-1) g[o]=max(g[o],g[pre]+1); if (o!=son[pre]) g[o]=max(g[o],f[son[pre]]+2); for(int i=0;o==son[pre]&amp;&amp;i&lt;e[pre].size();i++) &#123; int to=e[pre][i]; if (to!=o&amp;&amp;to!=fa[pre]&amp;&amp;f[to]!=-1) g[o]=max(g[o],f[to]+2); &#125; &#125; for(int i=0;i&lt;e[o].size();i++) &#123; int to=e[o][i]; if (to!=pre) dfs(to,o); &#125;&#125;int main()&#123; n=read(),m=read(),d=read(); for(int i=1;i&lt;=m;i++) w[read()]=1; for(int i=1;i&lt;n;i++) &#123; int u=read(),v=read(); e[u].push_back(v); e[v].push_back(u); &#125; memset(f,-1,sizeof(f)); memset(g,-1,sizeof(g)); calc(1,1); dfs(1,1); for(int i=1;i&lt;=n;i++) if (f[i]&lt;=d&amp;&amp;g[i]&lt;=d) ans++; printf("%d\n",ans); return 0;&#125;]]></content>
       <categories>
@@ -361,8 +468,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>组合数学</tag>
+        <tag>数论</tag>
       </tags>
   </entry>
   <entry>
@@ -446,8 +553,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>倍增</tag>
+        <tag>贪心</tag>
         <tag>二分答案</tag>
       </tags>
   </entry>
@@ -595,8 +702,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>搜索</tag>
+        <tag>数论</tag>
         <tag>高精度</tag>
       </tags>
   </entry>
@@ -642,8 +749,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>并查集</tag>
         <tag>倍增</tag>
+        <tag>并查集</tag>
         <tag>栈</tag>
         <tag>笛卡尔树</tag>
       </tags>
@@ -762,8 +869,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>倍增</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -1008,7 +1115,7 @@
   <entry>
     <title><![CDATA[乘法逆元]]></title>
     <url>%2F2018%2F07%2F10%2F%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%2F</url>
-    <content type="text"><![CDATA[若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元 扩展欧几里得算法 ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解 123456void exgcd(LL a,LL b,LL &amp;x,LL &amp;y)&#123; if (!b) &#123;x=1,y=0;return;&#125; exgcd(b,a%b,y,x); y-=a/b*x; &#125; 费马小定理若p 为质数，则a^{p}\equiv a\left ( mod \ p \right ) x\equiv a^{p-2}\left ( mod \ p \right ) 欧拉定理若gcd\left ( a,p \right )=1，则a^{\varphi\left ( p \right )}\equiv 1\left ( mod \ p \right ) x\equiv a^{\varphi\left ( p \right )-1}\left ( mod \ p \right ) 线性递推设p=k*i+r，其中\left ( r]]></content>
+    <content type="text"><![CDATA[若ax\equiv 1\left ( mod \ p \right )，则称x，a 互为mod p 意义下的逆元 扩展欧几里得算法ax\equiv 1\left ( mod \ p \right )\Leftrightarrow ax+py=1若gcd\left ( a,p \right )\neq 1则无解 123456void exgcd(LL a,LL b,LL &amp;x,LL &amp;y)&#123; if (!b) &#123;x=1,y=0;return;&#125; exgcd(b,a%b,y,x); y-=a/b*x; &#125; 费马小定理若p 为质数，则a^{p}\equiv a\left ( mod \ p \right ) x\equiv a^{p-2}\left ( mod \ p \right ) 欧拉定理若gcd\left ( a,p \right )=1，则a^{\varphi\left ( p \right )}\equiv 1\left ( mod \ p \right ) x\equiv a^{\varphi\left ( p \right )-1}\left ( mod \ p \right ) 线性递推设p=k*i+r，其中\left ( r]]></content>
       <categories>
         <category>OI</category>
       </categories>
@@ -1144,7 +1251,7 @@
   <entry>
     <title><![CDATA[藏妹子之处]]></title>
     <url>%2F2018%2F07%2F05%2F%E8%97%8F%E5%A6%B9%E5%AD%90%E4%B9%8B%E5%A4%84%2F</url>
-    <content type="text"><![CDATA[首先要有个妹子 问题描述：今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：（1）任意两个单元格都不在同一行。（2）任意两个单元格都不在同一列。选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如(x1,y1)和(x,y2)的曼哈顿距离为|x1-x2|+|y1-y2|）。狗狗想知道的是，花费在minT到maxT之间的方案数有多少。答案模1000000007。所谓的两种不同方案是指：只要它选中的单元格有一个不同，就认为是不同的方案。 通过观察，不难发现在一个R*C的矩阵中，所有最大的三个单元格曼哈顿距离相等，均为2(R+C)-4通过简单地分析可以得出，在R*C的矩阵中，共有6（R-2)(C-2)组最大的三个单元格代码就很简单了123456789101112131415#include&lt;cstdio&gt;#define LL long longconst int mod=1000000007;int r,c,mins,maxs;LL ans=0;int main()&#123; scanf("%d%d%d%d",&amp;r,&amp;c,&amp;mins,&amp;maxs); for(int i=2;i&lt;r;i++) for(int j=2;j&lt;c;j++) if (i*2+j*2&lt;=maxs&amp;&amp;i*2+j*2&gt;=mins) ans=(ans+6LL*(r-i)*(c-j)*(i-1)*(j-1))%mod; printf("%d",ans); return 0;&#125; 依水临山 景看旧 而你美胜 山水万筹]]></content>
+    <content type="text"><![CDATA[首先要有个妹子 问题描述：今天CZY又找到了三个妹子，有着收藏爱好的他想要找三个地方将妹子们藏起来，将一片空地抽象成一个R行C列的表格，CZY要选出3个单元格。但要满足如下的两个条件：（1）任意两个单元格都不在同一行。（2）任意两个单元格都不在同一列。选取格子存在一个花费，而这个花费是三个格子两两之间曼哈顿距离的和（如$\left ( x_{1},y_{1} \right )$和$\left ( x_{2},y_{2} \right )$的曼哈顿距离为$\left | x_{1}-x_{2} \right |+\left | y_{1}-y_{2} \right |$）。狗狗想知道的是，花费在minT 到maxT 之间的方案数有多少。答案模1000000007。所谓的两种不同方案是指：只要它选中的单元格有一个不同，就认为是不同的方案。 通过观察，不难发现在一个R*C的矩阵中，所有最大的三个单元格曼哈顿距离相等，均为2(R+C)-4通过简单地分析可以得出，在R*C的矩阵中，共有6（R-2)(C-2)组最大的三个单元格代码就很简单了123456789101112131415#include&lt;cstdio&gt;#define LL long longconst int mod=1000000007;int r,c,mins,maxs;LL ans=0;int main()&#123; scanf("%d%d%d%d",&amp;r,&amp;c,&amp;mins,&amp;maxs); for(int i=2;i&lt;r;i++) for(int j=2;j&lt;c;j++) if (i*2+j*2&lt;=maxs&amp;&amp;i*2+j*2&gt;=mins) ans=(ans+6LL*(r-i)*(c-j)*(i-1)*(j-1))%mod; printf("%d",ans); return 0;&#125; 依水临山 景看旧 而你美胜 山水万筹]]></content>
       <categories>
         <category>OI</category>
       </categories>
