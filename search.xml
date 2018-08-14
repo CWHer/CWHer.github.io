@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[国家集训队]数颜色]]></title>
+    <url>%2F2018%2F08%2F14%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%95%B0%E9%A2%9C%E8%89%B2%2F</url>
+    <content type="text"><![CDATA[带修改的莫队复杂度$O\left ( \sqrt[3]{n^{4}t} \right )$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cmath&gt;using namespace std;const int N=1000050;struct query&#123; int ql,qr,t,id;&#125; q[N];struct update&#123; int pos,val;&#125; c[N];int cnt[N],w[N],ans[N],sum=0,num,n,m;int cntq,cntc;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;inline char get()&#123; register char ch=getchar(); while (!(('a'&lt;=ch&amp;&amp;ch&lt;='z')||('A'&lt;=ch&amp;&amp;ch&lt;='Z'))) ch=getchar(); return ch;&#125;void add(int k)&#123; if(++cnt[w[k]]==1) sum++;&#125;void del(int k)&#123; if(--cnt[w[k]]==0) sum--;&#125;void work(int o,int k)&#123; if(c[o].pos&gt;=q[k].ql&amp;&amp;c[o].pos&lt;=q[k].qr) &#123; if (--cnt[w[c[o].pos]]==0) sum--; if (++cnt[c[o].val]==1) sum++; &#125; swap(c[o].val,w[c[o].pos]);&#125;bool cmp(query a,query b)&#123; if (a.ql/num!=b.ql/num) return a.ql/num&lt;b.ql/num; if (a.qr/num!=b.qr/num) return a.qr/num&lt;b.qr/num; return a.t&lt;b.t; &#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int i=1;i&lt;=m;i++) &#123; char opt=get(); if (opt=='Q') &#123; q[++cntq].t=cntc; q[cntq].ql=read(); q[cntq].qr=read(); q[cntq].id=cntq; &#125; else &#123; c[++cntc].pos=read(); c[cntc].val=read(); &#125; &#125; num=ceil(exp((log(n)+log(cntq))/3));; sort(q+1,q+cntq+1,cmp); int L=0,R=0,now=0; for(int i=1;i&lt;=m;i++) &#123; int ql=q[i].ql,qr=q[i].qr; while (L&lt;ql) del(L++); while (R&gt;qr) del(R--); while (L&gt;ql) add(--L); while (R&lt;qr) add(++R); while (now&lt;q[i].t) work(++now,i); while (now&gt;q[i].t) work(now--,i); ans[q[i].id]=sum; &#125; for(int i=1;i&lt;=cntq;i++) printf("%d\n",ans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>莫队</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[HNOI2004]树的计数]]></title>
     <url>%2F2018%2F08%2F14%2FHNOI2004-%E6%A0%91%E7%9A%84%E8%AE%A1%E6%95%B0%2F</url>
     <content type="text"><![CDATA[这题是一道结论题 首先引入$Prufer$序列定义$Prufer$序列是一种无根树的编码表示，对于一棵$n$个节点带编号的无根树，对应唯一长度为$n-2$的$Prufer$编码。 转化过程 树转$Prufer$序列 每次找到最小的叶子节点并删除，然后在序列中添加其相邻节点的编号，直至剩下两个节点如下图其$Prufer$序列为$3,5,1,3$转化过程用优先队列维护可以做到$O\left ( NlogN \right )$ $Prufer$序列转树 设点集$V=\left \{x\mid x\notin Prufer \right \}$每次取出$Prufer$序列的$front$，将其与$V$中最小元素连边，并删除这两个元素若$front$在之后序列中没有出现，则将其加入$V$遍历完整个序列后，将$V$中剩下的两个元素连边同样可以用优先队列做到$O\left ( NlogN \right )$ 性质与结论 观察上述过程，不难得出$Prufer$序列与树一一对应因此可以快速得出一张$n$个点的完全图有$n^{n-2}$棵生成树，即Cayley公式 另外，不难发现$Prufer$序列中$x$的出现次数等于$d_{x}-1$，其中$d_{x}$为$x$的度数因此当$n$个点的度数分别为$d_{1},d_{2}\dots d_{n}$时，共有$\frac{\left(n-2\right)!}{\prod \left ( d_{i}-1 \right )!}$种生成树 更一般的，当其中$x$个点度数已知，$y$个点度数未知时记 sum=\sum_{i=1}^{x}\left ( d_{i} -1\right )首先考虑$x$个已知节点的方案不难得出 C_{n-2}^{sum}*\frac{sum!}{\prod_{i=1}^{x}\left ( d_{i}-1 \right )!}然后是$y​$个未知节点考虑到每个未填位置均有$y$种可能，共有y^{n-2-sum}种方案根据乘法原理，总方案数为 C_{n-2}^{sum}*\frac{sum!}{\prod_{i=1}^{x}\left ( d_{i}-1 \right )!}*y^{n-2-sum} 代码就不放了]]></content>
@@ -468,8 +479,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>组合数学</tag>
         <tag>数论</tag>
+        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
@@ -702,8 +713,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>数论</tag>
+        <tag>搜索</tag>
         <tag>高精度</tag>
       </tags>
   </entry>
@@ -921,6 +932,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[网络流模板集合]]></title>
+    <url>%2F2018%2F07%2F14%2F%E7%BD%91%E7%BB%9C%E6%B5%81%E6%A8%A1%E6%9D%BF%E9%9B%86%E5%90%88%2F</url>
+    <content type="text"><![CDATA[EK 动能算法12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=100050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,pre[N],d[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;void update(int x,int to,int flow)&#123; for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=flow; e[pre[i]^1].flow-=flow; &#125; &#125;int bfs(int s,int t)&#123; while (!Q.empty()) Q.pop(); for(int i=1;i&lt;=n;i++) d[i]=0; d[s]=INF,Q.push(s); while (!Q.empty()&amp;&amp;!d[t]) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (!d[to]&amp;&amp;e[i].flow&lt;e[i].cap) &#123; pre[to]=i; d[to]=min(d[x],e[i].cap-e[i].flow); Q.push(to); &#125; &#125; &#125; return d[t];&#125;int EK(int s,int t)&#123; int ret=0,new_flow; while (new_flow=bfs(s,t)) &#123; ret+=new_flow; update(t,s,new_flow); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",EK(st,ed)); return 0; &#125; Dinic 比EK快很多的Dinic12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=120050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,d[N],cur[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;int bfs(int s,int t)&#123; while (!Q.empty()) Q.pop(); for(int i=1;i&lt;=n;i++) d[i]=0; d[s]=1,Q.push(s); while (!Q.empty()&amp;&amp;!d[t]) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (e[i].flow&lt;e[i].cap&amp;&amp;!d[to]) &#123; d[to]=d[x]+1; Q.push(to); &#125; &#125; &#125; return d[t];&#125;int dfs(int x,int t,int flow)&#123; if (!flow||x==t) return flow; int ret=0,new_flow; for(int &amp;i=cur[x];~i&amp;&amp;flow;i=e[i].next) &#123; int to=e[i].to; if (d[x]+1==d[to]) &#123; new_flow=dfs(to,t,min(flow,e[i].cap-e[i].flow)); e[i].flow+=new_flow; e[i^1].flow-=new_flow; ret+=new_flow; flow-=new_flow; &#125; &#125; return ret; &#125;int Dinic(int s,int t)&#123; int ret=0; while (bfs(s,t)) &#123; for(int i=1;i&lt;=n;i++) cur[i]=head[i]; ret+=dfs(s,t,INF); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",Dinic(st,ed)); return 0; &#125; ISAP ISAP+GAP优化+当前弧优化123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=100050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,d[N],num[N],pre[N],cur[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;void bfs(int s)&#123; for(int i=1;i&lt;=n;i++) d[i]=n; d[s]=0,Q.push(s); while (!Q.empty()) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (d[x]+1&lt;d[to]&amp;&amp;e[i^1].cap) &#123; d[to]=d[x]+1; Q.push(to); &#125; &#125; &#125;&#125;int update(int x,int to)&#123; int ret=INF; for(int i=x;i!=to;i=e[pre[i]^1].to) ret=min(ret,e[pre[i]].cap-e[pre[i]].flow); for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=ret; e[pre[i]^1].flow-=ret; &#125; return ret;&#125;int ISAP(int s,int t)&#123; bfs(t); for(int i=1;i&lt;=n;i++) num[d[i]]++; for(int i=1;i&lt;=n;i++) cur[i]=head[i]; int ret=0,x=s; while (d[s]&lt;=n) &#123; if (x==t) ret+=update(t,s),x=s; int flag=0; for(int i=cur[x];~i;i=e[i].next) &#123; int to=e[i].to; if (d[x]==d[to]+1&amp;&amp;e[i].flow&lt;e[i].cap) &#123; flag=1,cur[x]=i; pre[x=to]=i; break; &#125; &#125; if (!flag) &#123; int idx=n-1; for(int i=head[x];~i;i=e[i].next) if (e[i].flow&lt;e[i].cap) idx=min(idx,d[e[i].to]); if (--num[d[x]]==0) break; num[d[x]=idx+1]++; cur[x]=head[x]; if (x!=s) x=e[pre[x]^1].to; &#125; &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",ISAP(st,ed)); return 0; &#125; 最小费用最大流 Min_Cost_Max_Flow123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=50050,N=5050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,pre[N],d[N],c[N],cost=0,inq[N];struct edge&#123;int to,next,flow,cap,cost;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap,int cost)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt].cost=cost; e[cnt++].cap=cap; &#125;void update(int x,int to,int flow)&#123; for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=flow; e[pre[i]^1].flow-=flow; &#125; &#125;int SPFA(int s,int t)&#123; for(int i=1;i&lt;=n;i++) d[i]=INF,c[i]=0; d[s]=0,c[s]=INF,Q.push(s); while (!Q.empty()) &#123; int x=Q.front(); Q.pop(),inq[x]=0; for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to,cost=e[i].cost; if (e[i].flow&lt;e[i].cap&amp;&amp;d[x]+cost&lt;d[to]) &#123; d[to]=d[x]+cost; pre[to]=i; c[to]=min(c[x],e[i].cap-e[i].flow); if (!inq[to]) Q.push(to),inq[to]=1; &#125; &#125; &#125; return c[t];&#125;int MCMF(int s,int t)&#123; int ret=0,new_flow; while (new_flow=SPFA(s,t)) &#123; ret+=new_flow; cost+=new_flow*d[t]; update(t,s,new_flow); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); int cap=read(),cost=read(); add(u,v,cap,cost); add(v,u,0,-cost); &#125; int max_flow=MCMF(st,ed); printf("%d %d",max_flow,cost); return 0; &#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>模板</tag>
+        <tag>网络流</tag>
+        <tag>费用流</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[洛谷P1108 低价购买]]></title>
     <url>%2F2018%2F07%2F13%2F%E6%B4%9B%E8%B0%B7P1108-%E4%BD%8E%E4%BB%B7%E8%B4%AD%E4%B9%B0%2F</url>
     <content type="text"><![CDATA[dp 数组记录方案数，f 数组记录购买次数 dp\left [ i \right ]=\sum_{j=1}^{i-1}dp\left [ j \right ] \ \ \ \left ( f\left [ j \right ]+1=f\left [ i \right ] ,w\left [ j \right ]]]></content>
@@ -1042,55 +1066,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[最小费用最大流]]></title>
-    <url>%2F2018%2F07%2F10%2F%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%9C%80%E5%A4%A7%E6%B5%81%2F</url>
-    <content type="text"><![CDATA[Min_Cost_Max_Flow123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=50050,N=5050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,pre[N],d[N],c[N],cost=0,inq[N];struct edge&#123;int to,next,flow,cap,cost;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap,int cost)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt].cost=cost; e[cnt++].cap=cap; &#125;void update(int x,int to,int flow)&#123; for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=flow; e[pre[i]^1].flow-=flow; &#125; &#125;int SPFA(int s,int t)&#123; for(int i=1;i&lt;=n;i++) d[i]=INF,c[i]=0; d[s]=0,c[s]=INF,Q.push(s); while (!Q.empty()) &#123; int x=Q.front(); Q.pop(),inq[x]=0; for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to,cost=e[i].cost; if (e[i].flow&lt;e[i].cap&amp;&amp;d[x]+cost&lt;d[to]) &#123; d[to]=d[x]+cost; pre[to]=i; c[to]=min(c[x],e[i].cap-e[i].flow); if (!inq[to]) Q.push(to),inq[to]=1; &#125; &#125; &#125; return c[t];&#125;int MCMF(int s,int t)&#123; int ret=0,new_flow; while (new_flow=SPFA(s,t)) &#123; ret+=new_flow; cost+=new_flow*d[t]; update(t,s,new_flow); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); int cap=read(),cost=read(); add(u,v,cap,cost); add(v,u,0,-cost); &#125; int max_flow=MCMF(st,ed); printf("%d %d",max_flow,cost); return 0; &#125;]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>网络流</tag>
-        <tag>模板</tag>
-        <tag>费用流</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[ISAP]]></title>
-    <url>%2F2018%2F07%2F10%2FISAP%2F</url>
-    <content type="text"><![CDATA[ISAP+GAP优化+当前弧优化123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=100050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,d[N],num[N],pre[N],cur[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;void bfs(int s)&#123; for(int i=1;i&lt;=n;i++) d[i]=n; d[s]=0,Q.push(s); while (!Q.empty()) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (d[x]+1&lt;d[to]&amp;&amp;e[i^1].cap) &#123; d[to]=d[x]+1; Q.push(to); &#125; &#125; &#125;&#125;int update(int x,int to)&#123; int ret=INF; for(int i=x;i!=to;i=e[pre[i]^1].to) ret=min(ret,e[pre[i]].cap-e[pre[i]].flow); for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=ret; e[pre[i]^1].flow-=ret; &#125; return ret;&#125;int ISAP(int s,int t)&#123; bfs(t); for(int i=1;i&lt;=n;i++) num[d[i]]++; for(int i=1;i&lt;=n;i++) cur[i]=head[i]; int ret=0,x=s; while (d[s]&lt;=n) &#123; if (x==t) ret+=update(t,s),x=s; int flag=0; for(int i=cur[x];~i;i=e[i].next) &#123; int to=e[i].to; if (d[x]==d[to]+1&amp;&amp;e[i].flow&lt;e[i].cap) &#123; flag=1,cur[x]=i; pre[x=to]=i; break; &#125; &#125; if (!flag) &#123; int idx=n-1; for(int i=head[x];~i;i=e[i].next) if (e[i].flow&lt;e[i].cap) idx=min(idx,d[e[i].to]); if (--num[d[x]]==0) break; num[d[x]=idx+1]++; cur[x]=head[x]; if (x!=s) x=e[pre[x]^1].to; &#125; &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",ISAP(st,ed)); return 0; &#125;]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>网络流</tag>
-        <tag>模板</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Dinic]]></title>
-    <url>%2F2018%2F07%2F10%2FDinic%2F</url>
-    <content type="text"><![CDATA[比EK快很多的Dinic12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=120050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,d[N],cur[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;int bfs(int s,int t)&#123; while (!Q.empty()) Q.pop(); for(int i=1;i&lt;=n;i++) d[i]=0; d[s]=1,Q.push(s); while (!Q.empty()&amp;&amp;!d[t]) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (e[i].flow&lt;e[i].cap&amp;&amp;!d[to]) &#123; d[to]=d[x]+1; Q.push(to); &#125; &#125; &#125; return d[t];&#125;int dfs(int x,int t,int flow)&#123; if (!flow||x==t) return flow; int ret=0,new_flow; for(int &amp;i=cur[x];~i&amp;&amp;flow;i=e[i].next) &#123; int to=e[i].to; if (d[x]+1==d[to]) &#123; new_flow=dfs(to,t,min(flow,e[i].cap-e[i].flow)); e[i].flow+=new_flow; e[i^1].flow-=new_flow; ret+=new_flow; flow-=new_flow; &#125; &#125; return ret; &#125;int Dinic(int s,int t)&#123; int ret=0; while (bfs(s,t)) &#123; for(int i=1;i&lt;=n;i++) cur[i]=head[i]; ret+=dfs(s,t,INF); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",Dinic(st,ed)); return 0; &#125;]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>网络流</tag>
-        <tag>模板</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[EK]]></title>
-    <url>%2F2018%2F07%2F10%2FEK%2F</url>
-    <content type="text"><![CDATA[动能算法12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;cstdio&gt;#include&lt;queue&gt;using namespace std;const int M=100050,N=10050,INF=1&lt;&lt;25;int n,m,st,ed,head[N],cnt=0,pre[N],d[N];struct edge&#123;int to,next,flow,cap;&#125; e[M&lt;&lt;1];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int u,int v,int cap)&#123; e[cnt].next=head[u]; head[u]=cnt; e[cnt].to=v; e[cnt++].cap=cap; &#125;void update(int x,int to,int flow)&#123; for(int i=x;i!=to;i=e[pre[i]^1].to) &#123; e[pre[i]].flow+=flow; e[pre[i]^1].flow-=flow; &#125; &#125;int bfs(int s,int t)&#123; while (!Q.empty()) Q.pop(); for(int i=1;i&lt;=n;i++) d[i]=0; d[s]=INF,Q.push(s); while (!Q.empty()&amp;&amp;!d[t]) &#123; int x=Q.front();Q.pop(); for(int i=head[x];~i;i=e[i].next) &#123; int to=e[i].to; if (!d[to]&amp;&amp;e[i].flow&lt;e[i].cap) &#123; pre[to]=i; d[to]=min(d[x],e[i].cap-e[i].flow); Q.push(to); &#125; &#125; &#125; return d[t];&#125;int EK(int s,int t)&#123; int ret=0,new_flow; while (new_flow=bfs(s,t)) &#123; ret+=new_flow; update(t,s,new_flow); &#125; return ret;&#125;int main()&#123; n=read(),m=read(); st=read(),ed=read(); for(int i=1;i&lt;=n;i++) head[i]=-1; for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(); add(u,v,read()); add(v,u,0); &#125; printf("%d",EK(st,ed)); return 0; &#125;]]></content>
-      <categories>
-        <category>OI</category>
-      </categories>
-      <tags>
-        <tag>网络流</tag>
-        <tag>模板</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[[SDOI2009]Elaxia的路线]]></title>
     <url>%2F2018%2F07%2F10%2FSDOI2009-Elaxia%E7%9A%84%E8%B7%AF%E7%BA%BF%2F</url>
     <content type="text"><![CDATA[记E 为Elaxia 的最短路DAG，W 为w 的最短路DAG根据W 重构E 每条边的权值对于连接u，v，权值为val的边当且仅当在W 中d\left [ u \right ]+val= d\left [ v \right ]或d\left [ v \right ]+val= d\left [ u\right ]时，边权为val，否则为0在E 上跑一边最长路得出答案123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687#include&lt;cstdio&gt;#include&lt;vector&gt;#include&lt;queue&gt;using namespace std;const int N=2000,INF=1&lt;&lt;25;int n,m,st[2],ed[2],d[2][N],inq[N],used[N],dp[N];vector&lt;int&gt; f[N],g[N],w[2][N],e[2][N],c[N];queue&lt;int&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void SPFA(int s,int k)&#123; for(int i=1;i&lt;=n;i++) d[k][i]=INF,inq[i]=0; d[k][s]=0,inq[s]=1,Q.push(s); while (!Q.empty()) &#123; int x=Q.front(); Q.pop(),inq[x]=0; for(int i=0;i&lt;f[x].size();i++) &#123; int to=f[x][i],val=g[x][i]; if (d[k][x]+val==d[k][to]) e[k][to].push_back(x),w[k][to].push_back(val); if (d[k][x]+val&lt;d[k][to]) &#123; e[k][to].clear(); e[k][to].push_back(x); w[k][to].clear(); w[k][to].push_back(val); d[k][to]=d[k][x]+val; if (!inq[to]) Q.push(to),inq[to]=1; &#125; &#125; &#125;&#125;void add(int u,int v,int val)&#123; g[u].push_back(val); f[u].push_back(v);&#125;void dfs(int o,int x)&#123; if (used[o]) return; used[o]=1; if (o==x) return; for(int i=0;i&lt;e[1][o].size();i++) dfs(e[1][o][i],x); &#125;int calc(int o,int x)&#123; if (dp[o]!=-1) return dp[o]; if (o==x) return dp[o]=0; for(int i=0;i&lt;e[0][o].size();i++) dp[o]=max(dp[o],calc(e[0][o][i],x)+c[o][i]); return dp[o]; &#125;int main()&#123; n=read(),m=read(); for(int i=0;i&lt;2;i++) st[i]=read(),ed[i]=read(); for(int i=1;i&lt;=m;i++) &#123; int u=read(),v=read(),val=read(); add(u,v,val),add(v,u,val); &#125; for(int i=0;i&lt;2;i++) SPFA(st[i],i); dfs(ed[1],st[1]); for(int i=1;i&lt;=n;i++) if (!used[i]) d[1][i]=INF; for(int u=1;u&lt;=n;u++) for(int i=0;i&lt;e[0][u].size();i++) &#123; int v=e[0][u][i],f=0; if (d[1][u]+w[0][u][i]==d[1][v]) f++; if (d[1][v]+w[0][u][i]==d[1][u]) f++; c[u].push_back(f*w[0][u][i]); &#125; for(int i=1;i&lt;=n;i++) dp[i]=-1; printf("%d",calc(ed[0],st[0])); return 0;&#125;]]></content>
@@ -1122,6 +1097,17 @@
       <tags>
         <tag>数论</tag>
         <tag>逆元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[洛谷P2709 小B的询问]]></title>
+    <url>%2F2018%2F07%2F10%2F%E6%B4%9B%E8%B0%B7P2709-%E5%B0%8FB%E7%9A%84%E8%AF%A2%E9%97%AE%2F</url>
+    <content type="text"><![CDATA[数据不大直接上莫队123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cmath&gt;#define LL long longusing namespace std;const int N=50050;struct query&#123; int ql,qr,id;&#125; q[N];int cnt[N],w[N],num,n,m,k;LL ans[N],sum=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;void add(int k)&#123; sum-=cnt[w[k]]*cnt[w[k]]; cnt[w[k]]++; sum+=cnt[w[k]]*cnt[w[k]];&#125;void del(int k)&#123; sum-=cnt[w[k]]*cnt[w[k]]; cnt[w[k]]--; sum+=cnt[w[k]]*cnt[w[k]];&#125;bool cmp(query a, query b)&#123; return a.ql/num==b.ql/num? a.qr&lt;b.qr:a.ql&lt;b.ql;&#125;int main()&#123; n=read(),m=read(),k=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); num=sqrt(n); for(int i=1;i&lt;=m;i++) q[i].ql=read(),q[i].qr=read(),q[i].id=i; sort(q+1,q+m+1,cmp); int L=0,R=0; for(int i=1;i&lt;=m;i++) &#123; int ql=q[i].ql,qr=q[i].qr; while (L&lt;ql) del(L++); while (R&gt;qr) del(R--); while (L&gt;ql) add(--L); while (R&lt;qr) add(++R); ans[q[i].id]=sum; &#125; for(int i=1;i&lt;=m;i++) printf("%d\n",ans[i]-1); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>莫队</tag>
       </tags>
   </entry>
   <entry>
@@ -1166,8 +1152,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>贪心</tag>
         <tag>线段树</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
@@ -1217,7 +1203,7 @@
   <entry>
     <title><![CDATA[洛谷P1484 种树]]></title>
     <url>%2F2018%2F07%2F06%2F%E6%B4%9B%E8%B0%B7P1484-%E7%A7%8D%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[神奇的贪心 对于a_{i}，若最终答案不包含a_{i}，则一定包含a_{i-1}+a_{i+1}因此每次取a_{i}时，加入a_{i-1}+a_{i+1}-a_{i}，允许撤销操作123456789101112131415161718192021222324252627282930313233343536373839#include&lt;cstdio&gt;#include&lt;queue&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=500050;int n,m,w[N],L[N],R[N],used[N];struct node &#123;LL val;int id;&#125;;struct cmp &#123;bool operator ()(node a,node b) &#123;return a.val&lt;b.val;&#125;&#125;;priority_queue&lt;node,vector&lt;node&gt;,cmp&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(),Q.push((node)&#123;w[i],i&#125;); for(int i=1;i&lt;=n;i++) L[i]=i-1,R[i]=i+1; R[0]=1,L[n+1]=n;LL ans=0; while (m--) &#123; while (used[Q.top().id]) Q.pop(); int k=Q.top().id; used[L[k]]=used[R[k]]=1; if (Q.top().val&lt;=0) break; ans=ans+Q.top().val,Q.pop(); Q.push((node)&#123;w[k]=w[L[k]]+w[R[k]]-w[k],k&#125;); L[k]=L[L[k]],R[L[k]]=k; R[k]=R[R[k]],L[R[k]]=k; &#125; printf("%lld",ans); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[神奇的贪心 从大到小取$a_{i}$因此对于每个a_{i}，若最终答案不包含a_{i}，则一定包含a_{i-1}+a_{i+1}于是每次取a_{i}时，加入a_{i-1}+a_{i+1}-a_{i}，允许撤销操作123456789101112131415161718192021222324252627282930313233343536373839#include&lt;cstdio&gt;#include&lt;queue&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=500050;int n,m,w[N],L[N],R[N],used[N];struct node &#123;LL val;int id;&#125;;struct cmp &#123;bool operator ()(node a,node b) &#123;return a.val&lt;b.val;&#125;&#125;;priority_queue&lt;node,vector&lt;node&gt;,cmp&gt; Q;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(),Q.push((node)&#123;w[i],i&#125;); for(int i=1;i&lt;=n;i++) L[i]=i-1,R[i]=i+1; R[0]=1,L[n+1]=n;LL ans=0; while (m--) &#123; while (used[Q.top().id]) Q.pop(); int k=Q.top().id; used[L[k]]=used[R[k]]=1; if (Q.top().val&lt;=0) break; ans=ans+Q.top().val,Q.pop(); Q.push((node)&#123;w[k]=w[L[k]]+w[R[k]]-w[k],k&#125;); L[k]=L[L[k]],R[L[k]]=k; R[k]=R[R[k]],L[R[k]]=k; &#125; printf("%lld",ans); return 0;&#125;]]></content>
       <categories>
         <category>OI</category>
       </categories>
