@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CodeChef Blocked websites]]></title>
+    <url>%2F2018%2F08%2F14%2FCodeChef-Blocked-websites%2F</url>
+    <content type="text"><![CDATA[题目大意：现有一种过滤器，可以屏蔽以该过滤器为前缀的网站给出一些需要被屏蔽和不能被屏蔽的网站无法满足条件输出$-1$在满足条件的情况下，最小化过滤器的串长之和按字典序输出所有过滤器 以所有不能被屏蔽网站的名字建立一棵$Trie$考虑插入每个需要被屏蔽网站的名字的过程 若经过的所有节点均是不能被屏蔽的，则无解 否则，将开头到第一个未在$Trie$中出现的字符作为一个过滤器，标记该过滤器并退出插入过程 若发现当前名字以一个过滤器为前缀，则不需要新增过滤器，可直接退出插入过程 该贪心的正确性显然1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include&lt;cstdio&gt;#include&lt;string&gt;#include&lt;vector&gt;#include&lt;cstdlib&gt;#include&lt;algorithm&gt;using namespace std;const int N=2e5+50,rt=0;int n,cnt=0,ch[N][26],col[N],idx=0;char str[N];string s[N];vector&lt;string&gt; ans;inline char get()&#123; register char ch=getchar(); while (ch!='+'&amp;&amp;ch!='-') ch=getchar(); return ch;&#125;void insert(string s)&#123; int o=rt; for(int i=0;i&lt;s.size();i++) &#123; if (!ch[o][s[i]-'a']) ch[o][s[i]-'a']=++cnt; o=ch[o][s[i]-'a']; col[o]=1; &#125;&#125;void find(string s)&#123; int o=rt; string w=""; for(int i=0;i&lt;s.size();i++) &#123; if (!ch[o][s[i]-'a']) &#123; w.append(1,s[i]); ch[o][s[i]-'a']=++cnt; ans.push_back(w); return; &#125; w.append(1,s[i]); o=ch[o][s[i]-'a']; if (!col[o]) return; &#125; puts("-1"),exit(0);&#125;int main()&#123; scanf("%d",&amp;n); for(int i=1;i&lt;=n;i++) &#123; char opt=get(); scanf("%s",str); if (opt=='+') insert(str); else s[++idx]=str; &#125; for(int i=1;i&lt;=idx;i++) find(s[i]); sort(ans.begin(),ans.end()); printf("%d\n",ans.size()); for(int i=0;i&lt;ans.size();i++) printf("%s\n",ans[i].c_str()); return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>Trie</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CodeChef Sereja and Commands]]></title>
+    <url>%2F2018%2F08%2F14%2FCodeChef-Sereja-and-Commands%2F</url>
+    <content type="text"><![CDATA[题目大意：给出一个n 个元素的序列，初始值均为0有两种操作 将$\left [ l,r \right ]$的元素+1 执行$\left [ l,r \right ]$的所有操作，保证$r$小于当前操作编号 问执行完所有操作后序列中每个元素的值 直接按照操作给出顺序执行会产生递归，无法有效处理考虑倒着执行操作，这样就没有递归问题了用一个支持单点查询，区间修改的数据结构维护每个操作执行次数就好了由于只在操作完询问一次序列中的值因此序列中的操作用差分即可 本来换行写的是$puts$，不知道为什么$RE$掉了123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;#define LL long longusing namespace std;const int N=1e5+50,mod=1e9+7;struct node&#123;int opt,l,r;&#125;q[N];int T,n,m,ql,qr;LL c[N&lt;&lt;2],t[N&lt;&lt;2],w[N];inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;void add(int o,int l,int r,LL x)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) &#123; c[o]=(c[o]+x*(r-l+1))%mod; t[o]=(t[o]+x)%mod; return; &#125; int mid=(l+r)&gt;&gt;1; if (ql&lt;=mid) add(o&lt;&lt;1,l,mid,x); if (qr&gt;mid) add(o&lt;&lt;1|1,mid+1,r,x); c[o]=(c[o]+(min(r,qr)-max(l,ql)+1)*x)%mod;&#125;LL ask(int o,int l,int r)&#123; if (ql&lt;=l&amp;&amp;r&lt;=qr) return c[o]; int mid=(l+r)&gt;&gt;1;LL ret=0; if (ql&lt;=mid) ret=(ret+ask(o&lt;&lt;1,l,mid))%mod; if (qr&gt;mid) ret=(ret+ask(o&lt;&lt;1|1,mid+1,r))%mod; return (ret+(min(r,qr)-max(l,ql)+1)*t[o])%mod;&#125;int main()&#123; int T=read(); while (T--) &#123; n=read(),m=read(); memset(c,0,sizeof(c)); memset(t,0,sizeof(t)); memset(w,0,sizeof(w)); for(int i=1;i&lt;=m;i++) &#123; q[i].opt=read(); q[i].l=read(); q[i].r=read(); &#125; for(int i=m;i&gt;0;i--) &#123; ql=qr=i; LL x=(ask(1,1,m)+1)%mod; if (q[i].opt==1) &#123; w[q[i].l]=(w[q[i].l]+x)%mod; w[q[i].r+1]=(w[q[i].r+1]-x)%mod; &#125; else &#123; ql=q[i].l,qr=q[i].r; add(1,1,m,x); &#125; &#125; for(int i=1;i&lt;=n;i++) w[i]=(w[i]+w[i-1])%mod; for(int i=1;i&lt;=n;i++) printf("%lld ",(w[i]+mod)%mod); printf("\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>OI</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+        <tag>差分</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[国家集训队]数颜色]]></title>
     <url>%2F2018%2F08%2F14%2F%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%95%B0%E9%A2%9C%E8%89%B2%2F</url>
     <content type="text"><![CDATA[带修改的莫队复杂度$O\left ( \sqrt[3]{n^{4}t} \right )$123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990#include&lt;cstdio&gt;#include&lt;algorithm&gt;#include&lt;cmath&gt;using namespace std;const int N=1000050;struct query&#123; int ql,qr,t,id;&#125; q[N];struct update&#123; int pos,val;&#125; c[N];int cnt[N],w[N],ans[N],sum=0,num,n,m;int cntq,cntc;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while ((ch&lt;'0'||ch&gt;'9')&amp;&amp;ch!='-') ch=getchar(); if (ch=='-') &#123;t=-1;ch=getchar();&#125; while (ch&gt;='0'&amp;&amp;ch&lt;='9') &#123;x=x*10+ch-48;ch=getchar();&#125; return x*t;&#125;inline char get()&#123; register char ch=getchar(); while (!(('a'&lt;=ch&amp;&amp;ch&lt;='z')||('A'&lt;=ch&amp;&amp;ch&lt;='Z'))) ch=getchar(); return ch;&#125;void add(int k)&#123; if(++cnt[w[k]]==1) sum++;&#125;void del(int k)&#123; if(--cnt[w[k]]==0) sum--;&#125;void work(int o,int k)&#123; if(c[o].pos&gt;=q[k].ql&amp;&amp;c[o].pos&lt;=q[k].qr) &#123; if (--cnt[w[c[o].pos]]==0) sum--; if (++cnt[c[o].val]==1) sum++; &#125; swap(c[o].val,w[c[o].pos]);&#125;bool cmp(query a,query b)&#123; if (a.ql/num!=b.ql/num) return a.ql/num&lt;b.ql/num; if (a.qr/num!=b.qr/num) return a.qr/num&lt;b.qr/num; return a.t&lt;b.t; &#125;int main()&#123; n=read(),m=read(); for(int i=1;i&lt;=n;i++) w[i]=read(); for(int i=1;i&lt;=m;i++) &#123; char opt=get(); if (opt=='Q') &#123; q[++cntq].t=cntc; q[cntq].ql=read(); q[cntq].qr=read(); q[cntq].id=cntq; &#125; else &#123; c[++cntc].pos=read(); c[cntc].val=read(); &#125; &#125; num=ceil(exp((log(n)+log(cntq))/3));; sort(q+1,q+cntq+1,cmp); int L=0,R=0,now=0; for(int i=1;i&lt;=m;i++) &#123; int ql=q[i].ql,qr=q[i].qr; while (L&lt;ql) del(L++); while (R&gt;qr) del(R--); while (L&gt;ql) add(--L); while (R&lt;qr) add(++R); while (now&lt;q[i].t) work(++now,i); while (now&gt;q[i].t) work(now--,i); ans[q[i].id]=sum; &#125; for(int i=1;i&lt;=cntq;i++) printf("%d\n",ans[i]); return 0;&#125;]]></content>
@@ -19,8 +43,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>组合数学</tag>
         <tag>树形结构</tag>
+        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
@@ -349,8 +373,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>扫描线</tag>
         <tag>线段树</tag>
+        <tag>扫描线</tag>
       </tags>
   </entry>
   <entry>
@@ -361,8 +385,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>扫描线</tag>
         <tag>线段树</tag>
+        <tag>扫描线</tag>
       </tags>
   </entry>
   <entry>
@@ -373,8 +397,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>扫描线</tag>
         <tag>线段树</tag>
+        <tag>扫描线</tag>
       </tags>
   </entry>
   <entry>
@@ -385,8 +409,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>扫描线</tag>
         <tag>线段树</tag>
+        <tag>扫描线</tag>
       </tags>
   </entry>
   <entry>
@@ -515,8 +539,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>线段树</tag>
+        <tag>模板</tag>
         <tag>可持久化</tag>
       </tags>
   </entry>
@@ -564,8 +588,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>倍增</tag>
         <tag>贪心</tag>
+        <tag>倍增</tag>
         <tag>二分答案</tag>
       </tags>
   </entry>
@@ -579,8 +603,8 @@
       <tags>
         <tag>DP</tag>
         <tag>背包</tag>
-        <tag>状态压缩</tag>
         <tag>差分</tag>
+        <tag>状态压缩</tag>
         <tag>异或</tag>
       </tags>
   </entry>
@@ -597,14 +621,13 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[拉格朗日插值]]></title>
-    <url>%2F2018%2F07%2F26%2F%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%2F</url>
-    <content type="text"><![CDATA[证明省略 f\left (x \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j} \right )} 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;cstdio&gt;#define LL long longconst int mod=998244353;const int N=2050;LL n,x,a[N],b[N],ans=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;LL pow(LL a,LL b,LL mod)&#123; LL ret=1; for(;b;b&gt;&gt;=1) &#123; if (b&amp;1) ret=ret*a%mod; a=a*a%mod; &#125; return ret;&#125;int main()&#123; n=read(),x=read(); for(int i=1;i&lt;=n;i++) a[i]=read(),b[i]=read(); for(int i=1;i&lt;=n;i++) &#123; LL A=b[i],B=1; for(int j=1;j&lt;=n;j++) if (i!=j) &#123; A=A*(x-a[j])%mod; B=B*(a[i]-a[j])%mod; &#125; ans=(ans+A*pow(B,mod-2,mod))%mod; &#125; printf("%lld\n",(ans%mod+mod)%mod); return 0;&#125;]]></content>
+    <title><![CDATA[拉格朗日插值法]]></title>
+    <url>%2F2018%2F07%2F26%2F%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[$n+1$个点可以唯一确定一个$n$次的多项式当然可以用高斯消元解，但复杂度是$O\left ( n^{3} \right )$的这里引入拉格朗日插值法 拉格朗日插值法对于$x_{i}$，假设有多项式$\ell_{i}$ \ell_{i}\left ( x \right )=\left\{\begin{matrix} 1 \ \left ( x=x_{i} \right ) \\ 0 \ \left ( x\neq x_{i} \right ) \end{matrix}\right.则 y_{i}\ell_{i}\left ( x \right )=\left\{\begin{matrix} y_{i} \ \left ( x=x_{i} \right ) \\ 0 \ \left ( x\neq x_{i} \right ) \end{matrix}\right.不难得出 \forall k\leq n+1 ,\sum_{i=1}^{n+1} y_{i}\ell_{i}\left ( x_{k} \right )=y_{k}即该多项式经过所有$n+1$个点 考虑如何构造$\ell_{i}\left ( x \right )$显然如下构造可行 \ell_{i}\left ( x \right )=\prod _{i\neq j}\frac{\left ( x-x_{j} \right )}{\left ( x_{i}-x_{j} \right )}对于每个$x_{j}\left ( i\neq j \right )$，分子中都会出现$0$而将$x_{i}$带入时，分子分母完全相同 化简可得 f\left (x \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j} \right )}单次求值复杂度$O\left ( n^{2} \right )$ 重心拉格朗日插值法不难发现$\ell_{i}\left ( x \right )$有重复计算部分设 \ell\left ( x \right )=\prod_{i=1}^{n+1} \left ( x-x_{i} \right ) w_{i}=\frac{1}{\prod _{i\neq j}\left ( x_{i}-x_{j} \right )}不难得到 \ell_{i}\left ( x \right )=\ell\left ( x \right )\frac{w_{i}}{x-x_{i}}化简可得 f\left (x \right )=\ell\left ( x \right )\sum _{i=1}^{n+1}y_{i}\frac{w_{i}}{x-x_{i}}单次求值复杂度还是$O\left ( n^{2} \right )$当动态加入点时，一般拉格朗日插值法需要$O\left ( n^{2} \right )$重新计算，而重心拉格朗日插值法只需$O\left ( n \right )$计算一遍$w_{i}$ 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;cstdio&gt;#define LL long longconst int mod=998244353;const int N=2050;LL n,x,a[N],b[N],ans=0;inline int read()&#123; register int x=0,t=1; register char ch=getchar(); while (ch!='-'&amp;&amp;(ch&lt;'0'||ch&gt;'9')) ch=getchar(); if (ch=='-') t=-1,ch=getchar(); while (ch&gt;='0'&amp;&amp;ch&lt;='9') x=x*10+ch-48,ch=getchar(); return x*t;&#125;LL pow(LL a,LL b,LL mod)&#123; LL ret=1; for(;b;b&gt;&gt;=1) &#123; if (b&amp;1) ret=ret*a%mod; a=a*a%mod; &#125; return ret;&#125;int main()&#123; n=read(),x=read(); for(int i=1;i&lt;=n;i++) a[i]=read(),b[i]=read(); for(int i=1;i&lt;=n;i++) &#123; LL A=b[i],B=1; for(int j=1;j&lt;=n;j++) if (i!=j) &#123; A=A*(x-a[j])%mod; B=B*(a[i]-a[j])%mod; &#125; ans=(ans+A*pow(B,mod-2,mod))%mod; &#125; printf("%lld\n",(ans%mod+mod)%mod); return 0;&#125;]]></content>
       <categories>
         <category>OI</category>
       </categories>
       <tags>
-        <tag>组合数学</tag>
         <tag>模板</tag>
       </tags>
   </entry>
@@ -713,8 +736,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>数论</tag>
         <tag>搜索</tag>
+        <tag>数论</tag>
         <tag>高精度</tag>
       </tags>
   </entry>
@@ -1152,8 +1175,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>贪心</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>

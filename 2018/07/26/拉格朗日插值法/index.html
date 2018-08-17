@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="组合数学,模板," />
+  <meta name="keywords" content="模板," />
 
 
 
@@ -108,18 +108,18 @@
 
 
 
-<meta name="description" content="证明省略  f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j}  \right )}">
-<meta name="keywords" content="组合数学,模板">
+<meta name="description" content="$n+1$个点可以唯一确定一个$n$次的多项式当然可以用高斯消元解，但复杂度是$O\left ( n^{3} \right )$的这里引入拉格朗日插值法 拉格朗日插值法对于$x_{i}$，假设有多项式$\ell_{i}$  \ell_{i}\left ( x \right )=\left\{\begin{matrix} 1 \ \left ( x=x_{i} \right ) \\  0 \ \l">
+<meta name="keywords" content="模板">
 <meta property="og:type" content="article">
-<meta property="og:title" content="拉格朗日插值">
-<meta property="og:url" content="http://yoursite.com/2018/07/26/拉格朗日插值/index.html">
+<meta property="og:title" content="拉格朗日插值法">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/拉格朗日插值法/index.html">
 <meta property="og:site_name" content="魍魉的小窝">
-<meta property="og:description" content="证明省略  f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j}  \right )}">
+<meta property="og:description" content="$n+1$个点可以唯一确定一个$n$次的多项式当然可以用高斯消元解，但复杂度是$O\left ( n^{3} \right )$的这里引入拉格朗日插值法 拉格朗日插值法对于$x_{i}$，假设有多项式$\ell_{i}$  \ell_{i}\left ( x \right )=\left\{\begin{matrix} 1 \ \left ( x=x_{i} \right ) \\  0 \ \l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-26T12:43:19.709Z">
+<meta property="og:updated_time" content="2018-08-17T13:46:25.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="拉格朗日插值">
-<meta name="twitter:description" content="证明省略  f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j}  \right )}">
+<meta name="twitter:title" content="拉格朗日插值法">
+<meta name="twitter:description" content="$n+1$个点可以唯一确定一个$n$次的多项式当然可以用高斯消元解，但复杂度是$O\left ( n^{3} \right )$的这里引入拉格朗日插值法 拉格朗日插值法对于$x_{i}$，假设有多项式$\ell_{i}$  \ell_{i}\left ( x \right )=\left\{\begin{matrix} 1 \ \left ( x=x_{i} \right ) \\  0 \ \l">
 
 
 
@@ -149,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/26/拉格朗日插值/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/26/拉格朗日插值法/"/>
 
 
 
@@ -157,7 +157,7 @@
 
 
 
-  <title>拉格朗日插值 | 魍魉的小窝</title>
+  <title>拉格朗日插值法 | 魍魉的小窝</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/拉格朗日插值/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/拉格朗日插值法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CWHer">
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">拉格朗日插值</h1>
+          <h1 class="post-title" itemprop="name headline">拉格朗日插值法</h1>
         
 
         <div class="post-meta">
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  211
+                  460
                 </span>
               
 
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -456,9 +456,37 @@
       
 
       
-        <p><del>证明省略</del></p>
+        <p>$n+1$个点可以唯一确定一个$n$次的多项式<br>当然可以用高斯消元解，但复杂度是$O\left ( n^{3} \right )$的<br>这里引入拉格朗日插值法</p>
+<h5 id="拉格朗日插值法"><a href="#拉格朗日插值法" class="headerlink" title="拉格朗日插值法"></a>拉格朗日插值法</h5><p>对于$x_{i}$，假设有多项式$\ell_{i}$</p>
 <script type="math/tex; mode=display">
-f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j}  \right )}</script><a id="more"></a>
+\ell_{i}\left ( x \right )=\left\{\begin{matrix}
+1 \ \left ( x=x_{i} \right )
+\\ 
+0 \ \left ( x\neq x_{i} \right )
+\end{matrix}\right.</script><p>则</p>
+<script type="math/tex; mode=display">
+y_{i}\ell_{i}\left ( x \right )=\left\{\begin{matrix}
+y_{i} \ \left ( x=x_{i} \right )
+\\ 
+0 \ \left ( x\neq x_{i} \right )
+\end{matrix}\right.</script><p>不难得出</p>
+<script type="math/tex; mode=display">
+\forall k\leq n+1 ,\sum_{i=1}^{n+1} y_{i}\ell_{i}\left ( x_{k} \right )=y_{k}</script><p>即该多项式经过所有$n+1$个点</p>
+<p>考虑如何构造$\ell_{i}\left ( x \right )$<br>显然如下构造可行</p>
+<script type="math/tex; mode=display">
+\ell_{i}\left ( x \right )=\prod _{i\neq j}\frac{\left ( x-x_{j} \right )}{\left ( x_{i}-x_{j} \right )}</script><p>对于每个$x_{j}\left ( i\neq j \right )$，分子中都会出现$0$<br>而将$x_{i}$带入时，分子分母完全相同</p>
+<p>化简可得</p>
+<script type="math/tex; mode=display">
+f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \right )}{\left (x_{i}-x_{j}  \right )}</script><p>单次求值复杂度$O\left ( n^{2} \right )$</p>
+<h5 id="重心拉格朗日插值法"><a href="#重心拉格朗日插值法" class="headerlink" title="重心拉格朗日插值法"></a>重心拉格朗日插值法</h5><p>不难发现$\ell_{i}\left ( x \right )$有重复计算部分<br>设</p>
+<script type="math/tex; mode=display">
+\ell\left ( x \right )=\prod_{i=1}^{n+1} \left ( x-x_{i} \right )</script><script type="math/tex; mode=display">
+w_{i}=\frac{1}{\prod _{i\neq j}\left ( x_{i}-x_{j} \right )}</script><p>不难得到</p>
+<script type="math/tex; mode=display">
+\ell_{i}\left ( x \right )=\ell\left ( x \right )\frac{w_{i}}{x-x_{i}}</script><p>化简可得</p>
+<script type="math/tex; mode=display">
+f\left (x  \right )=\ell\left ( x \right )\sum _{i=1}^{n+1}y_{i}\frac{w_{i}}{x-x_{i}}</script><p>单次求值复杂度还是$O\left ( n^{2} \right )$<br>当动态加入点时，一般拉格朗日插值法需要$O\left ( n^{2} \right )$重新计算，而重心拉格朗日插值法只需$O\left ( n \right )$计算一遍$w_{i}$</p>
+<a id="more"></a>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2050</span>;</span><br><span class="line">LL n,x,a[N],b[N],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">int</span> x=<span class="number">0</span>,t=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">register</span> <span class="keyword">char</span> ch=getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch!=<span class="string">'-'</span>&amp;&amp;(ch&lt;<span class="string">'0'</span>||ch&gt;<span class="string">'9'</span>)) ch=getchar();</span><br><span class="line">    <span class="keyword">if</span> (ch==<span class="string">'-'</span>) t=<span class="number">-1</span>,ch=getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>) x=x*<span class="number">10</span>+ch<span class="number">-48</span>,ch=getchar();</span><br><span class="line">    <span class="keyword">return</span> x*t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">pow</span><span class="params">(LL a,LL b,LL mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL ret=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (b&amp;<span class="number">1</span>) ret=ret*a%mod;</span><br><span class="line">        a=a*a%mod; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    n=read(),x=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) a[i]=read(),b[i]=read();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        LL A=b[i],B=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++) <span class="keyword">if</span> (i!=j)</span><br><span class="line">        &#123;</span><br><span class="line">            A=A*(x-a[j])%mod;</span><br><span class="line">            B=B*(a[i]-a[j])%mod;</span><br><span class="line">        &#125;</span><br><span class="line">        ans=(ans+A*<span class="built_in">pow</span>(B,mod<span class="number">-2</span>,mod))%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(ans%mod+mod)%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -476,8 +504,6 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
     <footer class="post-footer">
       
         <div class="post-tags">
-          
-            <a href="/tags/组合数学/" <i class="fa fa-tag"></i> 组合数学</a>
           
             <a href="/tags/模板/" <i class="fa fa-tag"></i> 模板</a>
           
@@ -567,8 +593,17 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -587,7 +622,7 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -609,7 +644,7 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -670,6 +705,22 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#拉格朗日插值法"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日插值法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重心拉格朗日插值法"><span class="nav-number">2.</span> <span class="nav-text">重心拉格朗日插值法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -703,7 +754,7 @@ f\left (x  \right )=\sum_{i=1}^{n+1}y_i\prod_{j\neq i}\frac{\left ( x-x_{j} \rig
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共52.9k字</span>
+  <span class="post-count">博客全站共54.3k字</span>
 </div>
 <br>
 

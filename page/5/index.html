@@ -335,6 +335,397 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/HAOI2006-均分数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/11/HAOI2006-均分数据/" itemprop="url">[HAOI2006]均分数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-11T13:31:10+08:00">
+                2018-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  670
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>如果贪心是一只兔子不断往目标跳去，那模拟退火就是一只喝醉的兔子不停乱跳</p>
+</blockquote>
+<p>SA 算法的基本思想是用马尔可夫链的形式进行随机搜索，它不仅接受改善目标函数的变化，而且还能保留一些不理想的变化。<br>对于改善目标函数的变化直接转移<br>对于不理想的变化，发生转移的概率为<script type="math/tex">P=e^{\frac{\Delta E}{kT_{0}}}</script><br>其中<script type="math/tex">T_{0}</script>为当前温度，<script type="math/tex">k</script>为玻尔兹曼常数，为了方便计算可设<script type="math/tex">k=1</script><br>需要设定的参数为初温<script type="math/tex">S</script>，末温<script type="math/tex">T</script>，和降温系数<script type="math/tex">dT</script></p>
+<p>适当的温度至关重要</p>
+<ul>
+<li><p>若<script type="math/tex">T_{0}</script>过大<script type="math/tex">\left ( T\rightarrow \infty  \right )</script>，几乎所有转移都会被接受</p>
+</li>
+<li><p>若<script type="math/tex">T_{0}</script>过小<script type="math/tex">\left ( T\rightarrow0 \right )</script>，几乎所有不理想的转移均无法被接受，算法将会变为贪心，容易陷入局部最优解</p>
+</li>
+</ul>
+<p>此外，优秀的状态产生函数和状态评估函数将会提高SA的效率<br><del>最好是能面向数据编程</del></p>
+<p>放一张Wiki的动图<br><img src="/2018/08/11/HAOI2006-均分数据/SA.gif" alt="SA"></p>
+<p>有了SA这题就好写了<br>状态生产函数采用随机交换两个元素<br>状态评估函数采用动态规划<br>设<script type="math/tex">dp\left [  i\right ]\left [ j \right ]</script>为前<em>i</em> 个分成<em>j</em> 组的最小<script type="math/tex">j\sigma ^{2}</script></p>
+<script type="math/tex; mode=display">
+dp\left [  i\right ]\left [ j \right ]=min\left \{ dp\left [ k \right ] \left [ j-1 \right ]+\left ( \sum_{k+1}^{i}x-\bar{x} \right )^{2} \right \}</script><p><del>调参调了很久</del><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/11/HAOI2006-均分数据/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/NOIP2004-虫食算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CWHer">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cwher.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="魍魉的小窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/11/NOIP2004-虫食算/" itemprop="url">NOIP2004 虫食算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-11T13:14:41+08:00">
+                2018-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index">
+                    <span itemprop="name">OI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  683
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>听说正解是高斯消元，<del>但我还是选择搜索</del></p>
+<p>考虑从右往左搜<br>退出条件是搜完所有位置<br>剪枝好像只能可行性剪枝<br>复杂度还是很高</p>
+<p>枚举的时候还能再优化一下</p>
+<ul>
+<li>三个数均未确定<ul>
+<li>枚举其中两个计算第三个</li>
+</ul>
+</li>
+<li>两个数未确定<ul>
+<li>枚举一个计算一个</li>
+</ul>
+</li>
+<li>一个数未确定<ul>
+<li>直接计算</li>
+</ul>
+</li>
+<li>均确定<ul>
+<li>可行性剪枝</li>
+</ul>
+</li>
+</ul>
+<p>比较容易忽略的是回溯过程<br>不合法也要先回溯再退出</p>
+<p><del>最慢点1000+ms，吸口氧就能过了</del><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/11/NOIP2004-虫食算/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/CQOI2014-数三角形/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1749,368 +2140,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/27/洛谷P3943-星空/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CWHer">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/cwher.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魍魉的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/27/洛谷P3943-星空/" itemprop="url">洛谷P3943 星空</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-27T19:21:27+08:00">
-                2018-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OI/" itemprop="url" rel="index">
-                    <span itemprop="name">OI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  562
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><del>看题解系列</del></p>
-<p>首先是异或差分<del>（其实我也不知道叫什么）</del><br>定义<em>f</em> 为异或数组</p>
-<script type="math/tex; mode=display">
-f\left [ i \right ]=w\left [ i \right ]\  xor \ w\left [ i+1 \right ]</script><p>表示<script type="math/tex">w\left [ i \right ]\</script> 与<script type="math/tex">\ w\left [ i+1 \right ]</script> 是否相同<br><em>f</em> 数组中至多有 <script type="math/tex">2k</script> 个 <em>1</em> ，且肯定是偶数个<br>当<em>f</em> 数组全部为<em>0</em> 时，灯全部点亮<br>对于一段连续序列进行翻转，<del>显然</del>只需要修改<script type="math/tex">f\left [ l-1 \right ]</script>，<script type="math/tex">f\left [ r \right ]</script><br>这个操作等价于对某个元素进行移动<br>当两个<em>1</em> 相遇时会消除<br>于是问题等价于求所有<em>1</em> 消除的代价<br>对于任意两个<em>1</em> 消除的代价，可用完全背包求<br>将长度为<em>len</em> 的操作看成<em>len</em> 和<em>-len</em> 两种<br>最后状压所有<em>1</em> </p>
-<script type="math/tex; mode=display">
-dp\left [ s' \right ]=min\left \{ dp\left [ s \right ] +cost\left [ i,j \right ]\right \}\left ( i\notin s,j\notin s \right )</script><p>乍一看枚举<em>i</em> ，<em>j</em> 复杂度<script type="math/tex">O\left ( 2^{N}N^{2} \right )</script><br>但实际上其中一个并不用枚举，确定任意一个<em>i</em> 之后枚举<em>j</em> 即可<br>因此复杂度<script type="math/tex">O\left ( 2^{N}N \right )</script><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/27/洛谷P3943-星空/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Lucas定理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CWHer">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/cwher.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="魍魉的小窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/Lucas定理/" itemprop="url">Lucas定理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-26T20:44:36+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OI/" itemprop="url" rel="index">
-                    <span itemprop="name">OI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  240
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><del>证明省略</del></p>
-<script type="math/tex; mode=display">
-Lucas\left ( m,n,p \right )=C\left ( m\%p,n\%p \right )*Lucas\left ( \left \lfloor \frac{m}{p}\right  \rfloor ,\left \lfloor \frac{n}{p} \right \rfloor ,p \right )</script><script type="math/tex; mode=display">
-Lucas\left ( m,0,p \right )=1</script>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/26/Lucas定理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2165,7 +2194,7 @@ Lucas\left ( m,0,p \right )=1</script>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-count">120</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2187,7 +2216,7 @@ Lucas\left ( m,0,p \right )=1</script>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2281,7 +2310,7 @@ Lucas\left ( m,0,p \right )=1</script>
 <span class="post-meta-divider">|</span>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共52.9k字</span>
+  <span class="post-count">博客全站共54.3k字</span>
 </div>
 <br>
 
