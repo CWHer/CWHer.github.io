@@ -43,8 +43,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>树形结构</tag>
         <tag>组合数学</tag>
+        <tag>树形结构</tag>
       </tags>
   </entry>
   <entry>
@@ -527,8 +527,8 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>容斥</tag>
         <tag>背包</tag>
+        <tag>容斥</tag>
       </tags>
   </entry>
   <entry>
@@ -602,8 +602,8 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>差分</tag>
         <tag>背包</tag>
+        <tag>差分</tag>
         <tag>状态压缩</tag>
         <tag>异或</tag>
       </tags>
@@ -616,8 +616,8 @@
         <category>OI</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>组合数学</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
